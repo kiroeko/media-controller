@@ -51,6 +51,7 @@ pico_enable_stdio_usb(media-controller 0)
 
 # Add the standard library to the build
 target_link_libraries(media-controller
+    pico_unique_id
     pico_stdlib
     tinyusb_device
     tinyusb_board

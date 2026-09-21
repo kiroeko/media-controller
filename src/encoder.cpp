@@ -1,14 +1,25 @@
 #include "input.h"
 
-DebouncedInput::DebouncedInput(uint gpio, bool active_high, bool enable_pull_up)
-    : gpio_(gpio), active_high_(active_high), enable_pull_up_(enable_pull_up) {}
+namespace {
+// Gray-code transitions per detent = 4 × pulses per revolution ÷ detents per revolution; the Waveshare module is 20 pulses/rev with detents unmarked, so measure before trusting this value.
+constexpr int8_t kAccumulatorPerDetent = 4;
+
+// One sample per millisecond: mechanical bounce settles well inside that, and
+// missing a turn would need two Gray steps within a window (~25 rev/s by hand).
+constexpr int32_t kSampleIntervalMs = 1;
+}  // namespace
+
+DebouncedInput::DebouncedInput(uint gpio, bool active_high, InputPull pull)
+    : gpio_(gpio), active_high_(active_high), pull_(pull) {}
 
 void DebouncedInput::init(uint32_t now_ms) {
     gpio_init(gpio_);
     gpio_set_dir(gpio_, GPIO_IN);
 
-    if (enable_pull_up_) {
+    if (pull_ == InputPull::Up) {
         gpio_pull_up(gpio_);
+    } else if (pull_ == InputPull::Down) {
+        gpio_pull_down(gpio_);
     } else {
         gpio_disable_pulls(gpio_);
     }
@@ -51,7 +62,7 @@ bool DebouncedInput::read_active() const {
 }
 
 QuadratureEncoder::QuadratureEncoder(uint pin_a, uint pin_b, uint pin_switch)
-    : pin_a_(pin_a), pin_b_(pin_b), switch_(pin_switch, false, true) {}
+    : pin_a_(pin_a), pin_b_(pin_b), switch_(pin_switch, false, InputPull::Up) {}
 
 void QuadratureEncoder::init(uint32_t now_ms) {
     gpio_init(pin_a_);
@@ -63,12 +74,17 @@ void QuadratureEncoder::init(uint32_t now_ms) {
     gpio_pull_up(pin_b_);
 
     previous_state_ = read_state();
+    last_sample_ms_ = now_ms - 1;
     switch_.init(now_ms);
 }
 
 void QuadratureEncoder::update(uint32_t now_ms) {
-    // Valid quadrature transitions are one Gray-code step apart. Four steps
-    // form one detent on the common EC11 module.
+    if (static_cast<int32_t>(now_ms - last_sample_ms_) < kSampleIntervalMs) {
+        return;
+    }
+    last_sample_ms_ = now_ms;
+
+    // Valid quadrature transitions are one Gray-code step apart.
     static constexpr int8_t kTransitionDelta[16] = {
         0, -1, 1, 0,
         1, 0, 0, -1,
@@ -80,12 +96,12 @@ void QuadratureEncoder::update(uint32_t now_ms) {
     quadrature_accumulator_ += kTransitionDelta[(previous_state_ << 2U) | state];
     previous_state_ = state;
 
-    if (quadrature_accumulator_ >= 4) {
+    if (quadrature_accumulator_ >= kAccumulatorPerDetent) {
         ++pending_turns_;
-        quadrature_accumulator_ -= 4;
-    } else if (quadrature_accumulator_ <= -4) {
+        quadrature_accumulator_ -= kAccumulatorPerDetent;
+    } else if (quadrature_accumulator_ <= -kAccumulatorPerDetent) {
         --pending_turns_;
-        quadrature_accumulator_ += 4;
+        quadrature_accumulator_ += kAccumulatorPerDetent;
     }
 
     switch_.update(now_ms);

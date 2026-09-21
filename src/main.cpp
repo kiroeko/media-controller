@@ -8,10 +8,11 @@
 namespace {
 
 // RP2350-Zero-M header pin labels are GP2, GP3, GP4 and GP5.
+// Encoder names follow the module silkscreen: SIA is phase A, SIB is phase B.
 constexpr uint kModeSwitchPin = 2;
-constexpr uint kEncoderClkPin = 3;
-constexpr uint kEncoderDtPin = 4;
-constexpr uint kEncoderSwitchPin = 5;
+constexpr uint kEncoderSiaPin = 3;
+constexpr uint kEncoderSibPin = 4;
+constexpr uint kEncoderSwPin = 5;
 constexpr bool kModeSwitchActiveHigh = true;
 
 // Set this to true only if clockwise and counter-clockwise feel reversed
@@ -46,12 +47,13 @@ int main() {
     const uint32_t initial_time_ms = now_ms();
 
     // The LED locking button drives its SIG pin high when it is on.
-    // Off = volume mode; on = track mode.
-    DebouncedInput mode_switch(kModeSwitchPin, kModeSwitchActiveHigh, false);
+    // Off = volume mode; on = track mode. Pull is still undecided pending a
+    // bench measurement of the module's own output drive; see README.
+    DebouncedInput mode_switch(kModeSwitchPin, kModeSwitchActiveHigh, InputPull::None);
     mode_switch.init(initial_time_ms);
 
-    // EC11 module: CLK -> GP3, DT -> GP4, SW -> GP5.
-    QuadratureEncoder encoder(kEncoderClkPin, kEncoderDtPin, kEncoderSwitchPin);
+    // Waveshare Rotation Sensor: SIA -> GP3, SIB -> GP4, SW -> GP5.
+    QuadratureEncoder encoder(kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin);
     encoder.init(initial_time_ms);
 
     media_hid_init();
@@ -62,9 +64,17 @@ int main() {
         mode_switch.update(current_time_ms);
         encoder.update(current_time_ms);
 
-        enqueue_turn_actions(encoder.take_turns(), mode_switch.is_active());
+        const int turns = encoder.take_turns();
+        const bool pressed = encoder.take_switch_pressed();
 
-        if (encoder.take_switch_pressed()) {
+        // Input while the host sleeps wakes it first; the queued actions follow once the bus resumes.
+        if (turns != 0 || pressed) {
+            media_hid_wake_host();
+        }
+
+        enqueue_turn_actions(turns, mode_switch.is_active());
+
+        if (pressed) {
             (void)media_hid_enqueue(MediaAction::PlayPause);
         }
 

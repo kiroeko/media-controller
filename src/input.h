@@ -4,9 +4,11 @@
 
 #include "pico/stdlib.h"
 
+enum class InputPull : uint8_t { None, Up, Down };
+
 class DebouncedInput {
 public:
-    DebouncedInput(uint gpio, bool active_high, bool enable_pull_up);
+    DebouncedInput(uint gpio, bool active_high, InputPull pull);
 
     void init(uint32_t now_ms);
     void update(uint32_t now_ms);
@@ -21,7 +23,7 @@ private:
 
     uint gpio_;
     bool active_high_;
-    bool enable_pull_up_;
+    InputPull pull_;
     bool candidate_active_ = false;
     bool stable_active_ = false;
     bool activated_ = false;
@@ -44,6 +46,7 @@ private:
     uint pin_a_;
     uint pin_b_;
     uint8_t previous_state_ = 0;
+    uint32_t last_sample_ms_ = 0;
     int8_t quadrature_accumulator_ = 0;
     int8_t pending_turns_ = 0;
     DebouncedInput switch_;

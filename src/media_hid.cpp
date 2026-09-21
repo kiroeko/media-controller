@@ -4,6 +4,7 @@
 #include <cstring>
 
 #include "bsp/board_api.h"
+#include "pico/unique_id.h"
 #include "tusb.h"
 
 namespace {
@@ -25,7 +26,8 @@ enum StringIndex : uint8_t {
     kStringHidInterface,
 };
 
-// The example VID/PID is permitted for prototyping only. Replace it before
+// The VID is TinyUSB's example value and is not assigned to anyone; the PID is
+// self-assigned to avoid the example's default. Replace the VID before
 // distributing hardware commercially.
 const tusb_desc_device_t kDeviceDescriptor = {
     sizeof(tusb_desc_device_t),
@@ -36,8 +38,8 @@ const tusb_desc_device_t kDeviceDescriptor = {
     0x00,
     CFG_TUD_ENDPOINT0_SIZE,
     0xCAFE,
-    0x4001,
-    0x0100,
+    0x40A1,
+    0x0101,
     kStringManufacturer,
     kStringProduct,
     kStringSerial,
@@ -56,14 +58,18 @@ const uint8_t kConfigurationDescriptor[] = {
     TUD_CONFIG_DESCRIPTOR(1, kInterfaceCount, 0, kConfigurationLength,
                           TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP, 100),
     TUD_HID_DESCRIPTOR(kInterfaceHid, kStringHidInterface, HID_ITF_PROTOCOL_NONE,
-                       sizeof(kHidReportDescriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 10),
+                       sizeof(kHidReportDescriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
 };
+
+// The USB serial number is per-device, so it is filled from the RP2350's OTP
+// unique ID by media_hid_init() before the USB stack is started.
+char serial_string[PICO_UNIQUE_BOARD_ID_SIZE_BYTES * 2 + 1] = {0};
 
 const char* const kStringDescriptors[] = {
     "",
     "Kiro",
     "RP2350 Media Dial",
-    "0001",
+    serial_string,
     "Consumer Control",
 };
 
@@ -72,6 +78,7 @@ size_t queue_head = 0;
 size_t queue_tail = 0;
 bool report_is_pressed = false;
 uint32_t release_at_ms = 0;
+bool suspend_wake_enabled = false;
 
 bool queue_is_empty() {
     return queue_head == queue_tail;
@@ -101,6 +108,8 @@ uint16_t usage_for(MediaAction action) {
 }  // namespace
 
 void media_hid_init() {
+    pico_get_unique_board_id_string(serial_string, sizeof(serial_string));
+
     tud_init(0);
     board_init_after_tusb();
 }
@@ -116,8 +125,17 @@ bool media_hid_enqueue(MediaAction action) {
     return true;
 }
 
+bool media_hid_wake_host() {
+    return tud_remote_wakeup();
+}
+
 void media_hid_update(uint32_t now_ms) {
     tud_task();
+
+    // Host asleep and unwilling to be woken: input is meaningless, drop it instead of firing it on a later unrelated resume.
+    if (tud_suspended() && !suspend_wake_enabled) {
+        queue_head = queue_tail = 0;
+    }
 
     if (report_is_pressed) {
         if (time_reached(now_ms, release_at_ms) && tud_hid_ready()) {
@@ -200,4 +218,10 @@ extern "C" void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id,
     (void)report_type;
     (void)buffer;
     (void)buffer_size;
+}
+
+extern "C" void tud_suspend_cb(bool remote_wakeup_en) {
+    suspend_wake_enabled = remote_wakeup_en;
+    // Drop queued actions so they cannot fire on a later unrelated resume, but keep the in-flight press: its release must still reach the host.
+    queue_head = queue_tail = 0;
 }
