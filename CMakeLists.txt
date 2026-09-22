@@ -65,5 +65,14 @@ target_include_directories(media-controller PRIVATE
 
 target_compile_options(media-controller PRIVATE -Wall -Wextra)
 
+# -Wconversion only on our own sources: third-party conversion warnings are
+# reported against code we cannot fix, and an SDK bump would dirty the build.
+set_source_files_properties(
+    src/main.cpp
+    src/encoder.cpp
+    src/media_hid.cpp
+    PROPERTIES COMPILE_OPTIONS "-Wconversion"
+)
+
 pico_add_extra_outputs(media-controller)
 
