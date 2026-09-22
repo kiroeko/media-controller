@@ -3,7 +3,7 @@
 #include <cstdint>
 
 // Mechanism layer: raw 2-bit quadrature phase in, signed whole-detent count out.
-class QuadratureInput {
+class QuadratureChannel {
 public:
     void seed(uint8_t state);
     void feed(uint8_t state);

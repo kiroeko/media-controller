@@ -1,9 +1,9 @@
-#include "debounced_input.h"
+#include "switch_channel.h"
 
-DebouncedInput::DebouncedInput(uint gpio, bool active_high, InputPull pull)
+SwitchChannel::SwitchChannel(uint gpio, bool active_high, InputPull pull)
     : gpio_(gpio), active_high_(active_high), pull_(pull) {}
 
-void DebouncedInput::init(uint32_t now_ms) {
+void SwitchChannel::init(uint32_t now_ms) {
     gpio_init(gpio_);
     gpio_set_dir(gpio_, GPIO_IN);
 
@@ -20,7 +20,7 @@ void DebouncedInput::init(uint32_t now_ms) {
     last_raw_change_ms_ = now_ms;
 }
 
-void DebouncedInput::update(uint32_t now_ms) {
+void SwitchChannel::update(uint32_t now_ms) {
     const bool raw_active = read_active();
     if (raw_active != candidate_active_) {
         candidate_active_ = raw_active;
@@ -37,17 +37,17 @@ void DebouncedInput::update(uint32_t now_ms) {
     }
 }
 
-bool DebouncedInput::is_active() const {
+bool SwitchChannel::is_active() const {
     return stable_active_;
 }
 
-bool DebouncedInput::take_activated() {
+bool SwitchChannel::take_activated() {
     const bool result = activated_;
     activated_ = false;
     return result;
 }
 
-bool DebouncedInput::read_active() const {
+bool SwitchChannel::read_active() const {
     const bool pin_is_high = gpio_get(gpio_);
     return active_high_ ? pin_is_high : !pin_is_high;
 }

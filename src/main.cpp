@@ -2,7 +2,7 @@
 
 #include "bsp/board_api.h"
 
-#include "latching_button.h"
+#include "mode_sensor.h"
 #include "media_hid.h"
 #include "rotation_sensor.h"
 
@@ -47,8 +47,8 @@ int main() {
     const uint32_t initial_time_ms = now_ms();
 
     // Off = volume mode; on = track mode.
-    LatchingButton mode_button(kModeSwitchPin);
-    mode_button.init(initial_time_ms);
+    ModeSensor mode_sensor(kModeSwitchPin);
+    mode_sensor.init(initial_time_ms);
 
     // Waveshare Rotation Sensor: SIA -> GP3, SIB -> GP4, SW -> GP5.
     RotationSensor rotation_sensor(kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin);
@@ -59,7 +59,7 @@ int main() {
     while (true) {
         const uint32_t current_time_ms = now_ms();
 
-        mode_button.update(current_time_ms);
+        mode_sensor.update(current_time_ms);
         rotation_sensor.update(current_time_ms);
 
         const int turns = rotation_sensor.take_turns();
@@ -70,7 +70,7 @@ int main() {
             media_hid_wake_host();
         }
 
-        enqueue_turn_actions(turns, mode_button.is_on());
+        enqueue_turn_actions(turns, mode_sensor.is_on());
 
         if (pressed) {
             (void)media_hid_enqueue(MediaAction::PlayPause);

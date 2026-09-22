@@ -6,9 +6,9 @@
 
 enum class InputPull : uint8_t { None, Up, Down };
 
-class DebouncedInput {
+class SwitchChannel {
 public:
-    DebouncedInput(uint gpio, bool active_high, InputPull pull);
+    SwitchChannel(uint gpio, bool active_high, InputPull pull);
 
     void init(uint32_t now_ms);
     void update(uint32_t now_ms);

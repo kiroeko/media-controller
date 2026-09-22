@@ -1,15 +1,15 @@
-#include "quadrature_input.h"
+#include "quadrature_channel.h"
 
 namespace {
 // Gray-code transitions per detent = 4 × pulses per revolution ÷ detents per revolution; the Waveshare module is 20 pulses/rev with detents unmarked, so measure before trusting this value.
 constexpr int8_t kAccumulatorPerDetent = 4;
 }  // namespace
 
-void QuadratureInput::seed(uint8_t state) {
+void QuadratureChannel::seed(uint8_t state) {
     previous_state_ = state;
 }
 
-void QuadratureInput::feed(uint8_t state) {
+void QuadratureChannel::feed(uint8_t state) {
     // Valid quadrature transitions are one Gray-code step apart.
     static constexpr int8_t kTransitionDelta[16] = {
         0, -1, 1, 0,
@@ -30,7 +30,7 @@ void QuadratureInput::feed(uint8_t state) {
     }
 }
 
-int QuadratureInput::take_turns() {
+int QuadratureChannel::take_turns() {
     const int result = pending_turns_;
     pending_turns_ = 0;
     return result;

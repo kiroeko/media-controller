@@ -1,4 +1,4 @@
-#include "latching_button.h"
+#include "mode_sensor.h"
 
 namespace {
 // Vendor: latching on drives SIG high and lights the LED.
@@ -9,17 +9,17 @@ constexpr bool kSigActiveHigh = true;
 constexpr InputPull kSigPull = InputPull::None;
 }  // namespace
 
-LatchingButton::LatchingButton(uint sig_pin)
+ModeSensor::ModeSensor(uint sig_pin)
     : sig_(sig_pin, kSigActiveHigh, kSigPull) {}
 
-void LatchingButton::init(uint32_t now_ms) {
+void ModeSensor::init(uint32_t now_ms) {
     sig_.init(now_ms);
 }
 
-void LatchingButton::update(uint32_t now_ms) {
+void ModeSensor::update(uint32_t now_ms) {
     sig_.update(now_ms);
 }
 
-bool LatchingButton::is_on() const {
+bool ModeSensor::is_on() const {
     return sig_.is_active();
 }
