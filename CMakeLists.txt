@@ -63,7 +63,7 @@ target_link_libraries(media-controller
 
 # Add the standard include files to the build
 target_include_directories(media-controller PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}/src
+    ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
 target_compile_options(media-controller PRIVATE -Wall -Wextra)

@@ -112,12 +112,14 @@ cmake --build build
 | 文件 | 职责 |
 | --- | --- |
 | `src/main.cpp` | 硬件引脚、模式选择和行为映射 |
-| `src/channel/switch_channel.h` / `.cpp` | 通道：单个开关脚的读数，去抖后提供电平（`is_active()`）与手势事件（`take_gesture()`：短按/长按/双击） |
-| `src/channel/quadrature_channel.h` / `.cpp` | 通道：2-bit 正交相位 → 带符号整格数，自带 1 kHz 采样闸门，不碰 GPIO |
-| `src/device/mode_device.h` / `.cpp` | 器件：YFROBOT LED 自锁按键模块 |
-| `src/device/rotation_device.h` / `.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
-| `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |
-| `src/tusb_config.h` | TinyUSB 的 RP2350 / Pico SDK 配置 |
+| `include/channel/switch_channel.h` + `src/channel/switch_channel.cpp` | 通道：单个开关脚的读数，去抖后提供电平（`is_active()`）与手势事件（`take_gesture()`：短按/长按/双击） |
+| `include/channel/quadrature_channel.h` + `src/channel/quadrature_channel.cpp` | 通道：2-bit 正交相位 → 带符号整格数，自带 1 kHz 采样闸门，不碰 GPIO |
+| `include/device/mode_device.h` + `src/device/mode_device.cpp` | 器件：YFROBOT LED 自锁按键模块 |
+| `include/device/rotation_device.h` + `src/device/rotation_device.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
+| `include/media_hid.h` + `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |
+| `include/tusb_config.h` | TinyUSB 的 RP2350 / Pico SDK 配置 |
+
+头文件一律住 `include/`，实现住 `src/`，层名在两边镜像（`channel/`、`device/`）；**公共头放 `include/` 根**。include 字符串带层名前缀（`#include "channel/switch_channel.h"`），分层在引用处可见。
 
 ### 分层与命名约定
 
