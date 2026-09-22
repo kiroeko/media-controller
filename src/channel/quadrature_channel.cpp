@@ -35,10 +35,17 @@ void QuadratureChannel::accumulate(uint8_t state) {
     previous_state_ = state;
 
     if (accumulator_ >= kAccumulatorPerDetent) {
-        ++pending_turns_;
+        // Clamped, not wrapped: a rolled-over count would come back as a burst of
+        // steps in the opposite direction. The detent is consumed either way, so
+        // accumulator_ stays bounded even while nobody drains.
+        if (pending_turns_ < INT8_MAX) {
+            ++pending_turns_;
+        }
         accumulator_ -= kAccumulatorPerDetent;
     } else if (accumulator_ <= -kAccumulatorPerDetent) {
-        --pending_turns_;
+        if (pending_turns_ > INT8_MIN) {
+            --pending_turns_;
+        }
         accumulator_ += kAccumulatorPerDetent;
     }
 }

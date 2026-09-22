@@ -31,7 +31,8 @@ private:
     int8_t accumulator_ = 0;        // Quarter-steps that have not yet made a
                                     // whole detent; smaller in magnitude than
                                     // one detent after every accumulate().
-    int8_t pending_turns_ = 0;      // Detents awaiting take_turns(). Signed
-                                    // 8-bit, so a caller that stops draining
-                                    // would overflow rather than saturate.
+    int8_t pending_turns_ = 0;      // Detents awaiting take_turns(). Clamped at
+                                    // the int8_t limits: an undrained caller
+                                    // reports fewer steps, never steps the other
+                                    // way.
 };
