@@ -15,10 +15,15 @@ constexpr uint kEncoderSiaPin = 3;
 constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
 
+// Milliseconds since boot, truncated to 32 bits and therefore wrapping after
+// about 49.7 days. Safe only because every user compares differences.
 uint32_t now_ms() {
     return static_cast<uint32_t>(to_ms_since_boot(get_absolute_time()));
 }
 
+// Expand a net detent count into one action per detent, oldest first. The
+// channel already netted direction, so a left-then-right gesture pair that
+// cancels out arrives here as zero and produces no reports at all.
 void enqueue_turn_actions(int turns, bool track_mode) {
     while (turns > 0) {
         (void)media_hid_enqueue(track_mode ? MediaAction::NextTrack : MediaAction::VolumeUp);
@@ -48,6 +53,9 @@ int main() {
 
     media_hid_init();
 
+    // Each pass advances every input, drains both mailboxes, then services the
+    // bus. Nothing in it may block: the debounce window, the 1 ms phase sample
+    // gate and the 8-bit detent counter all assume this loop keeps running.
     while (true) {
         const uint32_t current_time_ms = now_ms();
 
