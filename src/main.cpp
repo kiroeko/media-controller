@@ -3,8 +3,8 @@
 #include "bsp/board_api.h"
 
 #include "device/mode_device.h"
-#include "media_hid.h"
 #include "device/rotation_device.h"
+#include "media_hid.h"
 
 namespace {
 

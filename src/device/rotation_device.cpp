@@ -1,16 +1,16 @@
 #include "device/rotation_device.h"
 
 RotationDevice::RotationDevice(uint pin_a, uint pin_b, uint pin_switch)
-    : pin_a_(pin_a), pin_b_(pin_b), switch_(pin_switch, false, InputPull::Up) {}
+    : pin_a_(pin_a), pin_b_(pin_b), switch_(pin_switch, false, InputPull::None) {}
 
 void RotationDevice::init(uint32_t now_ms) {
+    // The module carries on-board pull-ups: the vendor demo configures none and
+    // its waveforms idle high, so we stack no internal pulls on top.
     gpio_init(pin_a_);
     gpio_set_dir(pin_a_, GPIO_IN);
-    gpio_pull_up(pin_a_);
 
     gpio_init(pin_b_);
     gpio_set_dir(pin_b_, GPIO_IN);
-    gpio_pull_up(pin_b_);
 
     decoder_.seed(now_ms, read_state());
     switch_.init(now_ms);

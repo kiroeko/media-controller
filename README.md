@@ -51,7 +51,7 @@ A/B 相以 1 kHz 采样（`src/channel/quadrature_channel.cpp` 的 `kSampleInter
 | EC11 `VCC` | `3V3` | 给模块供电 |
 | EC11 `GND` | `GND` | 共地 |
 
-EC11 模块是微雪 **Rotation Sensor**，5 针为 `SIA` / `SIB` / `SW` / `GND` / `VCC`，编码器公共脚在板内已并到 `GND`，所以没有单独的 `C` 脚。`SIA`、`SIB`、`SW` 都是信号脚，代码已为它们打开 MCU 内部上拉：静止读高，接通地读低。
+EC11 模块是微雪 **Rotation Sensor**，5 针为 `SIA` / `SIB` / `SW` / `GND` / `VCC`，编码器公共脚在板内已并到 `GND`，所以没有单独的 `C` 脚。`SIA`、`SIB`、`SW` 都是信号脚，静止读高、接通地读低；上拉由**模块自带**（官方示例不配置任何上拉，波形空闲高为证），代码不叠加 MCU 内部上拉。
 
 按键模块是四线 Gravity 兼容接口（`SIG` / `NC` / `VCC` / `GND`），只接三根线，`NC` 悬空。
 
