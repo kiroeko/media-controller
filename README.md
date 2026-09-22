@@ -109,12 +109,13 @@ cmake --build build
 | --- | --- |
 | `src/main.cpp` | 硬件引脚、模式选择和行为映射 |
 | `src/debounced_input.h` / `.cpp` | 机制件：单个开关脚的读数，去抖后同时提供电平（`is_active()`）和边沿（`take_activated()`） |
+| `src/quadrature_input.h` / `.cpp` | 机制件：2-bit 正交相位 → 带符号整格数，不碰 GPIO |
 | `src/latching_button.h` / `.cpp` | 器件：YFROBOT LED 自锁按键模块 |
 | `src/rotation_sensor.h` / `.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
 | `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |
 | `src/tusb_config.h` | TinyUSB 的 RP2350 / Pico SDK 配置 |
 
-建模规则是**一个物理器件一个类型**：`LatchingButton` 和 `RotationSensor` 各对应一块模块，所以 `main.cpp` 里恰好两个对象。`DebouncedInput` 不是器件，是它们共用的机制件（去抖读数），因此被器件类型包在内部，`main.cpp` 不直接碰它。EC11 的按下按键在 `RotationSensor` 内部而不是独立对象，因为它和 A/B 两相同属一个物理模块、共用一个接插件。
+建模规则是**一个物理器件一个类型**：`LatchingButton` 和 `RotationSensor` 各对应一块模块，所以 `main.cpp` 里恰好两个对象。机制层的命名约定是 **`[修饰词]Input`**——一路"从物理世界到稳定读数"的通道，前缀说明这一路最显著的特征（`Debounced` = 去抖，`Quadrature` = 正交相位）；器件层是名词，机制层一律 `...Input`，一眼分层。`DebouncedInput` 和 `QuadratureInput` 都不碰器件语义，因此被器件类型包在内部，`main.cpp` 不直接碰它们。EC11 的按下按键在 `RotationSensor` 内部而不是独立对象，因为它和 A/B 两相同属一个物理模块、共用一个接插件。
 
 每个媒体命令发送一次"按下"报告，约 8 ms 后发送"松开"报告，Windows 才会把每格旋钮当成一次独立操作。端点轮询间隔为 1 ms（全速设备的下限，`src/media_hid.cpp` 的 `TUD_HID_DESCRIPTOR` 末参），所以吞吐的瓶颈是那个 8 ms 释放延迟，不是总线。
 

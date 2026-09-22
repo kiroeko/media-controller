@@ -5,6 +5,7 @@
 #include "pico/stdlib.h"
 
 #include "debounced_input.h"
+#include "quadrature_input.h"
 
 // Models the whole Waveshare Rotation Sensor module, not just its encoder: the
 // EC11 quadrature phases and the built-in push button share one connector and
@@ -24,9 +25,7 @@ private:
 
     uint pin_a_;
     uint pin_b_;
-    uint8_t previous_state_ = 0;
     uint32_t last_sample_ms_ = 0;
-    int8_t quadrature_accumulator_ = 0;
-    int8_t pending_turns_ = 0;
+    QuadratureInput decoder_;
     DebouncedInput switch_;
 };

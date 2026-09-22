@@ -1,9 +1,6 @@
 #include "rotation_sensor.h"
 
 namespace {
-// Gray-code transitions per detent = 4 × pulses per revolution ÷ detents per revolution; the Waveshare module is 20 pulses/rev with detents unmarked, so measure before trusting this value.
-constexpr int8_t kAccumulatorPerDetent = 4;
-
 // One sample per millisecond: mechanical bounce settles well inside that, and
 // missing a turn would need two Gray steps within a window (~25 rev/s by hand).
 constexpr int32_t kSampleIntervalMs = 1;
@@ -21,44 +18,24 @@ void RotationSensor::init(uint32_t now_ms) {
     gpio_set_dir(pin_b_, GPIO_IN);
     gpio_pull_up(pin_b_);
 
-    previous_state_ = read_state();
     last_sample_ms_ = now_ms - 1;
+    decoder_.seed(read_state());
     switch_.init(now_ms);
 }
 
 void RotationSensor::update(uint32_t now_ms) {
-    if (static_cast<int32_t>(now_ms - last_sample_ms_) < kSampleIntervalMs) {
-        return;
-    }
-    last_sample_ms_ = now_ms;
-
-    // Valid quadrature transitions are one Gray-code step apart.
-    static constexpr int8_t kTransitionDelta[16] = {
-        0, -1, 1, 0,
-        1, 0, 0, -1,
-        -1, 0, 0, 1,
-        0, 1, -1, 0,
-    };
-
-    const uint8_t state = read_state();
-    quadrature_accumulator_ += kTransitionDelta[(previous_state_ << 2U) | state];
-    previous_state_ = state;
-
-    if (quadrature_accumulator_ >= kAccumulatorPerDetent) {
-        ++pending_turns_;
-        quadrature_accumulator_ -= kAccumulatorPerDetent;
-    } else if (quadrature_accumulator_ <= -kAccumulatorPerDetent) {
-        --pending_turns_;
-        quadrature_accumulator_ += kAccumulatorPerDetent;
-    }
-
+    // The button is polled every loop; only the phase sampling is throttled,
+    // so the debounce resolution no longer depends on the encoder sample rate.
     switch_.update(now_ms);
+
+    if (static_cast<int32_t>(now_ms - last_sample_ms_) >= kSampleIntervalMs) {
+        last_sample_ms_ = now_ms;
+        decoder_.feed(read_state());
+    }
 }
 
 int RotationSensor::take_turns() {
-    const int result = pending_turns_;
-    pending_turns_ = 0;
-    return result;
+    return decoder_.take_turns();
 }
 
 bool RotationSensor::take_switch_pressed() {

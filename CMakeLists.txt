@@ -42,6 +42,7 @@ add_executable(media-controller
     src/debounced_input.cpp
     src/latching_button.cpp
     src/media_hid.cpp
+    src/quadrature_input.cpp
     src/rotation_sensor.cpp
 )
 
@@ -74,6 +75,7 @@ set_source_files_properties(
     src/debounced_input.cpp
     src/latching_button.cpp
     src/media_hid.cpp
+    src/quadrature_input.cpp
     src/rotation_sensor.cpp
     PROPERTIES COMPILE_OPTIONS "-Wconversion"
 )
