@@ -1,7 +1,13 @@
 #include "channel/switch_channel.h"
 
-SwitchChannel::SwitchChannel(uint gpio, bool active_high, InputPull pull, bool detect_double)
-    : gpio_(gpio), active_high_(active_high), pull_(pull), detect_double_(detect_double) {}
+SwitchChannel::SwitchChannel(uint gpio, bool active_high, InputPull pull, bool detect_double,
+                             uint32_t long_press_ms, uint32_t double_gap_ms)
+    : gpio_(gpio)
+    , active_high_(active_high)
+    , pull_(pull)
+    , detect_double_(detect_double)
+    , long_press_ms_(long_press_ms)
+    , double_gap_ms_(double_gap_ms) {}
 
 void SwitchChannel::init(uint32_t now_ms) {
     gpio_init(gpio_);
@@ -50,7 +56,7 @@ void SwitchChannel::update(uint32_t now_ms) {
     } else if (!level && was_active_) {
         if (!suppress_short_ && !long_fired_) {
             if (detect_double_) {
-                pending_short_at_ms_ = now_ms + kDoubleGapMs;
+                pending_short_at_ms_ = now_ms + double_gap_ms_;
             } else {
                 short_pressed_ = true;
             }
@@ -58,7 +64,7 @@ void SwitchChannel::update(uint32_t now_ms) {
     }
 
     if (level && !long_fired_ &&
-        static_cast<uint32_t>(now_ms - press_start_ms_) >= kLongPressMs) {
+        static_cast<uint32_t>(now_ms - press_start_ms_) >= long_press_ms_) {
         long_fired_ = true;
         long_pressed_ = true;
     }

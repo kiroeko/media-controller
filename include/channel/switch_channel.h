@@ -10,7 +10,11 @@ enum class SwitchGesture : uint8_t { None, Short, Long, Double };
 
 class SwitchChannel {
 public:
-    SwitchChannel(uint gpio, bool active_high, InputPull pull, bool detect_double = false);
+    // The debounce window is electrical and stays ours; what counts as a
+    // gesture is a product decision, so the caller sets the thresholds.
+    // `double_gap_ms` is only consulted when `detect_double` is true.
+    SwitchChannel(uint gpio, bool active_high, InputPull pull, bool detect_double = false,
+                  uint32_t long_press_ms = kLongPressMs, uint32_t double_gap_ms = kDoubleGapMs);
 
     void init(uint32_t now_ms);
     void update(uint32_t now_ms);
@@ -29,6 +33,8 @@ private:
     bool active_high_;
     InputPull pull_;
     bool detect_double_;
+    uint32_t long_press_ms_;
+    uint32_t double_gap_ms_;
     bool candidate_active_ = false;
     bool stable_active_ = false;
     bool was_active_ = false;
