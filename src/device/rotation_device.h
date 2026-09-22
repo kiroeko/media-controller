@@ -18,7 +18,7 @@ public:
     void update(uint32_t now_ms);
 
     int take_turns();
-    bool take_switch_pressed();
+    SwitchGesture take_switch_gesture();
 
 private:
     [[nodiscard]] uint8_t read_state() const;

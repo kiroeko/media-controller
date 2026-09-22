@@ -55,16 +55,25 @@ int main() {
         rotation_device.update(current_time_ms);
 
         const int turns = rotation_device.take_turns();
-        const bool pressed = rotation_device.take_switch_pressed();
+
+        bool any_gesture = false;
+        bool short_press = false;
+        for (SwitchGesture gesture = rotation_device.take_switch_gesture();
+             gesture != SwitchGesture::None;
+             gesture = rotation_device.take_switch_gesture()) {
+            any_gesture = true;
+            short_press = short_press || gesture == SwitchGesture::Short;
+            // Long and Double are detected but unbound for now.
+        }
 
         // Input while the host sleeps wakes it first; the queued actions follow once the bus resumes.
-        if (turns != 0 || pressed) {
+        if (turns != 0 || any_gesture) {
             media_hid_wake_host();
         }
 
         enqueue_turn_actions(turns, mode_device.is_on());
 
-        if (pressed) {
+        if (short_press) {
             (void)media_hid_enqueue(MediaAction::PlayPause);
         }
 

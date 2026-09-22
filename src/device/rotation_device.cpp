@@ -26,8 +26,8 @@ int RotationDevice::take_turns() {
     return decoder_.take_turns();
 }
 
-bool RotationDevice::take_switch_pressed() {
-    return switch_.take_activated();
+SwitchGesture RotationDevice::take_switch_gesture() {
+    return switch_.take_gesture();
 }
 
 uint8_t RotationDevice::read_state() const {

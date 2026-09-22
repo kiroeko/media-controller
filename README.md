@@ -19,6 +19,8 @@ Windows 设备管理器里显示的产品名来自 USB 字符串描述符，目�
 
 按键是**机械自锁**（锁存）型：按一下保持，再一下释放，LED 与 `SIG` 同步跟随，所以灯亮即代表当前处于切歌模式。
 
+EC11 按键的手势由 `src/channel/switch_channel.cpp` 检测：**短按**在松开时判定（所以播放/暂停现在在**松开时**才触发）、**长按** ≥700ms 越过阈值即发、**双击**为两次按压间隔 ≤300ms。当前只绑定短按 = 播放/暂停；长按与双击已检测、未绑定。双击检测默认关闭：开启后每次短按都要等 300ms 间隔窗结束才能发出，绑定双击动作那天再打开（`RotationDevice` 构造处第四个参数）并接受这个延迟。
+
 电脑睡眠时**转动或按下** EC11 都会先发起 USB remote wakeup 唤醒主机，动作本身在总线恢复后照常发出：转动变成音量/切歌步进，按下变成播放/暂停。代价是睡眠中误碰旋钮也会唤醒电脑并带上那几下步进，这是有意接受的取舍。挂起瞬间队列里已有的旧动作会被清空，避免电脑因别的原因醒来时打出幽灵按键；若主机根本没使能唤醒（电源管理没勾），睡眠期间的输入会被持续丢弃，不会欠到下次醒来再补发。
 
 ## 上电后需要实测的三项
@@ -110,7 +112,7 @@ cmake --build build
 | 文件 | 职责 |
 | --- | --- |
 | `src/main.cpp` | 硬件引脚、模式选择和行为映射 |
-| `src/channel/switch_channel.h` / `.cpp` | 通道：单个开关脚的读数，去抖后同时提供电平（`is_active()`）和边沿（`take_activated()`） |
+| `src/channel/switch_channel.h` / `.cpp` | 通道：单个开关脚的读数，去抖后提供电平（`is_active()`）与手势事件（`take_gesture()`：短按/长按/双击） |
 | `src/channel/quadrature_channel.h` / `.cpp` | 通道：2-bit 正交相位 → 带符号整格数，自带 1 kHz 采样闸门，不碰 GPIO |
 | `src/device/mode_device.h` / `.cpp` | 器件：YFROBOT LED 自锁按键模块 |
 | `src/device/rotation_device.h` / `.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
