@@ -58,12 +58,17 @@ int main() {
 
         bool any_gesture = false;
         bool short_press = false;
+        bool long_press = false;
         for (SwitchGesture gesture = rotation_device.take_switch_gesture();
              gesture != SwitchGesture::None;
              gesture = rotation_device.take_switch_gesture()) {
             any_gesture = true;
-            short_press = short_press || gesture == SwitchGesture::Short;
-            // Long and Double are detected but unbound for now.
+            if (gesture == SwitchGesture::Short) {
+                short_press = true;
+            } else if (gesture == SwitchGesture::Long) {
+                long_press = true;
+            }
+            // Double is detected but unbound for now.
         }
 
         // Input while the host sleeps wakes it first; the queued actions follow once the bus resumes.
@@ -75,6 +80,10 @@ int main() {
 
         if (short_press) {
             (void)media_hid_enqueue(MediaAction::PlayPause);
+        }
+
+        if (long_press) {
+            (void)media_hid_enqueue(MediaAction::Mute);
         }
 
         media_hid_update(current_time_ms);

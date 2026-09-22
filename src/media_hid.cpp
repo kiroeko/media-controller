@@ -100,6 +100,8 @@ uint16_t usage_for(MediaAction action) {
             return HID_USAGE_CONSUMER_VOLUME_INCREMENT;
         case MediaAction::VolumeDown:
             return HID_USAGE_CONSUMER_VOLUME_DECREMENT;
+        case MediaAction::Mute:
+            return HID_USAGE_CONSUMER_MUTE;
     }
 
     return 0;

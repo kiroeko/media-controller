@@ -8,6 +8,7 @@ enum class MediaAction : uint8_t {
     PreviousTrack,
     VolumeUp,
     VolumeDown,
+    Mute,
 };
 
 void media_hid_init();
