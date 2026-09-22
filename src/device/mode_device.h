@@ -8,9 +8,9 @@
 
 // The YFROBOT LED latching button module: a self-latching switch whose SIG pin
 // follows the latch, with the LED driven by the module itself.
-class ModeSensor {
+class ModeDevice {
 public:
-    explicit ModeSensor(uint sig_pin);
+    explicit ModeDevice(uint sig_pin);
 
     void init(uint32_t now_ms);
     void update(uint32_t now_ms);

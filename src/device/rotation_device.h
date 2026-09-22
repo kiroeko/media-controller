@@ -10,9 +10,9 @@
 // Models the whole Waveshare Rotation Sensor module, not just its encoder: the
 // EC11 quadrature phases and the built-in push button share one connector and
 // one ground, so they are one device with two channels.
-class RotationSensor {
+class RotationDevice {
 public:
-    RotationSensor(uint pin_a, uint pin_b, uint pin_switch);
+    RotationDevice(uint pin_a, uint pin_b, uint pin_switch);
 
     void init(uint32_t now_ms);
     void update(uint32_t now_ms);

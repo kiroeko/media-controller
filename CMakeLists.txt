@@ -40,10 +40,10 @@ pico_sdk_init()
 add_executable(media-controller
     src/main.cpp
     src/channel/switch_channel.cpp
-    src/sensor/mode_sensor.cpp
+    src/device/mode_device.cpp
     src/media_hid.cpp
     src/channel/quadrature_channel.cpp
-    src/sensor/rotation_sensor.cpp
+    src/device/rotation_device.cpp
 )
 
 pico_set_program_name(media-controller "media-controller")
@@ -73,10 +73,10 @@ target_compile_options(media-controller PRIVATE -Wall -Wextra)
 set_source_files_properties(
     src/main.cpp
     src/channel/switch_channel.cpp
-    src/sensor/mode_sensor.cpp
+    src/device/mode_device.cpp
     src/media_hid.cpp
     src/channel/quadrature_channel.cpp
-    src/sensor/rotation_sensor.cpp
+    src/device/rotation_device.cpp
     PROPERTIES COMPILE_OPTIONS "-Wconversion"
 )
 

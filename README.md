@@ -23,13 +23,15 @@ Windows 设备管理器里显示的产品名来自 USB 字符串描述符，目�
 
 ## 上电后需要实测的三项
 
-分别在 [`src/main.cpp`](src/main.cpp)、[`src/sensor/mode_sensor.cpp`](src/sensor/mode_sensor.cpp)、[`src/channel/quadrature_channel.cpp`](src/channel/quadrature_channel.cpp)，改完重新刷写：
+分别在 [`src/main.cpp`](src/main.cpp)、[`src/device/mode_device.cpp`](src/device/mode_device.cpp)、[`src/channel/quadrature_channel.cpp`](src/channel/quadrature_channel.cpp)，改完重新刷写：
 
 | 现象 | 调整 |
 | --- | --- |
 | 顺/逆时针反了 | 交换 `src/main.cpp` 里 `kEncoderSiaPin` 与 `kEncoderSibPin` 的值。用物理修正物理，不留软件标志位 |
-| 灯亮了却是音量模式 | `src/sensor/mode_sensor.cpp` 里的 `kSigActiveHigh` 改为 `false` |
+| 灯亮了却是音量模式 | `src/device/mode_device.cpp` 里的 `kSigActiveHigh` 改为 `false` |
 | 转一格出两下（或拧一格没反应） | `src/channel/quadrature_channel.cpp` 的 `kAccumulatorPerDetent`（每格跳变数 = 4 × 每圈脉冲 ÷ 每圈格数；微雪标 20 脉冲/圈，格数未标）。**测之前确认固件已含采样节流**（本仓库版本已内置 `kSampleIntervalMs`），否则多出来的跳变是机械抖动，你会把常量调去补偿噪声 |
+
+方向符号的约定来源：微雪官方 Pico 示例（`Rotation-Sensor-code/Pico/c/rotation.c`）在 A 下落沿按 B 电平定符号，与本仓库 `src/channel/quadrature_channel.cpp` 的查表结果在相同接线下**符号一致**；分辨率也一致（官方每电气周期计 1 次，本仓库每 4 个格雷码步计 1 格）。但官方波形标题的"正向/反向"与其代码符号并不自洽，所以**顺时针该对应音量加还是减没有权威答案**，属产品决定：台架实拧确认，反了就交换 `kEncoderSiaPin` 与 `kEncoderSibPin`。
 
 A/B 相以 1 kHz 采样（`src/channel/quadrature_channel.cpp` 的 `kSampleIntervalMs`，闸门在通道内部），不会漏手拧：漏计的门槛是一个采样窗口内走满两个格雷码跳变，按每圈 80 跳变算约 25 rev/s，带格感的旋钮人手达不到；真漏了也只是少计一格，查表对非法跳转记 0，不会多出幽灵格。
 
@@ -53,7 +55,7 @@ EC11 模块是微雪 **Rotation Sensor**，5 针为 `SIA` / `SIB` / `SW` / `GND`
 
 按键模块是四线 Gravity 兼容接口（`SIG` / `NC` / `VCC` / `GND`），只接三根线，`NC` 悬空。
 
-> **已知隐患**：`GP2` 当前**没有启用任何上下拉**（`src/sensor/mode_sensor.cpp` 里的 `kSigPull` 是 `InputPull::None`）。自锁开关释放时若 `SIG` 悬空，模式会随机漂移；若台架实测发现模块自带板载下拉，则保持 `None` 即可。真机若出现"没碰按键却自己换模式"，把 `kSigPull` 改成 `InputPull::Down` 重新刷写。
+> **已知隐患**：`GP2` 当前**没有启用任何上下拉**（`src/device/mode_device.cpp` 里的 `kSigPull` 是 `InputPull::None`）。自锁开关释放时若 `SIG` 悬空，模式会随机漂移；若台架实测发现模块自带板载下拉，则保持 `None` 即可。真机若出现"没碰按键却自己换模式"，把 `kSigPull` 改成 `InputPull::Down` 重新刷写。
 
 ### 板子侧的物理位置
 
@@ -110,8 +112,8 @@ cmake --build build
 | `src/main.cpp` | 硬件引脚、模式选择和行为映射 |
 | `src/channel/switch_channel.h` / `.cpp` | 通道：单个开关脚的读数，去抖后同时提供电平（`is_active()`）和边沿（`take_activated()`） |
 | `src/channel/quadrature_channel.h` / `.cpp` | 通道：2-bit 正交相位 → 带符号整格数，自带 1 kHz 采样闸门，不碰 GPIO |
-| `src/sensor/mode_sensor.h` / `.cpp` | 器件：YFROBOT LED 自锁按键模块 |
-| `src/sensor/rotation_sensor.h` / `.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
+| `src/device/mode_device.h` / `.cpp` | 器件：YFROBOT LED 自锁按键模块 |
+| `src/device/rotation_device.h` / `.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
 | `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |
 | `src/tusb_config.h` | TinyUSB 的 RP2350 / Pico SDK 配置 |
 
@@ -129,8 +131,8 @@ cmake --build build
 
 后缀方向中立是刻意的：双向机制（如将来的 I2C 触摸控制器，既写配置又读状态）就是**一个** `TouchChannel` 同时具备读写方法，而不是拆成 Input/Output 两个类型。另有一条存在性规则：**SDK 已提供的机制不重写、不包装**——输出方向的时序（SPI/I2C/PWM/PIO）pico-sdk 已有，所以加屏幕时不产生新通道类型，器件类型直接持有 SDK 的 peripheral；通道层只放 SDK 没有的东西。
 
-**器件层，后缀 `Sensor`，修饰词 = 它感知的物理量；实例变量统一 `[角色]_sensor`。**
-一个物理器件一个类型：`ModeSensor` 与 `RotationSensor` 各对应一块模块，`main.cpp` 里恰好两个对象 `mode_sensor` / `rotation_sensor`。器件类型内部组合通道；EC11 的按下按键在 `RotationSensor` 内部而不是独立对象，因为它和 A/B 两相同属一个物理模块、共用一个接插件。
+**器件层，后缀 `Device`，修饰词 = 该器件在本产品里的角色；实例变量统一 `[角色]_device`。**
+选 `Device` 而不是 `Sensor`，是因为后缀必须装得下非感知类器件：将来的显示屏不是 sensor，但一定是 device。一个物理器件一个类型：`ModeDevice` 与 `RotationDevice` 各对应一块模块，`main.cpp` 里恰好两个对象 `mode_device` / `rotation_device`。器件类型内部组合通道；EC11 的按下按键在 `RotationDevice` 内部而不是独立对象，因为它和 A/B 两相同属一个物理模块、共用一个接插件。退出条件：当某个类型不再代表一块物理模块（例如虚拟的组合输入），它不属于器件层，应上移到策略层，而不是给它硬套 `Device`。
 
 **策略层**：`main.cpp` 的映射函数与 `media_hid` 的传输，负责"读数意味着什么"和"怎么送出去"。
 

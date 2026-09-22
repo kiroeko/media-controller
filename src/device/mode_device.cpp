@@ -1,4 +1,4 @@
-#include "sensor/mode_sensor.h"
+#include "device/mode_device.h"
 
 namespace {
 // Vendor: latching on drives SIG high and lights the LED.
@@ -9,17 +9,17 @@ constexpr bool kSigActiveHigh = true;
 constexpr InputPull kSigPull = InputPull::None;
 }  // namespace
 
-ModeSensor::ModeSensor(uint sig_pin)
+ModeDevice::ModeDevice(uint sig_pin)
     : sig_(sig_pin, kSigActiveHigh, kSigPull) {}
 
-void ModeSensor::init(uint32_t now_ms) {
+void ModeDevice::init(uint32_t now_ms) {
     sig_.init(now_ms);
 }
 
-void ModeSensor::update(uint32_t now_ms) {
+void ModeDevice::update(uint32_t now_ms) {
     sig_.update(now_ms);
 }
 
-bool ModeSensor::is_on() const {
+bool ModeDevice::is_on() const {
     return sig_.is_active();
 }
