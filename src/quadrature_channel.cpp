@@ -3,13 +3,26 @@
 namespace {
 // Gray-code transitions per detent = 4 × pulses per revolution ÷ detents per revolution; the Waveshare module is 20 pulses/rev with detents unmarked, so measure before trusting this value.
 constexpr int8_t kAccumulatorPerDetent = 4;
+
+// One sample per millisecond: mechanical bounce settles well inside that, and
+// missing a turn would need two Gray steps within a window (~25 rev/s by hand).
+constexpr int32_t kSampleIntervalMs = 1;
 }  // namespace
 
-void QuadratureChannel::seed(uint8_t state) {
+void QuadratureChannel::seed(uint32_t now_ms, uint8_t state) {
     previous_state_ = state;
+    last_sample_ms_ = now_ms - 1;
 }
 
-void QuadratureChannel::feed(uint8_t state) {
+void QuadratureChannel::update(uint32_t now_ms, uint8_t state) {
+    if (static_cast<int32_t>(now_ms - last_sample_ms_) < kSampleIntervalMs) {
+        return;
+    }
+    last_sample_ms_ = now_ms;
+    accumulate(state);
+}
+
+void QuadratureChannel::accumulate(uint8_t state) {
     // Valid quadrature transitions are one Gray-code step apart.
     static constexpr int8_t kTransitionDelta[16] = {
         0, -1, 1, 0,

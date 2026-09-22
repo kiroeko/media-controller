@@ -29,9 +29,9 @@ Windows 设备管理器里显示的产品名来自 USB 字符串描述符，目�
 | --- | --- |
 | 顺/逆时针反了 | `kInvertEncoderDirection` 改为 `true` |
 | 灯亮了却是音量模式 | `src/mode_sensor.cpp` 里的 `kSigActiveHigh` 改为 `false` |
-| 转一格出两下（或拧一格没反应） | `src/rotation_sensor.cpp` 的 `kAccumulatorPerDetent`（每格跳变数 = 4 × 每圈脉冲 ÷ 每圈格数；微雪标 20 脉冲/圈，格数未标）。**测之前确认固件已含采样节流**（本仓库版本已内置 `kSampleIntervalMs`），否则多出来的跳变是机械抖动，你会把常量调去补偿噪声 |
+| 转一格出两下（或拧一格没反应） | `src/quadrature_channel.cpp` 的 `kAccumulatorPerDetent`（每格跳变数 = 4 × 每圈脉冲 ÷ 每圈格数；微雪标 20 脉冲/圈，格数未标）。**测之前确认固件已含采样节流**（本仓库版本已内置 `kSampleIntervalMs`），否则多出来的跳变是机械抖动，你会把常量调去补偿噪声 |
 
-A/B 相以 1 kHz 采样（`src/rotation_sensor.cpp` 的 `kSampleIntervalMs`），不会漏手拧：漏计的门槛是一个采样窗口内走满两个格雷码跳变，按每圈 80 跳变算约 25 rev/s，带格感的旋钮人手达不到；真漏了也只是少计一格，查表对非法跳转记 0，不会多出幽灵格。
+A/B 相以 1 kHz 采样（`src/quadrature_channel.cpp` 的 `kSampleIntervalMs`，闸门在通道内部），不会漏手拧：漏计的门槛是一个采样窗口内走满两个格雷码跳变，按每圈 80 跳变算约 25 rev/s，带格感的旋钮人手达不到；真漏了也只是少计一格，查表对非法跳转记 0，不会多出幽灵格。
 
 ## 接线
 
@@ -109,7 +109,7 @@ cmake --build build
 | --- | --- |
 | `src/main.cpp` | 硬件引脚、模式选择和行为映射 |
 | `src/switch_channel.h` / `.cpp` | 通道：单个开关脚的读数，去抖后同时提供电平（`is_active()`）和边沿（`take_activated()`） |
-| `src/quadrature_channel.h` / `.cpp` | 通道：2-bit 正交相位 → 带符号整格数，不碰 GPIO |
+| `src/quadrature_channel.h` / `.cpp` | 通道：2-bit 正交相位 → 带符号整格数，自带 1 kHz 采样闸门，不碰 GPIO |
 | `src/mode_sensor.h` / `.cpp` | 器件：YFROBOT LED 自锁按键模块 |
 | `src/rotation_sensor.h` / `.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
 | `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |

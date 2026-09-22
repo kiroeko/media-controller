@@ -25,7 +25,6 @@ private:
 
     uint pin_a_;
     uint pin_b_;
-    uint32_t last_sample_ms_ = 0;
     QuadratureChannel decoder_;
     SwitchChannel switch_;
 };

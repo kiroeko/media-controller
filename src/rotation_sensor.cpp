@@ -1,11 +1,5 @@
 #include "rotation_sensor.h"
 
-namespace {
-// One sample per millisecond: mechanical bounce settles well inside that, and
-// missing a turn would need two Gray steps within a window (~25 rev/s by hand).
-constexpr int32_t kSampleIntervalMs = 1;
-}  // namespace
-
 RotationSensor::RotationSensor(uint pin_a, uint pin_b, uint pin_switch)
     : pin_a_(pin_a), pin_b_(pin_b), switch_(pin_switch, false, InputPull::Up) {}
 
@@ -18,20 +12,14 @@ void RotationSensor::init(uint32_t now_ms) {
     gpio_set_dir(pin_b_, GPIO_IN);
     gpio_pull_up(pin_b_);
 
-    last_sample_ms_ = now_ms - 1;
-    decoder_.seed(read_state());
+    decoder_.seed(now_ms, read_state());
     switch_.init(now_ms);
 }
 
 void RotationSensor::update(uint32_t now_ms) {
-    // The button is polled every loop; only the phase sampling is throttled,
-    // so the debounce resolution no longer depends on the encoder sample rate.
+    // Each channel gates its own cadence; the device only advances them.
     switch_.update(now_ms);
-
-    if (static_cast<int32_t>(now_ms - last_sample_ms_) >= kSampleIntervalMs) {
-        last_sample_ms_ = now_ms;
-        decoder_.feed(read_state());
-    }
+    decoder_.update(now_ms, read_state());
 }
 
 int RotationSensor::take_turns() {
