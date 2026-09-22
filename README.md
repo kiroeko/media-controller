@@ -28,7 +28,7 @@ Windows 设备管理器里显示的产品名来自 USB 字符串描述符，目�
 | 现象 | 调整 |
 | --- | --- |
 | 顺/逆时针反了 | `kInvertEncoderDirection` 改为 `true` |
-| 灯亮了却是音量模式 | `kModeSwitchActiveHigh` 改为 `false` |
+| 灯亮了却是音量模式 | `src/latching_button.cpp` 里的 `kSigActiveHigh` 改为 `false` |
 | 转一格出两下（或拧一格没反应） | `src/rotation_sensor.cpp` 的 `kAccumulatorPerDetent`（每格跳变数 = 4 × 每圈脉冲 ÷ 每圈格数；微雪标 20 脉冲/圈，格数未标）。**测之前确认固件已含采样节流**（本仓库版本已内置 `kSampleIntervalMs`），否则多出来的跳变是机械抖动，你会把常量调去补偿噪声 |
 
 A/B 相以 1 kHz 采样（`src/rotation_sensor.cpp` 的 `kSampleIntervalMs`），不会漏手拧：漏计的门槛是一个采样窗口内走满两个格雷码跳变，按每圈 80 跳变算约 25 rev/s，带格感的旋钮人手达不到；真漏了也只是少计一格，查表对非法跳转记 0，不会多出幽灵格。
@@ -53,7 +53,7 @@ EC11 模块是微雪 **Rotation Sensor**，5 针为 `SIA` / `SIB` / `SW` / `GND`
 
 按键模块是四线 Gravity 兼容接口（`SIG` / `NC` / `VCC` / `GND`），只接三根线，`NC` 悬空。
 
-> **已知隐患**：`GP2` 当前**没有启用任何上下拉**（`src/main.cpp` 里 `DebouncedInput` 第三参是 `InputPull::None`）。自锁开关释放时若 `SIG` 悬空，模式会随机漂移；若台架实测发现模块自带板载下拉，则保持 `None` 即可。真机若出现"没碰按键却自己换模式"，把该参改成 `InputPull::Down` 重新刷写。
+> **已知隐患**：`GP2` 当前**没有启用任何上下拉**（`src/latching_button.cpp` 里的 `kSigPull` 是 `InputPull::None`）。自锁开关释放时若 `SIG` 悬空，模式会随机漂移；若台架实测发现模块自带板载下拉，则保持 `None` 即可。真机若出现"没碰按键却自己换模式"，把 `kSigPull` 改成 `InputPull::Down` 重新刷写。
 
 ### 板子侧的物理位置
 
@@ -108,12 +108,13 @@ cmake --build build
 | 文件 | 职责 |
 | --- | --- |
 | `src/main.cpp` | 硬件引脚、模式选择和行为映射 |
-| `src/debounced_input.h` / `.cpp` | 单个开关脚的读数：去抖后同时提供电平（`is_active()`）和边沿（`take_activated()`） |
-| `src/rotation_sensor.h` / `.cpp` | Rotation Sensor **模块**：A/B 正交解码 + 模块自带按键，两路通道一个对象 |
+| `src/debounced_input.h` / `.cpp` | 机制件：单个开关脚的读数，去抖后同时提供电平（`is_active()`）和边沿（`take_activated()`） |
+| `src/latching_button.h` / `.cpp` | 器件：YFROBOT LED 自锁按键模块 |
+| `src/rotation_sensor.h` / `.cpp` | 器件：Rotation Sensor 模块，A/B 正交解码 + 模块自带按键 |
 | `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |
 | `src/tusb_config.h` | TinyUSB 的 RP2350 / Pico SDK 配置 |
 
-`debounced_input` 是被复用的底层件：LED 自锁按键在 `main.cpp` 里直接建一个 `DebouncedInput`，而 `RotationSensor` 把 EC11 自带的那个按键作为成员包在自己内部——因为它和 A/B 两相同属一个物理模块、共用一个接插件。
+建模规则是**一个物理器件一个类型**：`LatchingButton` 和 `RotationSensor` 各对应一块模块，所以 `main.cpp` 里恰好两个对象。`DebouncedInput` 不是器件，是它们共用的机制件（去抖读数），因此被器件类型包在内部，`main.cpp` 不直接碰它。EC11 的按下按键在 `RotationSensor` 内部而不是独立对象，因为它和 A/B 两相同属一个物理模块、共用一个接插件。
 
 每个媒体命令发送一次"按下"报告，约 8 ms 后发送"松开"报告，Windows 才会把每格旋钮当成一次独立操作。端点轮询间隔为 1 ms（全速设备的下限，`src/media_hid.cpp` 的 `TUD_HID_DESCRIPTOR` 末参），所以吞吐的瓶颈是那个 8 ms 释放延迟，不是总线。
 

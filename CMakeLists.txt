@@ -40,6 +40,7 @@ pico_sdk_init()
 add_executable(media-controller
     src/main.cpp
     src/debounced_input.cpp
+    src/latching_button.cpp
     src/media_hid.cpp
     src/rotation_sensor.cpp
 )
@@ -71,6 +72,7 @@ target_compile_options(media-controller PRIVATE -Wall -Wextra)
 set_source_files_properties(
     src/main.cpp
     src/debounced_input.cpp
+    src/latching_button.cpp
     src/media_hid.cpp
     src/rotation_sensor.cpp
     PROPERTIES COMPILE_OPTIONS "-Wconversion"

@@ -2,7 +2,7 @@
 
 #include "bsp/board_api.h"
 
-#include "debounced_input.h"
+#include "latching_button.h"
 #include "media_hid.h"
 #include "rotation_sensor.h"
 
@@ -14,7 +14,6 @@ constexpr uint kModeSwitchPin = 2;
 constexpr uint kEncoderSiaPin = 3;
 constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
-constexpr bool kModeSwitchActiveHigh = true;
 
 // Set this to true only if clockwise and counter-clockwise feel reversed
 // after wiring your particular EC11 module.
@@ -47,11 +46,9 @@ int main() {
 
     const uint32_t initial_time_ms = now_ms();
 
-    // The LED locking button drives its SIG pin high when it is on.
-    // Off = volume mode; on = track mode. Pull is still undecided pending a
-    // bench measurement of the module's own output drive; see README.
-    DebouncedInput mode_switch(kModeSwitchPin, kModeSwitchActiveHigh, InputPull::None);
-    mode_switch.init(initial_time_ms);
+    // Off = volume mode; on = track mode.
+    LatchingButton mode_button(kModeSwitchPin);
+    mode_button.init(initial_time_ms);
 
     // Waveshare Rotation Sensor: SIA -> GP3, SIB -> GP4, SW -> GP5.
     RotationSensor rotation_sensor(kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin);
@@ -62,7 +59,7 @@ int main() {
     while (true) {
         const uint32_t current_time_ms = now_ms();
 
-        mode_switch.update(current_time_ms);
+        mode_button.update(current_time_ms);
         rotation_sensor.update(current_time_ms);
 
         const int turns = rotation_sensor.take_turns();
@@ -73,7 +70,7 @@ int main() {
             media_hid_wake_host();
         }
 
-        enqueue_turn_actions(turns, mode_switch.is_active());
+        enqueue_turn_actions(turns, mode_button.is_on());
 
         if (pressed) {
             (void)media_hid_enqueue(MediaAction::PlayPause);
