@@ -4,8 +4,8 @@
 
 #include "pico/stdlib.h"
 
-#include "switch_channel.h"
-#include "quadrature_channel.h"
+#include "channel/switch_channel.h"
+#include "channel/quadrature_channel.h"
 
 // Models the whole Waveshare Rotation Sensor module, not just its encoder: the
 // EC11 quadrature phases and the built-in push button share one connector and

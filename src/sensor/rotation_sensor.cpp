@@ -1,4 +1,4 @@
-#include "rotation_sensor.h"
+#include "sensor/rotation_sensor.h"
 
 RotationSensor::RotationSensor(uint pin_a, uint pin_b, uint pin_switch)
     : pin_a_(pin_a), pin_b_(pin_b), switch_(pin_switch, false, InputPull::Up) {}

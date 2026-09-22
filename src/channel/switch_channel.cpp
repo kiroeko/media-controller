@@ -1,4 +1,4 @@
-#include "switch_channel.h"
+#include "channel/switch_channel.h"
 
 SwitchChannel::SwitchChannel(uint gpio, bool active_high, InputPull pull)
     : gpio_(gpio), active_high_(active_high), pull_(pull) {}

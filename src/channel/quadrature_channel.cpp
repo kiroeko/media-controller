@@ -1,4 +1,4 @@
-#include "quadrature_channel.h"
+#include "channel/quadrature_channel.h"
 
 namespace {
 // Gray-code transitions per detent = 4 × pulses per revolution ÷ detents per revolution; the Waveshare module is 20 pulses/rev with detents unmarked, so measure before trusting this value.

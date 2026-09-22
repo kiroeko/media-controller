@@ -4,7 +4,7 @@
 
 #include "pico/stdlib.h"
 
-#include "switch_channel.h"
+#include "channel/switch_channel.h"
 
 // The YFROBOT LED latching button module: a self-latching switch whose SIG pin
 // follows the latch, with the LED driven by the module itself.

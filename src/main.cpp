@@ -2,9 +2,9 @@
 
 #include "bsp/board_api.h"
 
-#include "mode_sensor.h"
+#include "sensor/mode_sensor.h"
 #include "media_hid.h"
-#include "rotation_sensor.h"
+#include "sensor/rotation_sensor.h"
 
 namespace {
 
@@ -15,19 +15,11 @@ constexpr uint kEncoderSiaPin = 3;
 constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
 
-// Set this to true only if clockwise and counter-clockwise feel reversed
-// after wiring your particular EC11 module.
-constexpr bool kInvertEncoderDirection = false;
-
 uint32_t now_ms() {
     return static_cast<uint32_t>(to_ms_since_boot(get_absolute_time()));
 }
 
 void enqueue_turn_actions(int turns, bool track_mode) {
-    if (kInvertEncoderDirection) {
-        turns = -turns;
-    }
-
     while (turns > 0) {
         (void)media_hid_enqueue(track_mode ? MediaAction::NextTrack : MediaAction::VolumeUp);
         --turns;

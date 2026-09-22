@@ -1,4 +1,4 @@
-#include "mode_sensor.h"
+#include "sensor/mode_sensor.h"
 
 namespace {
 // Vendor: latching on drives SIG high and lights the LED.

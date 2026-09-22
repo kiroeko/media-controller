@@ -39,11 +39,11 @@ pico_sdk_init()
 
 add_executable(media-controller
     src/main.cpp
-    src/switch_channel.cpp
-    src/mode_sensor.cpp
+    src/channel/switch_channel.cpp
+    src/sensor/mode_sensor.cpp
     src/media_hid.cpp
-    src/quadrature_channel.cpp
-    src/rotation_sensor.cpp
+    src/channel/quadrature_channel.cpp
+    src/sensor/rotation_sensor.cpp
 )
 
 pico_set_program_name(media-controller "media-controller")
@@ -72,11 +72,11 @@ target_compile_options(media-controller PRIVATE -Wall -Wextra)
 # reported against code we cannot fix, and an SDK bump would dirty the build.
 set_source_files_properties(
     src/main.cpp
-    src/switch_channel.cpp
-    src/mode_sensor.cpp
+    src/channel/switch_channel.cpp
+    src/sensor/mode_sensor.cpp
     src/media_hid.cpp
-    src/quadrature_channel.cpp
-    src/rotation_sensor.cpp
+    src/channel/quadrature_channel.cpp
+    src/sensor/rotation_sensor.cpp
     PROPERTIES COMPILE_OPTIONS "-Wconversion"
 )
 
