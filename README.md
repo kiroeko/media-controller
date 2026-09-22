@@ -115,7 +115,7 @@ cmake --build build
 | `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |
 | `src/tusb_config.h` | TinyUSB 的 RP2350 / Pico SDK 配置 |
 
-建模规则是**一个物理器件一个类型**：`LatchingButton` 和 `RotationSensor` 各对应一块模块，所以 `main.cpp` 里恰好两个对象。机制层的命名约定是 **`[修饰词]Input`**——一路"从物理世界到稳定读数"的通道，前缀说明这一路最显著的特征（`Debounced` = 去抖，`Quadrature` = 正交相位）；器件层是名词，机制层一律 `...Input`，一眼分层。`DebouncedInput` 和 `QuadratureInput` 都不碰器件语义，因此被器件类型包在内部，`main.cpp` 不直接碰它们。EC11 的按下按键在 `RotationSensor` 内部而不是独立对象，因为它和 A/B 两相同属一个物理模块、共用一个接插件。
+建模规则是**一个物理器件一个类型**：`LatchingButton` 和 `RotationSensor` 各对应一块模块，所以 `main.cpp` 里恰好两个对象。机制层按方向分两个后缀族：**`[修饰词]Input`**（物理 → 稳定读数）与 **`[修饰词]Output`**（软件意图 → 稳定物理驱动），前缀说明这一路最显著的特征（`Debounced` = 去抖，`Quadrature` = 正交相位）。目前只有 Input 一族，因为输出方向的机制（SPI/I2C/PWM/PIO 时序）pico-sdk 已提供——**SDK 已提供的机制不重写、不包装**，器件类型直接持有 SDK 的 peripheral（将来加屏幕就是这种形状）；机制层只放 SDK 没有的东西。器件层是名词，机制层一律 `...Input` / `...Output`，一眼分层。`DebouncedInput` 和 `QuadratureInput` 都不碰器件语义，因此被器件类型包在内部，`main.cpp` 不直接碰它们。EC11 的按下按键在 `RotationSensor` 内部而不是独立对象，因为它和 A/B 两相同属一个物理模块、共用一个接插件。
 
 每个媒体命令发送一次"按下"报告，约 8 ms 后发送"松开"报告，Windows 才会把每格旋钮当成一次独立操作。端点轮询间隔为 1 ms（全速设备的下限，`src/media_hid.cpp` 的 `TUD_HID_DESCRIPTOR` 末参），所以吞吐的瓶颈是那个 8 ms 释放延迟，不是总线。
 
