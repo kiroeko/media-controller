@@ -23,15 +23,15 @@ Windows 设备管理器里显示的产品名来自 USB 字符串描述符，目�
 
 ## 上电后需要实测的三个参数
 
-都在 [`src/main.cpp`](src/main.cpp) 和 [`src/encoder.cpp`](src/encoder.cpp) 里，改完重新刷写：
+都在 [`src/main.cpp`](src/main.cpp) 和 [`src/rotation_sensor.cpp`](src/rotation_sensor.cpp) 里，改完重新刷写：
 
 | 现象 | 调整 |
 | --- | --- |
 | 顺/逆时针反了 | `kInvertEncoderDirection` 改为 `true` |
 | 灯亮了却是音量模式 | `kModeSwitchActiveHigh` 改为 `false` |
-| 转一格出两下（或拧一格没反应） | `src/encoder.cpp` 的 `kAccumulatorPerDetent`（每格跳变数 = 4 × 每圈脉冲 ÷ 每圈格数；微雪标 20 脉冲/圈，格数未标）。**测之前确认固件已含采样节流**（本仓库版本已内置 `kSampleIntervalMs`），否则多出来的跳变是机械抖动，你会把常量调去补偿噪声 |
+| 转一格出两下（或拧一格没反应） | `src/rotation_sensor.cpp` 的 `kAccumulatorPerDetent`（每格跳变数 = 4 × 每圈脉冲 ÷ 每圈格数；微雪标 20 脉冲/圈，格数未标）。**测之前确认固件已含采样节流**（本仓库版本已内置 `kSampleIntervalMs`），否则多出来的跳变是机械抖动，你会把常量调去补偿噪声 |
 
-A/B 相以 1 kHz 采样（`src/encoder.cpp` 的 `kSampleIntervalMs`），不会漏手拧：漏计的门槛是一个采样窗口内走满两个格雷码跳变，按每圈 80 跳变算约 25 rev/s，带格感的旋钮人手达不到；真漏了也只是少计一格，查表对非法跳转记 0，不会多出幽灵格。
+A/B 相以 1 kHz 采样（`src/rotation_sensor.cpp` 的 `kSampleIntervalMs`），不会漏手拧：漏计的门槛是一个采样窗口内走满两个格雷码跳变，按每圈 80 跳变算约 25 rev/s，带格感的旋钮人手达不到；真漏了也只是少计一格，查表对非法跳转记 0，不会多出幽灵格。
 
 ## 接线
 
@@ -108,10 +108,12 @@ cmake --build build
 | 文件 | 职责 |
 | --- | --- |
 | `src/main.cpp` | 硬件引脚、模式选择和行为映射 |
-| `src/input.h` | 去抖输入与正交编码器的类声明 |
-| `src/encoder.cpp` | EC11 正交解码与输入去抖实现 |
+| `src/debounced_input.h` / `.cpp` | 单个开关脚的读数：去抖后同时提供电平（`is_active()`）和边沿（`take_activated()`） |
+| `src/rotation_sensor.h` / `.cpp` | Rotation Sensor **模块**：A/B 正交解码 + 模块自带按键，两路通道一个对象 |
 | `src/media_hid.cpp` | TinyUSB 描述符、媒体 HID 按键队列 |
 | `src/tusb_config.h` | TinyUSB 的 RP2350 / Pico SDK 配置 |
+
+`debounced_input` 是被复用的底层件：LED 自锁按键在 `main.cpp` 里直接建一个 `DebouncedInput`，而 `RotationSensor` 把 EC11 自带的那个按键作为成员包在自己内部——因为它和 A/B 两相同属一个物理模块、共用一个接插件。
 
 每个媒体命令发送一次"按下"报告，约 8 ms 后发送"松开"报告，Windows 才会把每格旋钮当成一次独立操作。端点轮询间隔为 1 ms（全速设备的下限，`src/media_hid.cpp` 的 `TUD_HID_DESCRIPTOR` 末参），所以吞吐的瓶颈是那个 8 ms 释放延迟，不是总线。
 

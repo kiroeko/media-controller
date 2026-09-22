@@ -2,8 +2,9 @@
 
 #include "bsp/board_api.h"
 
-#include "input.h"
+#include "debounced_input.h"
 #include "media_hid.h"
+#include "rotation_sensor.h"
 
 namespace {
 
@@ -53,8 +54,8 @@ int main() {
     mode_switch.init(initial_time_ms);
 
     // Waveshare Rotation Sensor: SIA -> GP3, SIB -> GP4, SW -> GP5.
-    QuadratureEncoder encoder(kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin);
-    encoder.init(initial_time_ms);
+    RotationSensor rotation_sensor(kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin);
+    rotation_sensor.init(initial_time_ms);
 
     media_hid_init();
 
@@ -62,10 +63,10 @@ int main() {
         const uint32_t current_time_ms = now_ms();
 
         mode_switch.update(current_time_ms);
-        encoder.update(current_time_ms);
+        rotation_sensor.update(current_time_ms);
 
-        const int turns = encoder.take_turns();
-        const bool pressed = encoder.take_switch_pressed();
+        const int turns = rotation_sensor.take_turns();
+        const bool pressed = rotation_sensor.take_switch_pressed();
 
         // Input while the host sleeps wakes it first; the queued actions follow once the bus resumes.
         if (turns != 0 || pressed) {
