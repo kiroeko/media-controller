@@ -12,7 +12,8 @@ public:
     // 用当前相位建立基准，避免把上电时的电平当成一次旋转。
     void seed(uint8_t state);
 
-    // 输入一次两位相位采样：A 在 bit 1，B 在 bit 0。
+    // 输入一次两位相位采样，状态编码为 0bAB：A 在 bit 1，B 在 bit 0。
+    // 例如 A 低、B 高传入 0b01；A 高、B 低传入 0b10。
     void update(uint8_t state);
 
     // 取走并清零已累计的整格数；未凑成整格的相位变化继续保留。
