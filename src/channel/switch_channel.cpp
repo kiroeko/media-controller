@@ -1,5 +1,6 @@
 #include "channel/switch_channel.h"
 
+// 保存 GPIO 电气参数与长按、双击阈值；构造时不访问硬件。
 SwitchChannel::SwitchChannel(uint gpio, bool active_high, InputPull pull, bool detect_double,
                              uint32_t long_press_ms, uint32_t double_gap_ms)
     : gpio_(gpio)
@@ -9,6 +10,7 @@ SwitchChannel::SwitchChannel(uint gpio, bool active_high, InputPull pull, bool d
     , long_press_ms_(long_press_ms)
     , double_gap_ms_(double_gap_ms) {}
 
+// 配置 GPIO 输入和上下拉，并用当前电平初始化去抖状态，防止上电时生成伪手势。
 void SwitchChannel::init(uint32_t now_ms) {
     gpio_init(gpio_);
     gpio_set_dir(gpio_, GPIO_IN);
@@ -27,6 +29,7 @@ void SwitchChannel::init(uint32_t now_ms) {
     last_raw_change_ms_ = now_ms;
 }
 
+// 每次调用采样一次输入，依次更新去抖状态、按下/松开边沿和手势计时器。
 void SwitchChannel::update(uint32_t now_ms) {
     const bool raw_active = read_active();
     if (raw_active != candidate_active_) {
@@ -44,7 +47,7 @@ void SwitchChannel::update(uint32_t now_ms) {
     if (level && !was_active_) {
         if (detect_double_ && pending_short_at_ms_ != 0 &&
             static_cast<int32_t>(now_ms - pending_short_at_ms_) <= 0) {
-            // Second press inside the gap: the waiting short becomes a double.
+            // 第二次按压发生在双击间隔内：取消待判定短按并生成双击事件。
             pending_short_at_ms_ = 0;
             suppress_short_ = true;
             double_pressed_ = true;
@@ -78,10 +81,12 @@ void SwitchChannel::update(uint32_t now_ms) {
     was_active_ = level;
 }
 
+// 返回最近一次去抖后的稳定有效电平。
 bool SwitchChannel::is_active() const {
     return stable_active_;
 }
 
+// 按长按、双击、短按的优先级取出一个待处理事件；没有事件时返回 None。
 SwitchGesture SwitchChannel::take_gesture() {
     if (long_pressed_) {
         long_pressed_ = false;
@@ -98,6 +103,7 @@ SwitchGesture SwitchChannel::take_gesture() {
     return SwitchGesture::None;
 }
 
+// 读取 GPIO 原始电平，并按 active_high_ 转换为统一的“有效/无效”状态。
 bool SwitchChannel::read_active() const {
     const bool pin_is_high = gpio_get(gpio_);
     return active_high_ ? pin_is_high : !pin_is_high;

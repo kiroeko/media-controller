@@ -6,25 +6,23 @@
 
 #include "channel/switch_channel.h"
 
-// The YFROBOT LED latching button module: a self-latching switch whose SIG pin
-// follows the latch, with the LED driven by the module itself.
+// YFROBOT LED 自锁按键模块：SIG 电平跟随自锁开关状态，LED 由模块自身驱动。
 class ModeDevice {
 public:
-    // Only SIG is a firmware concern; the module drives its own LED.
+    // 固件只需读取 SIG；模块自行驱动 LED。
     explicit ModeDevice(uint sig_pin);
 
-    // Configure SIG and align its debounce state to the level at boot. A
-    // re-flash does not unlatch the switch, so the starting mode belongs to the
-    // user, not to us.
+    // 配置 SIG，并在启动时把去抖状态对齐到当前电平。重新刷写不会改变自锁开关状态，
+    // 因此启动模式由开关当前的位置决定。
     void init(uint32_t now_ms);
 
-    // Advance the debounce on SIG; there is nothing else on this module.
+    // 推进 SIG 的去抖状态；此模块没有其他固件输入。
     void update(uint32_t now_ms);
 
-    // Whether the latch is engaged, i.e. track mode. A level, not an edge, so
-    // it can be polled as often as the caller likes and never loses state.
+    // 返回自锁开关是否处于闭合状态，也就是是否为切歌模式。返回稳定电平而非边沿，
+    // 可重复查询且不会丢失状态。
     [[nodiscard]] bool is_on() const;
 
 private:
-    SwitchChannel sig_;  // Its gesture events are deliberately left undrained.
+    SwitchChannel sig_;  // 此模块只使用稳定电平，不取出通道生成的手势事件。
 };

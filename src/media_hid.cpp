@@ -26,9 +26,8 @@ enum StringIndex : uint8_t {
     kStringHidInterface,
 };
 
-// The VID is TinyUSB's example value and is not assigned to anyone; the PID is
-// self-assigned to avoid the example's default. Replace the VID before
-// distributing hardware commercially.
+// VID 0xCAFE 是 TinyUSB 示例值，并未分配给本项目；PID 是自行设置的，用来避开示例默认值。
+// 若要商业销售设备，应换成合法分配的 VID/PID。
 const tusb_desc_device_t kDeviceDescriptor = {
     sizeof(tusb_desc_device_t),
     TUSB_DESC_DEVICE,
@@ -61,8 +60,8 @@ const uint8_t kConfigurationDescriptor[] = {
                        sizeof(kHidReportDescriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
 };
 
-// The USB serial number is per-device, so it is filled from the RP2350's OTP
-// unique ID by media_hid_init() before the USB stack is started.
+// 每块板使用不同的 USB 序列号。media_hid_init() 会在启动 USB 栈前，
+// 从 RP2350 的 OTP 唯一 ID 生成该序列号。
 char serial_string[PICO_UNIQUE_BOARD_ID_SIZE_BYTES * 2 + 1] = {0};
 
 const char* const kStringDescriptors[] = {
@@ -80,14 +79,17 @@ bool report_is_pressed = false;
 uint32_t release_at_ms = 0;
 bool suspend_wake_enabled = false;
 
+// 判断媒体动作环形队列是否为空。
 bool queue_is_empty() {
     return queue_head == queue_tail;
 }
 
+// 用有符号差值判断截止时间是否到达，同时兼容 32 位毫秒计数回绕。
 bool time_reached(uint32_t now_ms, uint32_t target_ms) {
     return static_cast<int32_t>(now_ms - target_ms) >= 0;
 }
 
+// 把项目内部的媒体动作映射为 HID Consumer Control usage。
 uint16_t usage_for(MediaAction action) {
     switch (action) {
         case MediaAction::PlayPause:
@@ -109,6 +111,7 @@ uint16_t usage_for(MediaAction action) {
 
 }  // namespace
 
+// 生成本板唯一序列号，初始化 TinyUSB 设备栈，并完成板级 USB 初始化。
 void media_hid_init() {
     pico_get_unique_board_id_string(serial_string, sizeof(serial_string));
 
@@ -116,6 +119,7 @@ void media_hid_init() {
     board_init_after_tusb();
 }
 
+// 将媒体动作追加到环形队列；队列满时返回 false，调用方不阻塞等待。
 bool media_hid_enqueue(MediaAction action) {
     const size_t next_tail = (queue_tail + 1) % kQueueCapacity;
     if (next_tail == queue_head) {
@@ -127,14 +131,16 @@ bool media_hid_enqueue(MediaAction action) {
     return true;
 }
 
+// 按 USB 远程唤醒协议请求主机恢复；是否允许由主机在挂起时告知设备。
 bool media_hid_wake_host() {
     return tud_remote_wakeup();
 }
 
+// 推进 TinyUSB 状态机，并按“按下报告、延时、松开报告”的顺序发送队列动作。
 void media_hid_update(uint32_t now_ms) {
     tud_task();
 
-    // Host asleep and unwilling to be woken: input is meaningless, drop it instead of firing it on a later unrelated resume.
+    // 主机挂起且未允许远程唤醒时，清空输入动作，避免之后因其他原因恢复时误发旧动作。
     if (tud_suspended() && !suspend_wake_enabled) {
         queue_head = queue_tail = 0;
     }
@@ -162,20 +168,24 @@ void media_hid_update(uint32_t now_ms) {
     }
 }
 
+// TinyUSB 向主机提供设备描述符时调用；返回本设备的 VID、PID 和版本信息。
 extern "C" uint8_t const* tud_descriptor_device_cb() {
     return reinterpret_cast<uint8_t const*>(&kDeviceDescriptor);
 }
 
+// TinyUSB 向主机提供配置描述符时调用；此配置包含一个 Consumer Control HID 接口。
 extern "C" uint8_t const* tud_descriptor_configuration_cb(uint8_t index) {
     (void)index;
     return kConfigurationDescriptor;
 }
 
+// TinyUSB 向主机提供 HID 报告描述符时调用；描述符定义媒体控制报告的格式和用途。
 extern "C" uint8_t const* tud_hid_descriptor_report_cb(uint8_t instance) {
     (void)instance;
     return kHidReportDescriptor;
 }
 
+// TinyUSB 向主机提供字符串描述符时调用；把产品名、序列号等转成 USB 所需的 UTF-16 格式。
 extern "C" uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
     (void)langid;
 
@@ -183,7 +193,7 @@ extern "C" uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t lang
     uint8_t character_count = 0;
 
     if (index == kStringLanguage) {
-        descriptor[1] = 0x0409;  // English (United States)
+        descriptor[1] = 0x0409;  // 语言 ID：英语（美国）。
         character_count = 1;
     } else {
         if (index >= sizeof(kStringDescriptors) / sizeof(kStringDescriptors[0])) {
@@ -201,6 +211,7 @@ extern "C" uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t lang
     return descriptor;
 }
 
+// 本设备不提供可由主机读取的 HID 输入报告，因此此回调返回 0。
 extern "C" uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id,
                                             hid_report_type_t report_type, uint8_t* buffer,
                                             uint16_t request_length) {
@@ -212,6 +223,7 @@ extern "C" uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id,
     return 0;
 }
 
+// 本设备不处理主机写入的 HID 输出或特征报告，因此此回调暂不执行操作。
 extern "C" void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id,
                                        hid_report_type_t report_type, uint8_t const* buffer,
                                        uint16_t buffer_size) {
@@ -222,8 +234,9 @@ extern "C" void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id,
     (void)buffer_size;
 }
 
+// 记录主机是否允许远程唤醒，并清除挂起前排队的动作，避免恢复后误发送。
 extern "C" void tud_suspend_cb(bool remote_wakeup_en) {
     suspend_wake_enabled = remote_wakeup_en;
-    // Drop queued actions so they cannot fire on a later unrelated resume, but keep the in-flight press: its release must still reach the host.
+    // 保留正在发送动作的状态，让对应松开报告仍能发出；只清除尚未发送的队列。
     queue_head = queue_tail = 0;
 }
