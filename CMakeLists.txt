@@ -39,11 +39,13 @@ pico_sdk_init()
 
 add_executable(media-controller
     src/main.cpp
-    src/channel/switch_channel.cpp
-    src/device/mode_device.cpp
-    src/media_hid.cpp
-    src/channel/quadrature_channel.cpp
-    src/device/rotation_device.cpp
+    src/app/media_controller_app.cpp
+    src/input/debounced_switch.cpp
+    src/input/button_gesture_decoder.cpp
+    src/device/yfrobot_led_latching_switch.cpp
+    src/usb/media_hid.cpp
+    src/input/quadrature_decoder.cpp
+    src/device/waveshare_rotation_sensor.cpp
 )
 
 pico_set_program_name(media-controller "media-controller")
@@ -64,6 +66,7 @@ target_link_libraries(media-controller
 # Add the standard include files to the build
 target_include_directories(media-controller PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/include
+    ${CMAKE_CURRENT_LIST_DIR}/include/usb
 )
 
 target_compile_options(media-controller PRIVATE -Wall -Wextra)
@@ -72,13 +75,14 @@ target_compile_options(media-controller PRIVATE -Wall -Wextra)
 # reported against code we cannot fix, and an SDK bump would dirty the build.
 set_source_files_properties(
     src/main.cpp
-    src/channel/switch_channel.cpp
-    src/device/mode_device.cpp
-    src/media_hid.cpp
-    src/channel/quadrature_channel.cpp
-    src/device/rotation_device.cpp
+    src/app/media_controller_app.cpp
+    src/input/debounced_switch.cpp
+    src/input/button_gesture_decoder.cpp
+    src/device/yfrobot_led_latching_switch.cpp
+    src/usb/media_hid.cpp
+    src/input/quadrature_decoder.cpp
+    src/device/waveshare_rotation_sensor.cpp
     PROPERTIES COMPILE_OPTIONS "-Wconversion"
 )
 
 pico_add_extra_outputs(media-controller)
-

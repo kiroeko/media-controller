@@ -1,4 +1,4 @@
-#include "media_hid.h"
+#include "usb/media_hid.h"
 
 #include <algorithm>
 #include <cstring>
@@ -12,6 +12,21 @@ namespace {
 constexpr uint8_t kReportIdConsumerControl = 1;
 constexpr uint32_t kKeyReleaseDelayMs = 8;
 constexpr size_t kQueueCapacity = 16;
+
+// TinyUSB 的设备回调是 C 函数，且本板只有一个 USB HID 实例；运行状态集中保存于此。
+// 描述符和回调需要这些数据在整个固件运行期间保持有效。
+struct MediaHidState {
+    char serial_string[PICO_UNIQUE_BOARD_ID_SIZE_BYTES * 2 + 1]{};
+    uint16_t string_descriptor[32]{};
+    MediaAction action_queue[kQueueCapacity]{};
+    size_t queue_head = 0;
+    size_t queue_tail = 0;
+    bool report_is_pressed = false;
+    uint32_t release_at_ms = 0;
+    bool suspend_wake_enabled = false;
+};
+
+MediaHidState hid_state;
 
 enum InterfaceNumber : uint8_t {
     kInterfaceHid = 0,
@@ -60,28 +75,17 @@ const uint8_t kConfigurationDescriptor[] = {
                        sizeof(kHidReportDescriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
 };
 
-// 每块板使用不同的 USB 序列号。media_hid_init() 会在启动 USB 栈前，
-// 从 RP2350 的 OTP 唯一 ID 生成该序列号。
-char serial_string[PICO_UNIQUE_BOARD_ID_SIZE_BYTES * 2 + 1] = {0};
-
 const char* const kStringDescriptors[] = {
     "",
     "Kiro",
-    "RP2350 Media Dial",
-    serial_string,
+    "Kiro Media Controller",
+    hid_state.serial_string,
     "Consumer Control",
 };
 
-MediaAction action_queue[kQueueCapacity]{};
-size_t queue_head = 0;
-size_t queue_tail = 0;
-bool report_is_pressed = false;
-uint32_t release_at_ms = 0;
-bool suspend_wake_enabled = false;
-
 // 判断媒体动作环形队列是否为空。
 bool queue_is_empty() {
-    return queue_head == queue_tail;
+    return hid_state.queue_head == hid_state.queue_tail;
 }
 
 // 用有符号差值判断截止时间是否到达，同时兼容 32 位毫秒计数回绕。
@@ -113,21 +117,24 @@ uint16_t usage_for(MediaAction action) {
 
 // 生成本板唯一序列号，初始化 TinyUSB 设备栈，并完成板级 USB 初始化。
 void media_hid_init() {
-    pico_get_unique_board_id_string(serial_string, sizeof(serial_string));
+    pico_get_unique_board_id_string(hid_state.serial_string,
+                                    sizeof(hid_state.serial_string));
 
     tud_init(0);
     board_init_after_tusb();
 }
 
-// 将媒体动作追加到环形队列；队列满时返回 false，调用方不阻塞等待。
-bool media_hid_enqueue(MediaAction action) {
-    const size_t next_tail = (queue_tail + 1) % kQueueCapacity;
-    if (next_tail == queue_head) {
+// 普通动作留出一个位置给按键；高优先级动作可以使用这个预留位置。
+bool media_hid_enqueue(MediaAction action, MediaQueuePriority priority) {
+    const size_t next_tail = (hid_state.queue_tail + 1) % kQueueCapacity;
+    const bool queue_full = next_tail == hid_state.queue_head;
+    const bool reserved_slot_only = (next_tail + 1) % kQueueCapacity == hid_state.queue_head;
+    if (queue_full || (priority == MediaQueuePriority::Normal && reserved_slot_only)) {
         return false;
     }
 
-    action_queue[queue_tail] = action;
-    queue_tail = next_tail;
+    hid_state.action_queue[hid_state.queue_tail] = action;
+    hid_state.queue_tail = next_tail;
     return true;
 }
 
@@ -141,15 +148,15 @@ void media_hid_update(uint32_t now_ms) {
     tud_task();
 
     // 主机挂起且未允许远程唤醒时，清空输入动作，避免之后因其他原因恢复时误发旧动作。
-    if (tud_suspended() && !suspend_wake_enabled) {
-        queue_head = queue_tail = 0;
+    if (tud_suspended() && !hid_state.suspend_wake_enabled) {
+        hid_state.queue_head = hid_state.queue_tail = 0;
     }
 
-    if (report_is_pressed) {
-        if (time_reached(now_ms, release_at_ms) && tud_hid_ready()) {
+    if (hid_state.report_is_pressed) {
+        if (time_reached(now_ms, hid_state.release_at_ms) && tud_hid_ready()) {
             const uint16_t released = 0;
             if (tud_hid_report(kReportIdConsumerControl, &released, sizeof(released))) {
-                report_is_pressed = false;
+                hid_state.report_is_pressed = false;
             }
         }
         return;
@@ -159,12 +166,12 @@ void media_hid_update(uint32_t now_ms) {
         return;
     }
 
-    const MediaAction action = action_queue[queue_head];
+    const MediaAction action = hid_state.action_queue[hid_state.queue_head];
     const uint16_t usage = usage_for(action);
     if (tud_hid_report(kReportIdConsumerControl, &usage, sizeof(usage))) {
-        queue_head = (queue_head + 1) % kQueueCapacity;
-        report_is_pressed = true;
-        release_at_ms = now_ms + kKeyReleaseDelayMs;
+        hid_state.queue_head = (hid_state.queue_head + 1) % kQueueCapacity;
+        hid_state.report_is_pressed = true;
+        hid_state.release_at_ms = now_ms + kKeyReleaseDelayMs;
     }
 }
 
@@ -189,7 +196,7 @@ extern "C" uint8_t const* tud_hid_descriptor_report_cb(uint8_t instance) {
 extern "C" uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t langid) {
     (void)langid;
 
-    static uint16_t descriptor[32];
+    uint16_t* const descriptor = hid_state.string_descriptor;
     uint8_t character_count = 0;
 
     if (index == kStringLanguage) {
@@ -236,7 +243,7 @@ extern "C" void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id,
 
 // 记录主机是否允许远程唤醒，并清除挂起前排队的动作，避免恢复后误发送。
 extern "C" void tud_suspend_cb(bool remote_wakeup_en) {
-    suspend_wake_enabled = remote_wakeup_en;
+    hid_state.suspend_wake_enabled = remote_wakeup_en;
     // 保留正在发送动作的状态，让对应松开报告仍能发出；只清除尚未发送的队列。
-    queue_head = queue_tail = 0;
+    hid_state.queue_head = hid_state.queue_tail = 0;
 }

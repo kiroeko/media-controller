@@ -1,0 +1,26 @@
+#pragma once
+
+#include <cstdint>
+
+// 将已经采样的 A/B 两相状态解码为带符号的机械卡点数。
+// 本类型不访问 GPIO；调用方负责按合适的间隔提供两位状态。
+class QuadratureDecoder {
+public:
+    // 每个机械卡点对应的相位跳变数由实际编码器决定，必须大于零。
+    explicit QuadratureDecoder(uint8_t transitions_per_detent);
+
+    // 用当前相位建立基准，避免把上电时的电平当成一次旋转。
+    void seed(uint8_t state);
+
+    // 输入一次两位相位采样：A 在 bit 1，B 在 bit 0。
+    void update(uint8_t state);
+
+    // 取走并清零已累计的整格数；未凑成整格的相位变化继续保留。
+    int take_detents();
+
+private:
+    uint8_t transitions_per_detent_;  // 一格所需的有效相位跳变数。
+    uint8_t previous_state_ = 0;    // 上一次采样的两位相位状态。
+    int16_t accumulator_ = 0;       // 尚未凑成一格的相位跳变数。
+    int8_t pending_detents_ = 0;    // 等待上层取走的整格数，达到边界时饱和。
+};

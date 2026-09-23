@@ -13,6 +13,9 @@ enum class MediaAction : uint8_t {
     Mute,           // 静音切换，usage 0xE2；主机每次收到后切换静音状态。
 };
 
+// 高优先级动作可使用预留的最后一个队列位置；发送顺序仍按入队顺序。
+enum class MediaQueuePriority : uint8_t { Normal, High };
+
 // 启动 USB 协议栈。启动前先用芯片 OTP 唯一 ID 填充序列号，
 // 因为主机会按 VID/PID/序列号组合缓存设备描述符。
 void media_hid_init();
@@ -21,11 +24,11 @@ void media_hid_init();
 // 队列只在这里消费，而且动作要等松开报告发出后才算完成。
 void media_hid_update(uint32_t now_ms);
 
-// 把动作加入队列。返回 false 表示队列已满，动作会丢弃而不会延后；
-// 调用方不应循环重试，以免阻塞主循环。队列最多存 15 个动作：16 个槽位中
-// 保留一个空位，这样 head == tail 才能唯一表示队列为空。按下/松开报告对
-// 将吞吐量限制在每秒约 100 个动作。
-bool media_hid_enqueue(MediaAction action);
+// 把动作加入队列。普通动作最多占 14 个位置，为高优先级动作预留一个；
+// 所有动作合计最多 15 个。返回 false 表示容量耗尽，调用方不应阻塞重试。
+// 16 个槽位中始终留一个空位，使 head == tail 唯一表示队列为空。
+bool media_hid_enqueue(MediaAction action,
+                       MediaQueuePriority priority = MediaQueuePriority::Normal);
 
 // 请求唤醒主机。如果主机没有为此设备启用远程唤醒，则返回 false；这是主机设置，不代表设备故障。
 bool media_hid_wake_host();
