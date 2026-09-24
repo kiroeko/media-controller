@@ -1,7 +1,7 @@
 #include "device/yfrobot_led_latching_switch.h"
 
 namespace {
-// 按模块厂商定义，自锁开关闭合时 SIG 为高电平，LED 点亮。
+// 当前按 SIG 高电平表示自锁开关闭合、LED 点亮处理；实际极性仍需上板核对。
 constexpr bool kSigActiveHigh = true;
 
 // 自锁开关的原始电平需持续 20 ms 才作为稳定状态使用。

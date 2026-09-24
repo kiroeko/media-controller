@@ -12,7 +12,7 @@ public:
     // 固件只需读取 SIG；模块自行驱动 LED。
     explicit YfrobotLedLatchingSwitch(uint sig_pin);
 
-    // 配置 SIG，并将去抖状态对齐到当前电平；自锁开关的机械位置能跨重新刷写保留。
+    // 配置 SIG，并用当前电平建立去抖基准；上电时已闭合也会立即读为闭合。
     void init(uint32_t now_ms);
 
     // 读取 SIG 并推进去抖状态。

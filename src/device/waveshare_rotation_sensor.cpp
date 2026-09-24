@@ -1,7 +1,7 @@
 #include "device/waveshare_rotation_sensor.h"
 
 namespace {
-// 此模块手动旋转时每毫秒读取一次 A/B 相；时间闸门放在 GPIO 所在的器件层。
+// 当前 A/B 相的最短采样间隔为 1 ms；主循环若延迟，实际间隔可能更长。
 constexpr uint32_t kEncoderSampleIntervalMs = 1;
 
 // 当前模块按每个卡点四次格雷码跳变计算；需上板实测确认。
@@ -43,7 +43,7 @@ void WaveshareRotationSensor::init(uint32_t now_ms) {
     button_gestures_.seed(now_ms, switch_.is_active());
 }
 
-// 读取按键并按 1 ms 节奏采样 A/B 相，再交给纯输入处理类。
+// 每轮读取按键；经过至少 1 ms 后读取一次 A/B 相，再交给输入解码器。
 void WaveshareRotationSensor::update(uint32_t now_ms) {
     switch_.update(now_ms, !gpio_get(pin_switch_));
     button_gestures_.update(now_ms, switch_.is_active());

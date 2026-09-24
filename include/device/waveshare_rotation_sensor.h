@@ -16,10 +16,10 @@ public:
     WaveshareRotationSensor(uint pin_a, uint pin_b, uint pin_switch,
                             ButtonGestureConfig gesture_config);
 
-    // 配置三个输入引脚，用当前读数初始化两个解码器。
+    // 配置三个输入引脚，用当前读数建立旋转解码、按键去抖和手势识别的初始状态。
     void init(uint32_t now_ms);
 
-    // 每轮读取按键；A/B 相按模块所需的 1 ms 间隔采样。
+    // 每轮读取按键；距上次 A/B 相采样至少 1 ms 才再次读取，主循环延迟时不会补采样。
     void update(uint32_t now_ms);
 
     // 返回并清除自上次调用以来累计的带符号整格数。

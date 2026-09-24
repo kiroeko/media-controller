@@ -113,7 +113,7 @@ uint16_t usage_for(MediaAction action) {
     return 0;
 }
 
-}  // namespace
+}  // 匿名命名空间
 
 // 生成本板唯一序列号，初始化 TinyUSB 设备栈，并完成板级 USB 初始化。
 void media_hid_init() {
@@ -124,7 +124,7 @@ void media_hid_init() {
     board_init_after_tusb();
 }
 
-// 普通动作留出一个位置给按键；高优先级动作可以使用这个预留位置。
+// 普通优先级最多占 14 个队列名额，给高优先级动作留一个；所有动作合计最多 15 个。
 bool media_hid_enqueue(MediaAction action, MediaQueuePriority priority) {
     const size_t next_tail = (hid_state.queue_tail + 1) % kQueueCapacity;
     const bool queue_full = next_tail == hid_state.queue_head;
@@ -218,7 +218,8 @@ extern "C" uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t lang
     return descriptor;
 }
 
-// 本设备不提供可由主机读取的 HID 输入报告，因此此回调返回 0。
+// 主机通过控制传输发来 GET_REPORT 时返回 0，表示不支持这类主动读取。
+// 正常的媒体按键输入报告仍由 tud_hid_report() 通过中断 IN 端点发送。
 extern "C" uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id,
                                             hid_report_type_t report_type, uint8_t* buffer,
                                             uint16_t request_length) {

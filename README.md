@@ -2,16 +2,18 @@
 
 这是一个用于 **Waveshare RP2350-Zero-M** 的 USB 媒体旋钮固件。它读取 Waveshare Rotation Sensor 和 YFROBOT LED 自锁开关，通过 TinyUSB 向电脑发送标准 HID Consumer Control 媒体按键。电脑不需要安装本项目专用驱动。
 
-## 使用方式
+## 预期使用方式
 
 | LED 自锁开关 | 顺时针旋转 | 逆时针旋转 | 短按旋钮 | 长按旋钮 |
 | --- | --- | --- | --- | --- |
 | 熄灭：音量模式 | 音量加 | 音量减 | 播放/暂停 | 静音切换 |
 | 点亮：切歌模式 | 下一首 | 上一首 | 播放/暂停 | 静音切换 |
 
-旋钮短按在松开后发出，长按达到 700 ms 时发出。输入处理代码也能识别双击，但当前没有给双击绑定媒体动作；双击识别默认关闭，以免每次短按都要等待双击窗口结束。
+这是固件当前的目标映射；旋转方向和 LED 与 `SIG` 的对应关系仍需上板确认。
 
-电脑允许 USB 远程唤醒时，睡眠中操作旋钮会请求唤醒电脑，并在总线恢复后发送相应媒体动作。是否允许唤醒由电脑决定。
+短按在去抖后的松开时识别；长按在去抖后的按下状态持续 700 ms 后识别。手势解码器支持双击，但当前关闭该功能，300 ms 双击窗口不参与判断，也没有绑定媒体动作。
+
+当主机挂起 USB 且允许远程唤醒时，新输入会尝试唤醒主机；成功入队的动作在总线恢复后继续发送。能否唤醒整机睡眠取决于主机配置，不能保证所有睡眠状态都可唤醒。
 
 ## 接线
 
@@ -27,7 +29,7 @@
 
 LED 自锁开关的 `NC` 不接。EC11 模块的 A/B/SW 信号由模块板上拉高，固件不启用 MCU 内部上下拉。模式开关的 `SIG` 目前也没有内部上下拉；若实测发现开关释放时电平悬空，把 [yfrobot_led_latching_switch.cpp](src/device/yfrobot_led_latching_switch.cpp) 中的 `kUseInternalPullDown` 改为 `true`。
 
-开发板的排针丝印是裸数字，例如丝印 `3` 对应代码中的 `GP3`。USB-C 接口朝上时，`GP2`～`GP5` 位于右列从上往下的第 3～6 根；左列顶部依次是 `5V`、`GND`、`3V3`，接线时要特别核对供电位置。
+开发板的排针丝印是裸数字，例如丝印 `3` 对应代码中的 `GP3`。接线时请以板上丝印和 [Waveshare RP2350-Zero 官方资料](https://www.waveshare.com/wiki/RP2350-Zero)中的引脚图为准，尤其要区分 `5V`、`GND` 与 `3V3`。
 
 ## 代码怎样运行
 
@@ -46,7 +48,7 @@ main.cpp
 | --- | --- |
 | [src/main.cpp](src/main.cpp) | 固件入口 |
 | [src/app/media_controller_app.cpp](src/app/media_controller_app.cpp) | 初始化、主循环、板级接线与产品行为映射 |
-| [src/device/waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) | 配置并读取 Waveshare 旋钮模块的 A/B/SW，按 1 ms 间隔采样 A/B |
+| [src/device/waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) | 配置并读取 Waveshare 旋钮模块的 A/B/SW，A/B 两次采样至少间隔 1 ms |
 | [src/device/yfrobot_led_latching_switch.cpp](src/device/yfrobot_led_latching_switch.cpp) | 配置并读取 YFROBOT LED 自锁开关的 SIG |
 | [src/input/quadrature_decoder.cpp](src/input/quadrature_decoder.cpp) | 把两位 A/B 相位变化转换为带符号的机械卡点数 |
 | [src/input/debounced_switch.cpp](src/input/debounced_switch.cpp) | 将原始有效/无效采样去抖，供模式开关和旋钮按键复用 |
@@ -57,18 +59,18 @@ main.cpp
 
 这里没有额外包装 GPIO、SPI、USB 的通用“物理层”；底层访问直接使用 Pico SDK 和 TinyUSB。以后接屏幕时，屏幕驱动负责面板命令和总线传输；只有像素转换或渲染逻辑变复杂时，才需要单独提取不依赖硬件的编码组件。
 
-各 `.cpp` 文件里的 `constexpr` 引脚、时序和转换表只供该文件使用，属于只读配置。USB 回调需要描述符和序列号长期有效，所以 [media_hid.cpp](src/usb/media_hid.cpp) 保留一份文件内的 `MediaHidState`，集中管理序列号、报告缓冲区与发送队列；这些状态不暴露给应用层。
+各 `.cpp` 文件里的 `constexpr` 引脚、时序和转换表只供该文件使用，属于只读配置。[media_hid.cpp](src/usb/media_hid.cpp) 将 USB 描述符保存为文件内常量；`MediaHidState` 则保存序列号、字符串描述符缓冲区、动作队列和按键发送状态，供 USB 回调在固件运行期间使用。这些状态不暴露给应用层。
 
 ### 从旋钮到电脑的一次操作
 
-1. `WaveshareRotationSensor` 每 1 ms 读取一次 SIA/SIB，组成两位相位状态；SW 在主循环每轮读取。
-2. `QuadratureDecoder` 查格雷码状态变化，累计到一个机械卡点后返回 `+1` 或 `-1`；`DebouncedSwitch` 用时间戳去抖，`ButtonGestureDecoder` 再识别手势。模式自锁开关只使用去抖结果。
+1. `WaveshareRotationSensor` 在主循环中至少间隔 1 ms 才再次读取 SIA/SIB，组成两位相位状态；SW 在主循环每轮读取。主循环如果延迟，A/B 相的采样也会变慢，不会补读中间状态。
+2. `QuadratureDecoder` 查格雷码状态变化，每凑满一格就累计一次正向或反向计数；`take_detents()` 返回上次取走后累计的带符号格数，可能不止 `+1` 或 `-1`。`DebouncedSwitch` 用时间戳去抖，`ButtonGestureDecoder` 再识别手势。模式自锁开关只使用去抖结果。
 3. `MediaControllerApp` 根据模式开关状态，把卡点映射为音量或切歌动作，把短按/长按映射为播放暂停/静音。同一轮先排入按键动作，再排入旋转动作。
-4. `media_hid` 向 TinyUSB 提交 HID Consumer Control 报告；每个动作先发送按下，约 8 ms 后发送松开。
+4. `media_hid` 向 TinyUSB 提交 HID Consumer Control 报告；每个动作先发送按下，至少 8 ms 后且 HID 端点就绪时再发送松开。
 
 应用循环不能长时间阻塞，否则会漏掉旋钮相位或按键变化。旋钮的 `take_detents()` 返回的是机械卡点数，不是完整转了几圈。
 
-USB 动作队列最多容纳 15 个待发送动作，其中一个位置留给按键：旋转动作最多占 14 个位置，按键可以使用第 15 个位置。按键在同一轮也先于旋转动作入队。若输入速度持续超过 HID 发送速度，新动作仍会在容量耗尽时被舍弃；应用不会阻塞或为被舍弃的动作另行补发。已经入队的动作仍会按顺序发送，因此停转后可能还有短暂的队列延迟。连续按键也可能占满全部位置。
+USB 动作队列最多容纳 15 个待发送动作，其中一个名额为高优先级按键预留：旋转动作最多占 14 个名额，按键可使用第 15 个名额。按键在同一轮也先于旋转动作入队。若输入速度持续超过 HID 发送速度，新动作仍会在容量耗尽时被舍弃；应用不会阻塞或为被舍弃的动作另行补发。已经入队的动作仍会按顺序发送，因此停转后可能还有短暂的队列延迟。连续按键也可能占满全部名额。
 
 ## 上板后要核对
 
@@ -79,7 +81,7 @@ USB 动作队列最多容纳 15 个待发送动作，其中一个位置留给按
 | 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kTransitionsPerDetent` |
 | 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kEncoderSampleIntervalMs` |
 
-编码器模块标称每圈 20 个脉冲，但没有给出机械卡点数；`kTransitionsPerDetent = 4` 是当前的换算值，应以实物操作结果确认。按键长按和双击阈值由应用模块的 `kButtonGestureConfig` 提供。正反方向也需要按实际接线确认。
+[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；`kTransitionsPerDetent = 4` 是当前的换算值，应以实物操作结果确认。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，300 ms 双击窗口当前未启用。正反方向也需要按实际接线确认。
 
 ## 构建与刷写
 
@@ -94,6 +96,6 @@ cmake --build build
 
 第一次刷写时可以先拔下 GP2～GP5 的外设线，只确认电脑能识别 HID 设备，再接回模块核对方向、模式和按键手势。
 
-USB 产品名当前是 `Kiro Media Controller`，定义在 [media_hid.cpp](src/usb/media_hid.cpp) 的字符串描述符中。每块板子的序列号由 RP2350 唯一 ID 生成。首次刷写前修改名称无需递增 `bcdDevice`；如果电脑已用相同 VID/PID/序列号识别过旧版本，再修改描述符时建议递增 `kDeviceDescriptor` 中的 `bcdDevice`，以便电脑识别版本变化。
+USB 产品名当前是 `Kiro Media Controller`，定义在 [media_hid.cpp](src/usb/media_hid.cpp) 的字符串描述符中。每块板子的序列号由 RP2350 唯一 ID 生成。首次刷写前修改名称不会遇到旧设备缓存；以后若在相同 VID/PID/序列号下修改描述符，建议同步更新 `kDeviceDescriptor` 中的 `bcdDevice`，并让主机重新枚举设备。
 
 当前 VID `0xCAFE` 是 TinyUSB 示例值，并非分配给本项目；对外销售时需要更换为合法取得的 VID/PID。远程唤醒也需要电脑允许，Windows 设备管理器不一定会为此类设备提供或启用唤醒选项。

@@ -9,10 +9,14 @@ class ButtonGestureDecoder {
 public:
     explicit ButtonGestureDecoder(ButtonGestureConfig config);
 
+    // 用当前稳定状态建立基准，并清空尚未取出的手势事件。
     void seed(uint32_t now_ms, bool active);
+
+    // 输入去抖后的状态及时间，识别按下、松开和持续按压。
     void update(uint32_t now_ms, bool active);
 
     // 取走一个手势，优先级依次为长按、双击、短按；可循环取到 None。
+    // 每种手势只保存一个待取标志，同类事件在取走前重复出现会合并。
     ButtonGesture take_gesture();
 
 private:
