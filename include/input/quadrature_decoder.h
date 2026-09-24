@@ -6,7 +6,7 @@
 // 本类型不访问 GPIO；调用方负责按合适的间隔提供两位状态。
 class QuadratureDecoder {
 public:
-    // 每个机械卡点对应的相位跳变数由实际编码器决定，必须大于零。
+    // 每个机械卡点对应的相位跳变数由实际编码器决定；传入 0 时按最小值 1 处理。
     explicit QuadratureDecoder(uint8_t transitions_per_detent);
 
     // 用当前相位建立基准，避免把上电时的电平当成一次旋转。

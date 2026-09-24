@@ -21,9 +21,10 @@ constexpr int8_t kTransitionDelta[4][4] = {
 };
 }  // 匿名命名空间
 
-// 保存由物理器件给出的每格跳变数；解码器本身不认识具体 GPIO 或模块。
+// 保存由物理器件给出的每格跳变数；传入 0 时使用最小值 1，避免静止时产生虚假卡点。
+// 解码器本身不认识具体 GPIO 或模块。
 QuadratureDecoder::QuadratureDecoder(uint8_t transitions_per_detent)
-    : transitions_per_detent_(transitions_per_detent) {}
+    : transitions_per_detent_(transitions_per_detent == 0 ? 1 : transitions_per_detent) {}
 
 // 初始化相位基准及累计状态。
 void QuadratureDecoder::seed(uint8_t state) {
