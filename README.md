@@ -11,9 +11,9 @@
 
 这是固件当前的目标映射；旋转方向和 LED 与 `SIG` 的对应关系仍需上板确认。
 
-短按在去抖后的松开时识别；长按在去抖后的按下状态持续 700 ms 后识别。手势解码器支持双击，但当前关闭该功能，300 ms 双击窗口不参与判断，也没有绑定媒体动作。
+短按在去抖后的松开 250 ms 后、确认没有第二次按下时识别；双击在此窗口内第二次稳定按下时识别，目前仅产生手势事件，没有绑定媒体动作。长按在去抖后的按下状态持续 700 ms 后识别；双击的第二次按压若持续达到长按阈值，还会产生长按事件。
 
-当主机挂起 USB 且允许远程唤醒时，新输入会尝试唤醒主机；成功入队的动作在总线恢复后继续发送。能否唤醒整机睡眠取决于主机配置，不能保证所有睡眠状态都可唤醒。
+当主机挂起 USB 且允许远程唤醒时，已绑定媒体动作的输入会尝试唤醒主机；当前未绑定动作的双击不会唤醒主机。成功入队的动作在总线恢复后继续发送。能否唤醒整机睡眠取决于主机配置，不能保证所有睡眠状态都可唤醒。
 
 ## 接线
 
@@ -81,7 +81,7 @@ USB 动作队列最多容纳 15 个待发送动作，其中一个名额为高优
 | 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kTransitionsPerDetent` |
 | 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kEncoderSampleIntervalMs` |
 
-[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；`kTransitionsPerDetent = 4` 是当前的换算值，应以实物操作结果确认。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，300 ms 双击窗口当前未启用。正反方向也需要按实际接线确认。
+[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；`kTransitionsPerDetent = 4` 是当前的换算值，应以实物操作结果确认。应用模块的 `kButtonGestureConfig` 设置双击窗口为 250 ms、长按阈值为 700 ms。正反方向也需要按实际接线确认。
 
 ## 构建与刷写
 

@@ -18,7 +18,7 @@ void ButtonGestureDecoder::seed(uint32_t now_ms, bool active) {
 // 依据稳定状态的按下/松开边沿和经过时间生成手势。
 void ButtonGestureDecoder::update(uint32_t now_ms, bool active) {
     if (active && !was_active_) {
-        if (config_.detect_double && pending_short_at_ms_ != 0 &&
+        if (pending_short_at_ms_ != 0 &&
             static_cast<int32_t>(now_ms - pending_short_at_ms_) <= 0) {
             // 第二次按压落在双击窗口内：取消待确认短按并生成双击事件。
             pending_short_at_ms_ = 0;
@@ -31,11 +31,7 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool active) {
         long_fired_ = false;
     } else if (!active && was_active_) {
         if (!suppress_short_ && !long_fired_) {
-            if (config_.detect_double) {
-                pending_short_at_ms_ = now_ms + config_.double_gap_ms;
-            } else {
-                short_pressed_ = true;
-            }
+            pending_short_at_ms_ = now_ms + config_.double_gap_ms;
         }
     }
 

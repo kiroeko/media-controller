@@ -20,7 +20,7 @@ public:
     ButtonGesture take_gesture();
 
 private:
-    ButtonGestureConfig config_;         // 手势时间阈值和双击开关。
+    ButtonGestureConfig config_;         // 长按阈值和双击窗口时长。
     bool was_active_ = false;            // 上一次输入的稳定状态。
     uint32_t press_start_ms_ = 0;        // 当前稳定按压开始的时刻。
     uint32_t pending_short_at_ms_ = 0;   // 待确认短按的截止时刻，零表示没有。
