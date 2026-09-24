@@ -12,8 +12,8 @@ constexpr uint kEncoderSiaPin = 3;
 constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
 
-// 交互阈值由应用定义：第一次松开后等待 250 ms 判断双击，持续按下 700 ms 判断长按。
-constexpr ButtonGestureConfig kButtonGestureConfig{250, 700};
+// 交互阈值由应用定义：长按 700 ms；当前关闭双击，250 ms 窗口暂未使用。
+constexpr ButtonGestureConfig kButtonGestureConfig{250, 700, false};
 
 // 截断为 32 位毫秒时间；约 49.7 天回绕，使用方应比较时间差。
 uint32_t now_ms() {
@@ -59,10 +59,10 @@ void MediaControllerApp::update(uint32_t now_ms) {
         } else if (gesture == ButtonGesture::Long) {
             long_press = true;
         }
-        // 双击已被识别，但当前没有绑定媒体动作。
+        // 当前关闭双击，不会收到 Double；将来启用时需在此绑定动作。
     }
 
-    // 有已绑定的输入动作时尝试远程唤醒；未绑定动作的双击不会唤醒主机。
+    // 有输入动作时尝试远程唤醒；仅在 USB 已挂起且主机允许时有效。
     if (detents != 0 || short_press || long_press) {
         media_hid_wake_host();
     }

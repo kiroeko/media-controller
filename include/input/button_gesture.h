@@ -8,14 +8,14 @@ enum class ButtonGesture : uint8_t {
     // 当前没有待取出的事件。
     None,
 
-    // 一次按下未达到长按阈值就已松开，且双击窗口内没有第二次按下；
-    // 在窗口结束后产生，因此单击动作会延迟 double_gap_ms。
+    // 一次按下未达到长按阈值就已松开。关闭双击时立即产生；
+    // 开启双击时，窗口结束且没有第二次按下才产生。
     Short,
 
     // 稳定按下达到长按阈值时产生，每次按下最多产生一次。
     Long,
 
-    // 在第一次松开后的窗口内检测到第二次稳定按下时产生。
+    // 开启双击后，在第一次松开后的窗口内检测到第二次稳定按下时产生。
     // 如果第二次按压继续达到长按阈值，还可能产生 Long。
     Double,
 };
@@ -25,4 +25,5 @@ enum class ButtonGesture : uint8_t {
 struct ButtonGestureConfig {
     uint32_t double_gap_ms;  // 第一次稳定松开到第二次稳定按下允许的最长间隔。
     uint32_t long_press_ms;  // 稳定按下持续多久算长按。
+    bool detect_double;      // 开启后识别双击，并延迟确认第一次短按；关闭后短按在松开时立即产生。
 };
