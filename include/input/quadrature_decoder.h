@@ -20,8 +20,10 @@ public:
     int take_detents();
 
 private:
-    uint8_t transitions_per_detent_;  // 一格所需的有效相位跳变数。
-    uint8_t previous_state_ = 0;    // 上一次采样的两位相位状态。
-    int16_t accumulator_ = 0;       // 尚未凑成一格的相位跳变数。
     int8_t pending_detents_ = 0;    // 等待上层取走的整格数，达到边界时饱和。
+
+    int16_t accumulator_ = 0;       // 尚未凑成一格的相位跳变数。
+    uint8_t previous_state_ = 0;    // 上一次采样的两位相位状态。
+    
+    uint8_t transitions_per_detent_;  // 一格所需的有效相位跳变数。
 };
