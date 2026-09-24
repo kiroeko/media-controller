@@ -16,8 +16,10 @@ public:
     [[nodiscard]] bool is_active() const;
 
 private:
-    uint32_t debounce_ms_;           // 当前物理开关的去抖窗口。
-    bool candidate_active_ = false;  // 最近观察到的原始状态。
     bool stable_active_ = false;     // 对上层公开的稳定状态。
-    uint32_t last_change_ms_ = 0;    // 原始状态最近变化的时刻。
+
+    bool candidate_active_ = false;  // 最近观察到的原始状态。
+    uint32_t last_change_ms_ = 0;    // 原始状态最近变化的时刻
+    
+    uint32_t debounce_ms_;           // 当前物理开关的去抖窗口。。
 };
