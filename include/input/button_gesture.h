@@ -23,7 +23,7 @@ enum class ButtonGesture : uint8_t {
 // 应用层选择按键手势的时间规则，再传给 ButtonGestureDecoder。
 // 这里的时间从去抖后的状态计算；物理触点的去抖时长由 DebouncedSwitch 单独配置。
 struct ButtonGestureConfig {
-    uint32_t double_gap_ms;  // 第一次稳定松开到第二次稳定按下允许的最长间隔。
     uint32_t long_press_ms;  // 稳定按下持续多久算长按。
     bool detect_double;      // 开启后识别双击，并延迟确认第一次短按；关闭后短按在松开时立即产生。
+    uint32_t double_gap_ms;  // 第一次稳定松开到第二次稳定按下允许的最长间隔。
 };

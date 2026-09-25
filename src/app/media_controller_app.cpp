@@ -13,7 +13,7 @@ constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
 
 // 交互阈值由应用定义：长按 700 ms；当前关闭双击，250 ms 窗口暂未使用。
-constexpr ButtonGestureConfig kButtonGestureConfig{250, 700, false};
+constexpr ButtonGestureConfig kButtonGestureConfig{700, false, 250};
 
 // 截断为 32 位毫秒时间；约 49.7 天回绕，使用方应比较时间差。
 uint32_t now_ms() {
