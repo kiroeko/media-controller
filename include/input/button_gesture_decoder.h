@@ -21,18 +21,25 @@ public:
     ButtonGesture take_gesture();
 
 private:
-    bool short_event_ready_ = false;      // true：Short 已生成，等待 take_gesture() 取走。
-    bool double_event_ready_ = false;     // true：Double 已生成，等待 take_gesture() 取走。
-    bool long_event_ready_ = false;       // true：Long 已生成，等待 take_gesture() 取走。
+    // 已确认的手势事件；对应标志保留到 take_gesture() 取走，同类事件只保留一个。
+    bool short_event_ready_ = false;
+    bool double_event_ready_ = false;
+    bool long_event_ready_ = false;
 
-    bool previous_pressed_ = false;       // 上一次 seed/update 的 pressed 值，用来识别按下和松开边沿。
-    uint32_t press_start_ms_ = 0;         // 最近一次稳定按下的时刻，用来计算本次按压时长。
+    // 上次稳定按下状态用于识别边沿；本次稳定按下时刻用于计算按压时长。
+    bool previous_pressed_ = false;
+    uint32_t press_start_ms_ = 0;
 
-    bool second_press_of_double_ = false; // true：当前按压已组成双击的第二次，松开时不再报 Short。
-    bool short_pending_ = false;          // true：一次松开已形成短按候选，正等第二次按下或截止时间。
-    uint32_t short_deadline_ms_ = 0;      // short_pending_ 为 true 时，第二次按下的截止时刻；零也有效。
+    // 当前按压已生成的手势记录：第二次双击按压继续长按时，两者可同时成立。
+    // 松开时据此判断是否还需生成 Short，然后一起清除。
+    bool press_generated_double_ = false;
+    bool press_generated_long_ = false;
 
-    bool long_reported_for_press_ = false; // true：本次按压已报 Long，防止重复或松开后再报 Short。
+    // 双击开启时，短按松开后先成为候选：short_pending_ 表示候选存在，
+    // short_deadline_ms_ 是等待第二次按下的截止时刻，零也是合法时刻。
+    // 窗口内第二次按下生成 Double；到期仍无第二次按下才生成 Short。
+    bool short_pending_ = false;
+    uint32_t short_deadline_ms_ = 0;
 
-    ButtonGestureConfig config_;           // 手势时间阈值和双击开关。
+    ButtonGestureConfig config_;  // 构造时传入的时间阈值与双击开关。
 };

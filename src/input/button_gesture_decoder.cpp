@@ -10,10 +10,10 @@ void ButtonGestureDecoder::seed(uint32_t now_ms, bool pressed) {
     long_event_ready_ = false;
     previous_pressed_ = pressed;
     press_start_ms_ = now_ms;
-    short_deadline_ms_ = 0;
+    press_generated_double_ = false;
+    press_generated_long_ = false;
     short_pending_ = false;
-    long_reported_for_press_ = false;
-    second_press_of_double_ = false;
+    short_deadline_ms_ = 0;
 }
 
 // 每轮分四步：识别刚按下、检查长按、处理刚松开、确认过期的短按。
@@ -29,7 +29,7 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
         // 有符号时间差在毫秒计数回绕时仍能比较先后；等于截止时刻也算窗口内。
         const bool completes_double = config_.detect_double && short_pending_ &&
             static_cast<int32_t>(now_ms - short_deadline_ms_) <= 0;
-        second_press_of_double_ = completes_double;
+        press_generated_double_ = completes_double;
         if (completes_double) {
             short_pending_ = false;
             double_event_ready_ = true;
@@ -37,15 +37,15 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
     }
 
     // 2. 按住达到阈值就报长按；刚松开时也检查一次，避免两轮之间跨过阈值而漏报。
-    if ((pressed || just_released) && !long_reported_for_press_ &&
+    if ((pressed || just_released) && !press_generated_long_ &&
         now_ms - press_start_ms_ >= config_.long_press_ms) {
-        long_reported_for_press_ = true;
+        press_generated_long_ = true;
         long_event_ready_ = true;
     }
 
     // 3. 刚松开：先用本次按压的标志判断短按，再结束这次按压。
     if (just_released) {
-        if (!long_reported_for_press_ && !second_press_of_double_) {
+        if (!press_generated_long_ && !press_generated_double_) {
             if (config_.detect_double) {
                 // 建立短按候选，并记录允许第二次稳定按下的截止时刻。
                 short_deadline_ms_ = now_ms + config_.double_gap_ms;
@@ -55,8 +55,8 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
             }
         }
         // 这两个标志只描述刚结束的按压，松开处理完就清除。
-        long_reported_for_press_ = false;
-        second_press_of_double_ = false;
+        press_generated_double_ = false;
+        press_generated_long_ = false;
     }
 
     // 4. 候选短按到期：将它变为可由 take_gesture() 取走的 Short 事件。
