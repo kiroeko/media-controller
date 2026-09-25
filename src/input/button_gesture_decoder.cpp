@@ -25,6 +25,7 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
     // 1. 刚按下：从此刻计时。开启双击时，窗口内的第二次按下直接产生双击。
     if (just_pressed) {
         press_start_ms_ = now_ms;
+        // 已有短按候选且本次按下未超过截止时刻，才是双击的第二次按下。
         // 有符号时间差在毫秒计数回绕时仍能比较先后；等于截止时刻也算窗口内。
         const bool completes_double = config_.detect_double && short_pending_ &&
             static_cast<int32_t>(now_ms - short_deadline_ms_) <= 0;
@@ -46,7 +47,7 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
     if (just_released) {
         if (!long_reported_for_press_ && !second_press_of_double_) {
             if (config_.detect_double) {
-                // 暂等第二次按下；到期仍未发生，才确认这次短按。
+                // 建立短按候选，并记录允许第二次稳定按下的截止时刻。
                 short_deadline_ms_ = now_ms + config_.double_gap_ms;
                 short_pending_ = true;
             } else {
@@ -58,7 +59,7 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
         second_press_of_double_ = false;
     }
 
-    // 4. 双击窗口到期：确认第一次短按；新的一次按压可能已经开始。
+    // 4. 候选短按到期：将它变为可由 take_gesture() 取走的 Short 事件。
     if (short_pending_ &&
         static_cast<int32_t>(now_ms - short_deadline_ms_) >= 0) {
         short_pending_ = false;

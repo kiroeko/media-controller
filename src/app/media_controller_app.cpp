@@ -96,7 +96,7 @@ void MediaControllerApp::update(uint32_t now_ms) {
 void MediaControllerApp::enqueue_detent_actions(int detents, bool track_mode, uint32_t now_ms) {
     if (track_mode) {
         if (detents == 0 ||
-            (track_cooldown_active_ &&
+            (has_last_track_change_ &&
              now_ms - last_track_change_ms_ < kTrackChangeCooldownMs)) {
             return;
         }
@@ -106,7 +106,7 @@ void MediaControllerApp::enqueue_detent_actions(int detents, bool track_mode, ui
         // 队列满时没有切歌动作，因此也不启动新的冷却窗口。
         if (media_hid_enqueue(action)) {
             last_track_change_ms_ = now_ms;
-            track_cooldown_active_ = true;
+            has_last_track_change_ = true;
         }
         return;
     }

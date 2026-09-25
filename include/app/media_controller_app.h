@@ -19,6 +19,6 @@ private:
 
     YfrobotLedLatchingSwitch mode_switch_;
     WaveshareRotationSensor rotation_sensor_;
-    uint32_t last_track_change_ms_ = 0;  // 最近一次成功入队的切歌动作时间。
-    bool track_cooldown_active_ = false; // 首次切歌前不受冷却限制。
+    uint32_t last_track_change_ms_ = 0; // 最近一次成功入队的切歌动作时间。
+    bool has_last_track_change_ = false; // true：已有切歌动作入队，last_track_change_ms_ 有效。
 };
