@@ -31,14 +31,17 @@ private:
     uint32_t press_start_ms_ = 0;
 
     // 双击开启时，短按松开后先成为候选：short_pending_ 表示候选存在，
-    // short_deadline_ms_ 是等待第二次按下的截止时刻，零也是合法时刻。
     // 窗口内第二次按下生成 Double；到期仍无第二次按下才生成 Short。
     bool short_pending_ = false;
+    // 等待第二次按下的截止时刻，零也是合法时刻。
     uint32_t short_deadline_ms_ = 0;
 
-    // 当前按压已生成的手势记录：第二次双击按压继续长按时，两者可同时成立。
-    // 松开时据此判断是否还需生成 Short，然后一起清除。
+    // 本次按压是否已触发 Double：双击窗口内的第二次按下时置 true。
+    // 松开时据此阻止再生成 Short；处理完松开后清零。
     bool press_generated_double_ = false;
+
+    // 本次按压是否已触发 Long：按住或刚松开时达到长按阈值就置 true。
+    // 按住期间据此避免重复报 Long，松开时阻止再生成 Short；处理完松开后清零。
     bool press_generated_long_ = false;
 
     ButtonGestureConfig config_;  // 构造时传入的时间阈值与双击开关。
