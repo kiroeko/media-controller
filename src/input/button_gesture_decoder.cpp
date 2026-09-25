@@ -78,19 +78,19 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
     previous_pressed_ = pressed;
 }
 
-// 按优先级取走一个待处理手势事件。
+// 同时有多个事件待取时，按短按、双击、长按的顺序取走一个。
 ButtonGesture ButtonGestureDecoder::take_gesture() {
-    if (long_event_ready_) {
-        long_event_ready_ = false;
-        return ButtonGesture::Long;
+    if (short_event_ready_) {
+        short_event_ready_ = false;
+        return ButtonGesture::Short;
     }
     if (double_event_ready_) {
         double_event_ready_ = false;
         return ButtonGesture::Double;
     }
-    if (short_event_ready_) {
-        short_event_ready_ = false;
-        return ButtonGesture::Short;
+    if (long_event_ready_) {
+        long_event_ready_ = false;
+        return ButtonGesture::Long;
     }
     return ButtonGesture::None;
 }
