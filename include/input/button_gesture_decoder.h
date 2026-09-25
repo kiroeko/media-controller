@@ -13,7 +13,7 @@ public:
     void seed(uint32_t now_ms, bool pressed);
 
     // 每轮输入去抖后的按下状态；pressed 为 true 表示按键稳定按下。
-    // 松开→按下时记录起点，按下→松开时判断短按；保持按下时检查长按。
+    // 松开→按下时记录起点；保持按下或刚松开时检查长按，再判断短按。
     void update(uint32_t now_ms, bool pressed);
 
     // 取走一个手势，优先级依次为长按、双击、短按；可循环取到 None。
@@ -28,11 +28,11 @@ private:
     bool previous_pressed_ = false;      // 上一次输入的稳定按下状态，用于识别边沿。
     uint32_t press_start_ms_ = 0;        // 当前稳定按压开始的时刻。
 
-    bool suppress_short_on_release_ = false;  // 双击的第二次松开不再报短按。
+    bool second_press_of_double_ = false; // 当前按压是双击的第二次，松开后清除。
     bool short_pending_ = false;         // 第一次短按仍待双击窗口结束，尚不可取。
     uint32_t short_deadline_ms_ = 0;     // 待确认短按的截止时刻；可为零。
 
-    bool long_reported_for_press_ = false; // 当前这次按压是否已报过长按。
+    bool long_reported_for_press_ = false; // 当前按压是否已报长按，松开处理后清除。
 
     ButtonGestureConfig config_;         // 手势时间阈值和双击开关。
 };

@@ -13,10 +13,10 @@ void ButtonGestureDecoder::seed(uint32_t now_ms, bool pressed) {
     short_deadline_ms_ = 0;
     short_pending_ = false;
     long_reported_for_press_ = false;
-    suppress_short_on_release_ = false;
+    second_press_of_double_ = false;
 }
 
-// 每轮分四步：识别刚按下、识别刚松开、检查持续按下、确认过期的短按。
+// 每轮分四步：识别刚按下、检查长按、处理刚松开、确认过期的短按。
 // 最后保存本轮状态，供下一轮判断边沿。
 void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
     const bool just_pressed = pressed && !previous_pressed_;
@@ -25,33 +25,37 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
     // 1. 刚按下：从此刻计时。开启双击时，窗口内的第二次按下直接产生双击。
     if (just_pressed) {
         press_start_ms_ = now_ms;
-        long_reported_for_press_ = false;
         // 有符号时间差在毫秒计数回绕时仍能比较先后；等于截止时刻也算窗口内。
         const bool completes_double = config_.detect_double && short_pending_ &&
             static_cast<int32_t>(now_ms - short_deadline_ms_) <= 0;
-        suppress_short_on_release_ = completes_double;
+        second_press_of_double_ = completes_double;
         if (completes_double) {
             short_pending_ = false;
             double_event_ready_ = true;
         }
     }
 
-    // 2. 刚松开：已报长按或属于双击第二次按压时，不再产生短按。
-    if (just_released && !long_reported_for_press_ && !suppress_short_on_release_) {
-        if (config_.detect_double) {
-            // 暂等第二次按下；到期仍未发生，才确认这次短按。
-            short_deadline_ms_ = now_ms + config_.double_gap_ms;
-            short_pending_ = true;
-        } else {
-            short_event_ready_ = true;
-        }
-    }
-
-    // 3. 持续按下：达到阈值立刻报长按，同一次按压不会重复报告。
-    if (pressed && !long_reported_for_press_ &&
+    // 2. 按住达到阈值就报长按；刚松开时也检查一次，避免两轮之间跨过阈值而漏报。
+    if ((pressed || just_released) && !long_reported_for_press_ &&
         now_ms - press_start_ms_ >= config_.long_press_ms) {
         long_reported_for_press_ = true;
         long_event_ready_ = true;
+    }
+
+    // 3. 刚松开：先用本次按压的标志判断短按，再结束这次按压。
+    if (just_released) {
+        if (!long_reported_for_press_ && !second_press_of_double_) {
+            if (config_.detect_double) {
+                // 暂等第二次按下；到期仍未发生，才确认这次短按。
+                short_deadline_ms_ = now_ms + config_.double_gap_ms;
+                short_pending_ = true;
+            } else {
+                short_event_ready_ = true;
+            }
+        }
+        // 这两个标志只描述刚结束的按压，松开处理完就清除。
+        long_reported_for_press_ = false;
+        second_press_of_double_ = false;
     }
 
     // 4. 双击窗口到期：确认第一次短按；新的一次按压可能已经开始。
