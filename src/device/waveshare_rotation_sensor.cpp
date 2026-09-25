@@ -8,6 +8,9 @@ constexpr uint32_t kEncoderSampleIntervalMs = 1;
 constexpr uint8_t kTransitionsPerDetent = 4;
 static_assert(kTransitionsPerDetent > 0);
 
+// 按 README 接线时实测顺时针对应解码器负数；翻转后向应用层返回正数。
+constexpr int kDetentDirection = -1;
+
 // 模块的机械按键需持续稳定 20 ms 才认定为按下或松开。
 constexpr uint32_t kSwitchDebounceMs = 20;
 }  // 匿名命名空间
@@ -54,9 +57,9 @@ void WaveshareRotationSensor::update(uint32_t now_ms) {
     }
 }
 
-// 取走并清零编码器自上次读取以来累计的整格数。
+// 取走并清零整格数；顺时针为正，逆时针为负。
 int WaveshareRotationSensor::take_detents() {
-    return decoder_.take_detents();
+    return kDetentDirection * decoder_.take_detents();
 }
 
 // 取出编码器内置按键的一个手势事件。
@@ -64,7 +67,7 @@ ButtonGesture WaveshareRotationSensor::take_button_gesture() {
     return button_gestures_.take_gesture();
 }
 
-// 读取 SIA/SIB 并编码成两位相位状态；交换 A/B 接线会反转计数方向。
+// 读取 SIA/SIB 并编码成约定的两位相位状态。
 uint8_t WaveshareRotationSensor::read_state() const {
     return static_cast<uint8_t>((gpio_get(pin_a_) ? 0b10 : 0) |
                                 (gpio_get(pin_b_) ? 0b01 : 0));

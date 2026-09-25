@@ -64,7 +64,7 @@ main.cpp
 ### 从旋钮到电脑的一次操作
 
 1. `WaveshareRotationSensor` 在主循环中至少间隔 1 ms 才再次读取 SIA/SIB，组成两位相位状态；SW 在主循环每轮读取。主循环如果延迟，A/B 相的采样也会变慢，不会补读中间状态。
-2. `QuadratureDecoder` 查格雷码状态变化，每凑满一格就累计一次正向或反向计数。当前主循环每轮最多更新解码器一次，随后立即调用 `take_detents()`，所以此处每轮只会得到 `-1`、`0` 或 `+1`；如果其他调用方连续更新多次后才取走计数，才可能一次得到多格。`DebouncedSwitch` 用时间戳去抖，`ButtonGestureDecoder` 再识别手势。模式自锁开关只使用去抖结果。
+2. `QuadratureDecoder` 查格雷码状态变化，每凑满一格就累计一次正向或反向计数。按本项目的 SIA→GP3、SIB→GP4 接线，器件层翻转解码器的原始符号，使顺时针卡点为正、逆时针为负。当前主循环每轮最多更新解码器一次，随后立即调用 `take_detents()`，所以此处每轮只会得到 `-1`、`0` 或 `+1`；如果其他调用方连续更新多次后才取走计数，才可能一次得到多格。`DebouncedSwitch` 用时间戳去抖，`ButtonGestureDecoder` 再识别手势。模式自锁开关只使用去抖结果。
 3. `MediaControllerApp` 根据模式开关状态，把卡点映射为音量或切歌动作，把短按/长按映射为播放暂停/静音。同一轮先排入按键动作，再排入旋转动作。
 4. `media_hid` 向 TinyUSB 提交 HID Consumer Control 报告；每个动作先发送按下，至少 8 ms 后且 HID 端点就绪时再发送松开。
 
@@ -76,12 +76,12 @@ USB 动作队列最多容纳 15 个待发送动作，其中一个名额为按键
 
 | 现象 | 调整位置 |
 | --- | --- |
-| 顺逆时针相反 | 交换 [media_controller_app.cpp](src/app/media_controller_app.cpp) 的 `kEncoderSiaPin` 和 `kEncoderSibPin` |
+| 刷入新固件后顺逆时针仍相反 | 核对 `SIA`→`GP3`、`SIB`→`GP4` 接线和 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kDetentDirection` |
 | 灯亮时仍处于音量模式 | 检查 [yfrobot_led_latching_switch.cpp](src/device/yfrobot_led_latching_switch.cpp) 的 `kSigActiveHigh` |
 | 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kTransitionsPerDetent` |
 | 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kEncoderSampleIntervalMs` |
 
-[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；`kTransitionsPerDetent = 4` 是当前的换算值，应以实物操作结果确认。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，250 ms 双击窗口当前未启用。正反方向也需要按实际接线确认。
+[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；`kTransitionsPerDetent = 4` 是当前的换算值，应以实物操作结果确认。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，250 ms 双击窗口当前未启用。原固件在本项目接线下的旋转方向与预期相反，现已在器件层翻转符号，刷入后需确认效果。
 
 ## 构建与刷写
 
