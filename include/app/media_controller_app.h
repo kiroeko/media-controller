@@ -15,8 +15,10 @@ public:
 
 private:
     void update(uint32_t now_ms);
-    void enqueue_detent_actions(int detents, bool track_mode);
+    void enqueue_detent_actions(int detents, bool track_mode, uint32_t now_ms);
 
     YfrobotLedLatchingSwitch mode_switch_;
     WaveshareRotationSensor rotation_sensor_;
+    uint32_t last_track_change_ms_ = 0;  // 最近一次成功入队的切歌动作时间。
+    bool track_cooldown_active_ = false; // 首次切歌前不受冷却限制。
 };

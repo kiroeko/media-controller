@@ -12,6 +12,9 @@ constexpr uint kEncoderSiaPin = 3;
 constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
 
+// 切歌后短时间忽略后续旋转，避免越过相邻卡点时连续跳过歌曲。
+constexpr uint32_t kTrackChangeCooldownMs = 300;
+
 // 交互阈值由应用定义：长按 700 ms；当前关闭双击，250 ms 窗口暂未使用。
 constexpr uint32_t kButtonLongPressMs = 700;
 constexpr bool kDetectDoublePress = false;
@@ -83,20 +86,38 @@ void MediaControllerApp::update(uint32_t now_ms) {
     }
 
     // 队列满时舍弃新旋转动作，限制停转后仍待发送的步数。
-    enqueue_detent_actions(detents, mode_switch_.is_on());
+    enqueue_detent_actions(detents, mode_switch_.is_on(), now_ms);
 
     media_hid_update(now_ms);
 }
 
-// 按卡点数逐个排入媒体动作；模式开关闭合时切歌，否则调节音量。
-void MediaControllerApp::enqueue_detent_actions(int detents, bool track_mode) {
+// 切歌模式每个冷却窗口只接收一个卡点；音量模式仍逐格处理。
+// 冷却只限制应用动作，编码器继续采样，避免恢复时补发窗口内的旋转。
+void MediaControllerApp::enqueue_detent_actions(int detents, bool track_mode, uint32_t now_ms) {
+    if (track_mode) {
+        if (detents == 0 ||
+            (track_cooldown_active_ &&
+             now_ms - last_track_change_ms_ < kTrackChangeCooldownMs)) {
+            return;
+        }
+
+        const MediaAction action = detents > 0 ? MediaAction::NextTrack
+                                               : MediaAction::PreviousTrack;
+        // 队列满时没有切歌动作，因此也不启动新的冷却窗口。
+        if (media_hid_enqueue(action)) {
+            last_track_change_ms_ = now_ms;
+            track_cooldown_active_ = true;
+        }
+        return;
+    }
+
     while (detents > 0) {
-        (void)media_hid_enqueue(track_mode ? MediaAction::NextTrack : MediaAction::VolumeUp);
+        (void)media_hid_enqueue(MediaAction::VolumeUp);
         --detents;
     }
 
     while (detents < 0) {
-        (void)media_hid_enqueue(track_mode ? MediaAction::PreviousTrack : MediaAction::VolumeDown);
+        (void)media_hid_enqueue(MediaAction::VolumeDown);
         ++detents;
     }
 }
