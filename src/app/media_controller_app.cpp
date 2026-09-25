@@ -13,11 +13,16 @@ constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
 
 // 交互阈值由应用定义：长按 700 ms；当前关闭双击，250 ms 窗口暂未使用。
-constexpr ButtonGestureConfig kButtonGestureConfig{700, false, 250};
+constexpr uint32_t kButtonLongPressMs = 700;
+constexpr bool kDetectDoublePress = false;
+constexpr uint32_t kButtonDoubleGapMs = 250;
+constexpr ButtonGestureConfig kButtonGestureConfig{
+    kButtonLongPressMs, kDetectDoublePress, kButtonDoubleGapMs,
+};
 
-// 截断为 32 位毫秒时间；约 49.7 天回绕，使用方应比较时间差。
+// SDK 返回 32 位毫秒时间；约 49.7 天回绕，使用方应比较时间差。
 uint32_t now_ms() {
-    return static_cast<uint32_t>(to_ms_since_boot(get_absolute_time()));
+    return to_ms_since_boot(get_absolute_time());
 }
 }  // 匿名命名空间
 
@@ -69,10 +74,12 @@ void MediaControllerApp::update(uint32_t now_ms) {
 
     // 同一轮内先排入按键动作，避免快速旋转占满剩余队列位置。
     if (short_press) {
-        (void)media_hid_enqueue(MediaAction::PlayPause, MediaQueuePriority::High);
+        (void)media_hid_enqueue(MediaAction::PlayPause,
+                                MediaQueueAdmission::AllowReservedSlot);
     }
     if (long_press) {
-        (void)media_hid_enqueue(MediaAction::Mute, MediaQueuePriority::High);
+        (void)media_hid_enqueue(MediaAction::Mute,
+                                MediaQueueAdmission::AllowReservedSlot);
     }
 
     // 队列满时舍弃新旋转动作，限制停转后仍待发送的步数。

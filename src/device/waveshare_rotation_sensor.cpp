@@ -48,8 +48,7 @@ void WaveshareRotationSensor::update(uint32_t now_ms) {
     switch_.update(now_ms, !gpio_get(pin_switch_));
     button_gestures_.update(now_ms, switch_.is_active());
 
-    if (static_cast<uint32_t>(now_ms - last_encoder_sample_ms_) >=
-        kEncoderSampleIntervalMs) {
+    if (now_ms - last_encoder_sample_ms_ >= kEncoderSampleIntervalMs) {
         last_encoder_sample_ms_ = now_ms;
         decoder_.update(read_state());
     }

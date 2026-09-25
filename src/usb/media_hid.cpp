@@ -124,12 +124,13 @@ void media_hid_init() {
     board_init_after_tusb();
 }
 
-// 普通优先级最多占 14 个队列名额，给高优先级动作留一个；所有动作合计最多 15 个。
-bool media_hid_enqueue(MediaAction action, MediaQueuePriority priority) {
+// 共享位置最多占 14 个队列名额，另留一个预留位置；所有动作合计最多 15 个。
+bool media_hid_enqueue(MediaAction action, MediaQueueAdmission admission) {
     const size_t next_tail = (hid_state.queue_tail + 1) % kQueueCapacity;
     const bool queue_full = next_tail == hid_state.queue_head;
     const bool reserved_slot_only = (next_tail + 1) % kQueueCapacity == hid_state.queue_head;
-    if (queue_full || (priority == MediaQueuePriority::Normal && reserved_slot_only)) {
+    if (queue_full ||
+        (admission == MediaQueueAdmission::SharedOnly && reserved_slot_only)) {
         return false;
     }
 
