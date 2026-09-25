@@ -20,14 +20,16 @@ public:
     ButtonGesture take_gesture();
 
 private:
-    ButtonGestureConfig config_;         // 手势时间阈值和双击开关。
+    bool short_pressed_ = false;         // 尚未取出的短按事件。
+    bool long_pressed_ = false;          // 尚未取出的长按事件。
+    bool double_pressed_ = false;        // 尚未取出的双击事件。
+
     bool was_active_ = false;            // 上一次输入的稳定状态。
     uint32_t press_start_ms_ = 0;        // 当前稳定按压开始的时刻。
     uint32_t pending_short_at_ms_ = 0;   // 待确认短按的截止时刻；可为零。
     bool short_pending_ = false;         // 是否有待确认的短按。
     bool long_fired_ = false;            // 当前按压是否已触发长按。
     bool suppress_short_ = false;        // 双击的第二次松开不应再报短按。
-    bool short_pressed_ = false;         // 尚未取出的短按事件。
-    bool long_pressed_ = false;          // 尚未取出的长按事件。
-    bool double_pressed_ = false;        // 尚未取出的双击事件。
+
+    ButtonGestureConfig config_;         // 手势时间阈值和双击开关。
 };

@@ -1,13 +1,13 @@
 #include "device/yfrobot_led_latching_switch.h"
 
 namespace {
-// 当前按 SIG 高电平表示自锁开关闭合、LED 点亮处理；实际极性仍需上板核对。
+// 单独供电实测灯灭时 SIG 约 0 V、灯亮时约 3.3 V，按高电平有效处理。
 constexpr bool kSigActiveHigh = true;
 
 // 自锁开关的原始电平需持续 20 ms 才作为稳定状态使用。
 constexpr uint32_t kSigDebounceMs = 20;
 
-// 当前不启用内部下拉；若实测释放时 SIG 悬空，应改为 true。
+// 单独供电实测灯灭时 SIG 稳定约 0 V，当前不启用内部下拉。
 constexpr bool kUseInternalPullDown = false;
 }  // 匿名命名空间
 
