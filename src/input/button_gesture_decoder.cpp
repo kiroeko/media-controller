@@ -4,82 +4,78 @@ ButtonGestureDecoder::ButtonGestureDecoder(ButtonGestureConfig config)
     : config_(config) {}
 
 // 用稳定的启动状态建立按压基准，并清空待处理事件。
-void ButtonGestureDecoder::seed(uint32_t now_ms, bool active) {
-    short_pressed_ = false;
-    double_pressed_ = false;
-    long_pressed_ = false;
-    previous_active_ = active;
+void ButtonGestureDecoder::seed(uint32_t now_ms, bool pressed) {
+    short_event_ready_ = false;
+    double_event_ready_ = false;
+    long_event_ready_ = false;
+    previous_pressed_ = pressed;
     press_start_ms_ = now_ms;
-    pending_short_at_ms_ = 0;
+    short_deadline_ms_ = 0;
     short_pending_ = false;
-    long_fired_ = false;
-    suppress_short_ = false;
+    long_reported_for_press_ = false;
+    suppress_short_on_release_ = false;
 }
 
-// 比较本次和上次的稳定按下状态，识别按下/松开边沿；保持按下时检查长按，
-// 等待双击窗口结束时再确认尚未取出的短按。
-void ButtonGestureDecoder::update(uint32_t now_ms, bool active) {
-    if (!previous_active_ && active) {
-        // 从松开变为按下：启用双击且第一次短按仍在确认窗口内，才构成双击。
-        // 双击在第二次按下时发出，第二次松开不能再产生短按。
-        // 有符号时间差兼容毫秒计数回绕；恰好在截止时刻按下也算双击。
-        if (config_.detect_double && short_pending_ &&
-            static_cast<int32_t>(now_ms - pending_short_at_ms_) <= 0) {
-            short_pending_ = false;
-            suppress_short_ = true;
-            double_pressed_ = true;
-        } else {
-            // 普通的新按压可以在松开时生成短按；过期的前一次短按稍后确认。
-            suppress_short_ = false;
-        }
-        // 每次稳定按下都重新计时，长按每次按压最多触发一次。
+// 每轮分四步：识别刚按下、识别刚松开、检查持续按下、确认过期的短按。
+// 最后保存本轮状态，供下一轮判断边沿。
+void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
+    const bool just_pressed = pressed && !previous_pressed_;
+    const bool just_released = !pressed && previous_pressed_;
+
+    // 1. 刚按下：从此刻计时。开启双击时，窗口内的第二次按下直接产生双击。
+    if (just_pressed) {
         press_start_ms_ = now_ms;
-        long_fired_ = false;
-    } else if (previous_active_ && !active) {
-        // 从按下变为松开：双击的第二次松开和已触发长按的松开都不报短按。
-        if (!suppress_short_ && !long_fired_) {
-            if (config_.detect_double) {
-                // 开启双击时先等待窗口结束，以便第二次按下能取消这次短按。
-                pending_short_at_ms_ = now_ms + config_.double_gap_ms;
-                short_pending_ = true;
-            } else {
-                // 关闭双击时，稳定松开就立即报短按。
-                short_pressed_ = true;
-            }
+        long_reported_for_press_ = false;
+        // 有符号时间差在毫秒计数回绕时仍能比较先后；等于截止时刻也算窗口内。
+        const bool completes_double = config_.detect_double && short_pending_ &&
+            static_cast<int32_t>(now_ms - short_deadline_ms_) <= 0;
+        suppress_short_on_release_ = completes_double;
+        if (completes_double) {
+            short_pending_ = false;
+            double_event_ready_ = true;
         }
     }
 
-    // 保持按下达到阈值就报长按，不必等到松开；第二次双击按压也可能继续触发长按。
-    if (active && !long_fired_ &&
+    // 2. 刚松开：已报长按或属于双击第二次按压时，不再产生短按。
+    if (just_released && !long_reported_for_press_ && !suppress_short_on_release_) {
+        if (config_.detect_double) {
+            // 暂等第二次按下；到期仍未发生，才确认这次短按。
+            short_deadline_ms_ = now_ms + config_.double_gap_ms;
+            short_pending_ = true;
+        } else {
+            short_event_ready_ = true;
+        }
+    }
+
+    // 3. 持续按下：达到阈值立刻报长按，同一次按压不会重复报告。
+    if (pressed && !long_reported_for_press_ &&
         now_ms - press_start_ms_ >= config_.long_press_ms) {
-        long_fired_ = true;
-        long_pressed_ = true;
+        long_reported_for_press_ = true;
+        long_event_ready_ = true;
     }
 
-    // 双击窗口到期且尚未发生第二次有效按下时，才确认第一次短按。
-    // 此时即使新的一次按压已经开始，前一次短按仍应独立发出。
+    // 4. 双击窗口到期：确认第一次短按；新的一次按压可能已经开始。
     if (short_pending_ &&
-        static_cast<int32_t>(now_ms - pending_short_at_ms_) >= 0) {
+        static_cast<int32_t>(now_ms - short_deadline_ms_) >= 0) {
         short_pending_ = false;
-        short_pressed_ = true;
+        short_event_ready_ = true;
     }
 
-    // 留给下一轮做边沿比较。
-    previous_active_ = active;
+    previous_pressed_ = pressed;
 }
 
 // 按优先级取走一个待处理手势事件。
 ButtonGesture ButtonGestureDecoder::take_gesture() {
-    if (long_pressed_) {
-        long_pressed_ = false;
+    if (long_event_ready_) {
+        long_event_ready_ = false;
         return ButtonGesture::Long;
     }
-    if (double_pressed_) {
-        double_pressed_ = false;
+    if (double_event_ready_) {
+        double_event_ready_ = false;
         return ButtonGesture::Double;
     }
-    if (short_pressed_) {
-        short_pressed_ = false;
+    if (short_event_ready_) {
+        short_event_ready_ = false;
         return ButtonGesture::Short;
     }
     return ButtonGesture::None;
