@@ -45,7 +45,7 @@ void ButtonGestureDecoder::update(uint32_t now_ms, bool pressed) {
 
     // 3. 刚松开：先用本次按压的标志判断短按，再结束这次按压。
     if (just_released) {
-        if (!press_generated_long_ && !press_generated_double_) {
+        if (!press_generated_double_ && !press_generated_long_) {
             if (config_.detect_double) {
                 // 建立短按候选，并记录允许第二次稳定按下的截止时刻。
                 short_deadline_ms_ = now_ms + config_.double_gap_ms;
