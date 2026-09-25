@@ -13,7 +13,7 @@ constexpr uint kEncoderSibPin = 4;
 constexpr uint kEncoderSwPin = 5;
 
 // 切歌后短时间忽略后续旋转，避免越过相邻卡点时连续跳过歌曲。
-constexpr uint32_t kTrackChangeCooldownMs = 300;
+constexpr uint32_t kTrackChangeCooldownMs = 500;
 
 // 交互阈值由应用定义：长按 700 ms；当前关闭双击，250 ms 窗口暂未使用。
 constexpr uint32_t kButtonLongPressMs = 700;
