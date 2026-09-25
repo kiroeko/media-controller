@@ -12,7 +12,8 @@ public:
     // 用当前稳定状态建立基准，并清空尚未取出的手势事件。
     void seed(uint32_t now_ms, bool active);
 
-    // 输入去抖后的状态及时间，识别按下、松开和持续按压。
+    // 输入去抖后的状态及时间；active 为 true 表示按键稳定按下。
+    // 与上次输入比较识别按下/松开边沿，再判断长按和待确认的短按。
     void update(uint32_t now_ms, bool active);
 
     // 取走一个手势，优先级依次为长按、双击、短按；可循环取到 None。
@@ -24,11 +25,11 @@ private:
     bool double_pressed_ = false;        // 尚未取出的双击事件。
     bool long_pressed_ = false;          // 尚未取出的长按事件。
 
-    bool was_active_ = false;            // 上一次输入的稳定状态。
+    bool previous_active_ = false;       // 上一次输入的稳定按下状态，用于识别边沿。
     uint32_t press_start_ms_ = 0;        // 当前稳定按压开始的时刻。
 
     bool suppress_short_ = false;        // 双击的第二次松开不应再报短按。
-    bool short_pending_ = false;         // 是否有待确认的短按。
+    bool short_pending_ = false;         // 第一次短按是否仍在等待双击窗口结束。
     uint32_t pending_short_at_ms_ = 0;   // 待确认短按的截止时刻；可为零。
 
     bool long_fired_ = false;            // 当前按压是否已触发长按。
