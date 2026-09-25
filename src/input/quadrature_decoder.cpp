@@ -27,7 +27,7 @@ QuadratureDecoder::QuadratureDecoder(uint8_t transitions_per_detent)
     : transitions_per_detent_(transitions_per_detent == 0 ? 1 : transitions_per_detent) {}
 
 // 初始化相位基准及累计状态。
-void QuadratureDecoder::seed(uint8_t state) {
+void QuadratureDecoder::init(uint8_t state) {
     previous_state_ = static_cast<uint8_t>(state & 0b11U);
     accumulator_ = 0;
     pending_detents_ = 0;

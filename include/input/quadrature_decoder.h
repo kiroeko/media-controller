@@ -11,7 +11,7 @@ public:
     explicit QuadratureDecoder(uint8_t transitions_per_detent);
 
     // 用当前相位建立基准，避免把上电时的电平当成一次旋转。
-    void seed(uint8_t state);
+    void init(uint8_t state);
 
     // 输入一次两位相位采样，状态编码为 0bAB：A 在 bit 1，B 在 bit 0。
     // 例如 A 低、B 高传入 0b01；A 高、B 低传入 0b10。

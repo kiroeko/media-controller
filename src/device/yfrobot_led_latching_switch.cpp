@@ -24,7 +24,7 @@ void YfrobotLedLatchingSwitch::init(uint32_t now_ms) {
     } else {
         gpio_disable_pulls(sig_pin_);
     }
-    sig_.seed(now_ms, read_active());
+    sig_.init(now_ms, read_active());
 }
 
 // 读取 SIG，再将有效/无效状态交给纯去抖逻辑。

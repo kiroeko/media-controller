@@ -9,7 +9,7 @@ public:
     explicit DebouncedSwitch(uint32_t debounce_ms);
 
     // 用启动时的采样同时设置候选状态和稳定状态，无需先等待一个去抖窗口。
-    void seed(uint32_t now_ms, bool raw_active);
+    void init(uint32_t now_ms, bool raw_active);
 
     // 原始状态一变化就重新计时；持续 debounce_ms 后才更新公开的稳定状态。
     void update(uint32_t now_ms, bool raw_active);

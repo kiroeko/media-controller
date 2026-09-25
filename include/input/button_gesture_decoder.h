@@ -10,7 +10,7 @@ public:
     explicit ButtonGestureDecoder(ButtonGestureConfig config);
 
     // 用当前稳定的按下状态建立基准，并清空尚未取出的手势事件。
-    void seed(uint32_t now_ms, bool pressed);
+    void init(uint32_t now_ms, bool pressed);
 
     // 每轮输入去抖后的按下状态；pressed 为 true 表示按键稳定按下。
     // 松开→按下时记录起点；保持按下或刚松开时检查长按，再判断短按。

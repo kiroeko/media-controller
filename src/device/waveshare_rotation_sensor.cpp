@@ -37,10 +37,10 @@ void WaveshareRotationSensor::init(uint32_t now_ms) {
     gpio_set_dir(pin_switch_, GPIO_IN);
     gpio_disable_pulls(pin_switch_);
 
-    decoder_.seed(read_state());
+    decoder_.init(read_state());
     last_encoder_sample_ms_ = now_ms - kEncoderSampleIntervalMs;
-    switch_.seed(now_ms, !gpio_get(pin_switch_));
-    button_gestures_.seed(now_ms, switch_.is_active());
+    switch_.init(now_ms, !gpio_get(pin_switch_));
+    button_gestures_.init(now_ms, switch_.is_active());
 }
 
 // 每轮读取按键；经过至少 1 ms 后读取一次 A/B 相，再交给输入解码器。
