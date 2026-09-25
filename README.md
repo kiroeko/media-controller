@@ -2,14 +2,14 @@
 
 这是一个用于 **Waveshare RP2350-Zero-M** 的 USB 媒体旋钮固件。它读取 Waveshare Rotation Sensor 和 YFROBOT LED 自锁开关，通过 TinyUSB 向电脑发送标准 HID Consumer Control 媒体按键。电脑不需要安装本项目专用驱动。
 
-## 预期使用方式
+## 使用方式
 
 | LED 自锁开关 | 顺时针旋转 | 逆时针旋转 | 短按旋钮 | 长按旋钮 |
 | --- | --- | --- | --- | --- |
 | 熄灭：音量模式 | 音量加 | 音量减 | 播放/暂停 | 静音切换 |
 | 点亮：切歌模式 | 下一首 | 上一首 | 播放/暂停 | 静音切换 |
 
-这是固件当前的目标映射。LED 自锁开关单独通电时，已测得灯灭时 `SIG` 对 `GND` 稳定约为 0 V、灯亮时约为 3.3 V，与固件设定的高电平有效极性一致。装好整机后，还需转动旋钮核对旋转方向，以及灯灭调音量、灯亮切歌的实际效果。
+上述操作已在整机上验证，旋转方向、模式切换和按键动作均符合预期。LED 自锁开关单独通电时，测得灯灭时 `SIG` 对 `GND` 稳定约为 0 V、灯亮时约为 3.3 V，与固件设定的高电平有效极性一致。
 
 短按在去抖后的松开时识别；长按在去抖后的按下状态持续 700 ms 后识别。手势解码器支持双击，但当前关闭该功能，250 ms 双击窗口不参与判断，也没有绑定媒体动作。
 
@@ -72,16 +72,16 @@ main.cpp
 
 USB 动作队列最多容纳 15 个待发送动作，其中一个名额为按键动作预留：旋转动作最多占 14 个名额，按键可使用第 15 个名额。按键在同一轮也先于旋转动作入队。预留名额只影响能否入队，已入队的动作仍按先后顺序发送。若输入速度持续超过 HID 发送速度，新动作仍会在容量耗尽时被舍弃；应用不会阻塞或为被舍弃的动作另行补发。因此停转后可能还有短暂的队列延迟。连续按键也可能占满全部名额。
 
-## 上板后要核对
+## 故障排查
 
 | 现象 | 调整位置 |
 | --- | --- |
-| 刷入新固件后顺逆时针仍相反 | 核对 `SIA`→`GP3`、`SIB`→`GP4` 接线和 [quadrature_decoder.cpp](src/input/quadrature_decoder.cpp) 的方向查表 |
+| 顺逆时针相反 | 核对 `SIA`→`GP3`、`SIB`→`GP4` 接线和 [quadrature_decoder.cpp](src/input/quadrature_decoder.cpp) 的方向查表 |
 | 灯亮时仍处于音量模式 | 检查 [yfrobot_led_latching_switch.cpp](src/device/yfrobot_led_latching_switch.cpp) 的 `kSigActiveHigh` |
 | 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kTransitionsPerDetent` |
 | 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kEncoderSampleIntervalMs` |
 
-[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；`kTransitionsPerDetent = 4` 是当前的换算值，应以实物操作结果确认。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，250 ms 双击窗口当前未启用。原固件在本项目接线下的旋转方向与预期相反，现已互换方向查表的正负号，刷入后需确认效果。
+[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；当前使用 `kTransitionsPerDetent = 4`，实机操作得到预期的每格动作。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，250 ms 双击窗口当前未启用。方向查表的符号也已按 SIA→GP3、SIB→GP4 接线调整并完成实机验证。
 
 ## 构建与刷写
 
