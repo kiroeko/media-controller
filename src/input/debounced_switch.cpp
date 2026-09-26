@@ -21,6 +21,7 @@ void DebouncedSwitch::update(uint32_t now_ms, bool raw_active) {
     }
 }
 
+// 读取已确认的稳定状态；查询本身不采样，也不推进去抖计时。
 bool DebouncedSwitch::is_active() const {
     return stable_active_;
 }

@@ -41,6 +41,7 @@ uint32_t now_ms() {
     const uint32_t initial_time_ms = now_ms();
     mode_switch_.init(mode_switch_pin, initial_time_ms);
     rotation_sensor_.init(rotation_sensor_config, initial_time_ms);
+
     media_hid_init();
 
     while (true) {
