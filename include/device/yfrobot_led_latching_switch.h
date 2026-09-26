@@ -22,9 +22,9 @@ public:
     [[nodiscard]] bool is_on() const;
 
 private:
-    // SIG 电平变化后需连续稳定 20 ms 才接受新状态；所有实例共用此阈值。
-    static constexpr uint32_t kSigDebounceMs = 20;
-
     uint sig_pin_ = 0;     // init() 指定的模块 SIG 引脚。
     DebouncedSwitch sig_;  // 对 SIG 电平去抖。
+
+    // SIG 电平变化后需连续稳定 20 ms 才接受新状态；所有实例共用此阈值。
+    static constexpr uint32_t kSigDebounceMs = 20;
 };
