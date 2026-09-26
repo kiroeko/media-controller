@@ -72,18 +72,18 @@ enum StringIndex : uint8_t {
 const tusb_desc_device_t device_descriptor = {
     sizeof(tusb_desc_device_t),  // bLength：设备描述符的字节数。
     TUSB_DESC_DEVICE,            // bDescriptorType：这是设备描述符。
-    0x0200,                     // bcdUSB：遵循 USB 2.00 规范，按 BCD 编码。
-    0x00,                       // bDeviceClass：设备类别由各接口描述符声明。
-    0x00,                       // bDeviceSubClass：设备级子类未指定。
-    0x00,                       // bDeviceProtocol：设备级协议未指定。
+    0x0200,                      // bcdUSB：遵循 USB 2.00 规范，按 BCD 编码。
+    0x00,                        // bDeviceClass：设备类别由各接口描述符声明。
+    0x00,                        // bDeviceSubClass：设备级子类未指定。
+    0x00,                        // bDeviceProtocol：设备级协议未指定。
     CFG_TUD_ENDPOINT0_SIZE,      // bMaxPacketSize0：控制端点 EP0 的最大包长。
-    0xCAFE,                     // idVendor：厂商 ID，当前使用示例值。
-    0x40A1,                     // idProduct：本项目的产品 ID。
-    0x0101,                     // bcdDevice：设备修订号，BCD 编码的 1.01。
-    string_manufacturer,        // iManufacturer：制造商字符串索引。
-    string_product,             // iProduct：产品字符串索引。
-    string_serial,              // iSerialNumber：序列号字符串索引。
-    0x01,                       // bNumConfigurations：提供一套 USB 配置。
+    0xCAFE,                      // idVendor：厂商 ID，当前使用示例值。
+    0x40A1,                      // idProduct：本项目的产品 ID。
+    0x0101,                      // bcdDevice：设备修订号，BCD 编码的 1.01。
+    string_manufacturer,         // iManufacturer：制造商字符串索引。
+    string_product,              // iProduct：产品字符串索引。
+    string_serial,               // iSerialNumber：序列号字符串索引。
+    0x01,                        // bNumConfigurations：提供一套 USB 配置。
 };
 
 // HID 报告描述符：声明 Consumer Control 输入，每份报告携带一个 16 位媒体 usage。
@@ -117,7 +117,7 @@ const char* const string_descriptors[] = {
     "Kiro",                   // 制造商名称。
     "Kiro Media Controller",  // 产品名称。
     hid_state.serial_string,  // 本板唯一序列号。
-    "Consumer Control",      // HID 接口名称。
+    "Consumer Control",       // HID 接口名称。
 };
 
 // 返回待发送队列是否为空；环形队列以读写位置相等表示空。
@@ -266,6 +266,14 @@ extern "C" uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t lang
     return descriptor;
 }
 
+// 记录主机是否允许远程唤醒，并清除挂起前排队的动作，避免恢复后误发送。
+// remote_wakeup_en 是主机在此次挂起时给予的唤醒授权。
+extern "C" void tud_suspend_cb(bool remote_wakeup_en) {
+    hid_state.suspend_wake_enabled = remote_wakeup_en;
+    // 保留正在发送动作的状态，让对应松开报告仍能发出；只清除尚未发送的队列。
+    hid_state.queue_head = hid_state.queue_tail = 0;
+}
+
 // 主机通过控制传输发来 GET_REPORT 时返回 0，表示不支持这类主动读取。
 // 正常的媒体按键输入报告仍由 tud_hid_report() 通过中断 IN 端点发送。
 // instance/report_id/report_type 指定请求对象，buffer/request_length 是可填写的缓冲区及容量。
@@ -280,12 +288,4 @@ extern "C" uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id,
 extern "C" void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id,
                                        hid_report_type_t report_type, uint8_t const* buffer,
                                        uint16_t buffer_size) {
-}
-
-// 记录主机是否允许远程唤醒，并清除挂起前排队的动作，避免恢复后误发送。
-// remote_wakeup_en 是主机在此次挂起时给予的唤醒授权。
-extern "C" void tud_suspend_cb(bool remote_wakeup_en) {
-    hid_state.suspend_wake_enabled = remote_wakeup_en;
-    // 保留正在发送动作的状态，让对应松开报告仍能发出；只清除尚未发送的队列。
-    hid_state.queue_head = hid_state.queue_tail = 0;
 }
