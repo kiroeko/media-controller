@@ -9,16 +9,16 @@
 
 namespace {
 
-constexpr uint8_t kReportIdConsumerControl = 1;
-constexpr uint32_t kKeyReleaseDelayMs = 8;
-constexpr size_t kQueueCapacity = 16;
+constexpr uint8_t report_id_consumer_control = 1;
+constexpr uint32_t key_release_delay_ms = 8;
+constexpr size_t queue_capacity = 16;
 
 // TinyUSB 的设备回调是 C 函数，且本板只有一个 USB HID 实例；运行状态集中保存于此。
 // 描述符和回调需要这些数据在整个固件运行期间保持有效。
 struct MediaHidState {
     char serial_string[PICO_UNIQUE_BOARD_ID_SIZE_BYTES * 2 + 1]{};
     uint16_t string_descriptor[32]{};
-    MediaAction action_queue[kQueueCapacity]{};
+    MediaAction action_queue[queue_capacity]{};
     size_t queue_head = 0;
     size_t queue_tail = 0;
     bool report_is_pressed = false;
@@ -29,21 +29,21 @@ struct MediaHidState {
 MediaHidState hid_state;
 
 enum InterfaceNumber : uint8_t {
-    kInterfaceHid = 0,
-    kInterfaceCount,
+    interface_hid = 0,
+    interface_count,
 };
 
 enum StringIndex : uint8_t {
-    kStringLanguage = 0,
-    kStringManufacturer,
-    kStringProduct,
-    kStringSerial,
-    kStringHidInterface,
+    string_language = 0,
+    string_manufacturer,
+    string_product,
+    string_serial,
+    string_hid_interface,
 };
 
 // VID 0xCAFE 是 TinyUSB 示例值，并未分配给本项目；PID 是自行设置的，用来避开示例默认值。
 // 若要商业销售设备，应换成合法分配的 VID/PID。
-const tusb_desc_device_t kDeviceDescriptor = {
+const tusb_desc_device_t device_descriptor = {
     sizeof(tusb_desc_device_t),
     TUSB_DESC_DEVICE,
     0x0200,
@@ -54,28 +54,28 @@ const tusb_desc_device_t kDeviceDescriptor = {
     0xCAFE,
     0x40A1,
     0x0101,
-    kStringManufacturer,
-    kStringProduct,
-    kStringSerial,
+    string_manufacturer,
+    string_product,
+    string_serial,
     0x01,
 };
 
-const uint8_t kHidReportDescriptor[] = {
-    TUD_HID_REPORT_DESC_CONSUMER(HID_REPORT_ID(kReportIdConsumerControl)),
+const uint8_t hid_report_descriptor[] = {
+    TUD_HID_REPORT_DESC_CONSUMER(HID_REPORT_ID(report_id_consumer_control)),
 };
 
 enum : uint16_t {
-    kConfigurationLength = TUD_CONFIG_DESC_LEN + TUD_HID_DESC_LEN,
+    configuration_length = TUD_CONFIG_DESC_LEN + TUD_HID_DESC_LEN,
 };
 
-const uint8_t kConfigurationDescriptor[] = {
-    TUD_CONFIG_DESCRIPTOR(1, kInterfaceCount, 0, kConfigurationLength,
+const uint8_t configuration_descriptor[] = {
+    TUD_CONFIG_DESCRIPTOR(1, interface_count, 0, configuration_length,
                           TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP, 100),
-    TUD_HID_DESCRIPTOR(kInterfaceHid, kStringHidInterface, HID_ITF_PROTOCOL_NONE,
-                       sizeof(kHidReportDescriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
+    TUD_HID_DESCRIPTOR(interface_hid, string_hid_interface, HID_ITF_PROTOCOL_NONE,
+                       sizeof(hid_report_descriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
 };
 
-const char* const kStringDescriptors[] = {
+const char* const string_descriptors[] = {
     "",
     "Kiro",
     "Kiro Media Controller",
@@ -126,9 +126,9 @@ void media_hid_init() {
 
 // 共享位置最多占 14 个队列名额，另留一个预留位置；所有动作合计最多 15 个。
 bool media_hid_enqueue(MediaAction action, MediaQueueAdmission admission) {
-    const size_t next_tail = (hid_state.queue_tail + 1) % kQueueCapacity;
+    const size_t next_tail = (hid_state.queue_tail + 1) % queue_capacity;
     const bool queue_full = next_tail == hid_state.queue_head;
-    const bool reserved_slot_only = (next_tail + 1) % kQueueCapacity == hid_state.queue_head;
+    const bool reserved_slot_only = (next_tail + 1) % queue_capacity == hid_state.queue_head;
     if (queue_full ||
         (admission == MediaQueueAdmission::SharedOnly && reserved_slot_only)) {
         return false;
@@ -156,7 +156,7 @@ void media_hid_update(uint32_t now_ms) {
     if (hid_state.report_is_pressed) {
         if (time_reached(now_ms, hid_state.release_at_ms) && tud_hid_ready()) {
             const uint16_t released = 0;
-            if (tud_hid_report(kReportIdConsumerControl, &released, sizeof(released))) {
+            if (tud_hid_report(report_id_consumer_control, &released, sizeof(released))) {
                 hid_state.report_is_pressed = false;
             }
         }
@@ -169,28 +169,28 @@ void media_hid_update(uint32_t now_ms) {
 
     const MediaAction action = hid_state.action_queue[hid_state.queue_head];
     const uint16_t usage = usage_for(action);
-    if (tud_hid_report(kReportIdConsumerControl, &usage, sizeof(usage))) {
-        hid_state.queue_head = (hid_state.queue_head + 1) % kQueueCapacity;
+    if (tud_hid_report(report_id_consumer_control, &usage, sizeof(usage))) {
+        hid_state.queue_head = (hid_state.queue_head + 1) % queue_capacity;
         hid_state.report_is_pressed = true;
-        hid_state.release_at_ms = now_ms + kKeyReleaseDelayMs;
+        hid_state.release_at_ms = now_ms + key_release_delay_ms;
     }
 }
 
 // TinyUSB 向主机提供设备描述符时调用；返回本设备的 VID、PID 和版本信息。
 extern "C" uint8_t const* tud_descriptor_device_cb() {
-    return reinterpret_cast<uint8_t const*>(&kDeviceDescriptor);
+    return reinterpret_cast<uint8_t const*>(&device_descriptor);
 }
 
 // TinyUSB 向主机提供配置描述符时调用；此配置包含一个 Consumer Control HID 接口。
 extern "C" uint8_t const* tud_descriptor_configuration_cb(uint8_t index) {
     (void)index;
-    return kConfigurationDescriptor;
+    return configuration_descriptor;
 }
 
 // TinyUSB 向主机提供 HID 报告描述符时调用；描述符定义媒体控制报告的格式和用途。
 extern "C" uint8_t const* tud_hid_descriptor_report_cb(uint8_t instance) {
     (void)instance;
-    return kHidReportDescriptor;
+    return hid_report_descriptor;
 }
 
 // TinyUSB 向主机提供字符串描述符时调用；把产品名、序列号等转成 USB 所需的 UTF-16 格式。
@@ -200,15 +200,15 @@ extern "C" uint16_t const* tud_descriptor_string_cb(uint8_t index, uint16_t lang
     uint16_t* const descriptor = hid_state.string_descriptor;
     uint8_t character_count = 0;
 
-    if (index == kStringLanguage) {
+    if (index == string_language) {
         descriptor[1] = 0x0409;  // 语言 ID：英语（美国）。
         character_count = 1;
     } else {
-        if (index >= sizeof(kStringDescriptors) / sizeof(kStringDescriptors[0])) {
+        if (index >= sizeof(string_descriptors) / sizeof(string_descriptors[0])) {
             return 0;
         }
 
-        const char* text = kStringDescriptors[index];
+        const char* text = string_descriptors[index];
         character_count = static_cast<uint8_t>(std::min<size_t>(std::strlen(text), 31));
         for (uint8_t character = 0; character < character_count; ++character) {
             descriptor[1 + character] = static_cast<uint8_t>(text[character]);

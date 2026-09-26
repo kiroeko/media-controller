@@ -65,6 +65,8 @@ main.cpp
 
 设备自身的采样间隔、去抖时长和每格跳变数放在对应类的 `private static constexpr` 常量中，供该类型的所有实例共用。应用的接线和交互时序配置、输入算法的转换表则保存在各自 `.cpp` 文件内。[media_hid.cpp](src/usb/media_hid.cpp) 将 USB 描述符保存为文件内常量；`MediaHidState` 则保存序列号、字符串描述符缓冲区、动作队列和按键发送状态，供 USB 回调在固件运行期间使用。这些状态不暴露给应用层。
 
+配置参数、描述符和查表常量的名称统一使用小写加下划线，例如 `sig_debounce_ms`、`device_descriptor`、`transition_delta`；常量性质由 `constexpr` 或 `const` 表达，名称不加 `k` 前缀。
+
 ### 初始化约定
 
 `input` 和 `device` 类型使用默认构造，不显式定义构造函数，也不在构造时访问硬件。调用方通过一次 `init()` 提供所需的外部配置和初始状态。对象默认构造后仍须先调用 `init()`，才能调用 `update()` 或读取结果。
@@ -99,10 +101,10 @@ main.cpp
 | --- | --- |
 | 顺逆时针相反 | 核对 `SIA`→`GP3`、`SIB`→`GP4` 接线和 [quadrature_decoder.cpp](src/input/quadrature_decoder.cpp) 的方向查表 |
 | 灯亮时仍处于音量模式 | 核对 `SIG`→`GP2` 和共地接线；灯亮时 `SIG` 应约为 3.3 V，固件按高电平表示开处理 |
-| 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.h](include/device/waveshare_rotation_sensor.h) 的 `kTransitionsPerDetent` |
-| 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.h](include/device/waveshare_rotation_sensor.h) 的 `kEncoderSampleIntervalMs` |
+| 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.h](include/device/waveshare_rotation_sensor.h) 的 `transitions_per_detent` |
+| 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.h](include/device/waveshare_rotation_sensor.h) 的 `encoder_sample_interval_ms` |
 
-[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；当前使用 `kTransitionsPerDetent = 4`，实机操作得到预期的每格动作。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，250 ms 双击窗口当前未启用。方向查表的符号也已按 SIA→GP3、SIB→GP4 接线调整并完成实机验证。
+[Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；当前使用 `transitions_per_detent = 4`，实机操作得到预期的每格动作。应用模块的 `button_gesture_config` 设置长按阈值为 700 ms，250 ms 双击窗口当前未启用。方向查表的符号也已按 SIA→GP3、SIB→GP4 接线调整并完成实机验证。
 
 ## 构建与刷写
 
@@ -117,6 +119,6 @@ cmake --build build
 
 第一次刷写时可以先拔下 GP2～GP5 的外设线，只确认电脑能识别 HID 设备，再接回模块核对方向、模式和按键手势。
 
-USB 产品名当前是 `Kiro Media Controller`，定义在 [media_hid.cpp](src/usb/media_hid.cpp) 的字符串描述符中。每块板子的序列号由 RP2350 唯一 ID 生成。首次刷写前修改名称不会遇到旧设备缓存；以后若在相同 VID/PID/序列号下修改描述符，建议同步更新 `kDeviceDescriptor` 中的 `bcdDevice`，并让主机重新枚举设备。
+USB 产品名当前是 `Kiro Media Controller`，定义在 [media_hid.cpp](src/usb/media_hid.cpp) 的字符串描述符中。每块板子的序列号由 RP2350 唯一 ID 生成。首次刷写前修改名称不会遇到旧设备缓存；以后若在相同 VID/PID/序列号下修改描述符，建议同步更新 `device_descriptor` 中的 `bcdDevice`，并让主机重新枚举设备。
 
 当前 VID `0xCAFE` 是 TinyUSB 示例值，并非分配给本项目；对外销售时需要更换为合法取得的 VID/PID。远程唤醒也需要电脑允许，Windows 设备管理器不一定会为此类设备提供或启用唤醒选项。

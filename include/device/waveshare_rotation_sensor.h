@@ -34,24 +34,25 @@ public:
     ButtonGesture take_button_gesture();
 
 private:
-    // A/B 相的最短采样间隔为 1 ms；主循环若延迟，实际间隔可能更长。
-    static constexpr uint32_t kEncoderSampleIntervalMs = 1;
-
-    // 每个卡点按四次格雷码跳变计算；当前模块已实机验证每格动作符合预期。
-    static constexpr uint8_t kTransitionsPerDetent = 4;
-    static_assert(kTransitionsPerDetent > 0);
-
-    // 内置机械按键的电平变化后需连续稳定 20 ms 才接受新状态。
-    static constexpr uint32_t kSwitchDebounceMs = 20;
-
     // 将 A/B 电平合成为两位状态：SIA 是 bit 1，SIB 是 bit 0。
     [[nodiscard]] uint8_t read_state() const;
 
     uint pin_a_ = 0;                        // init() 指定的模块 SIA 引脚。
     uint pin_b_ = 0;                        // init() 指定的模块 SIB 引脚。
     uint pin_switch_ = 0;                   // init() 指定的模块 SW 引脚，低电平表示按下。
+
     uint32_t last_encoder_sample_ms_ = 0;   // 上次采样 A/B 相的时刻。
     QuadratureDecoder decoder_;             // 将相位变化解码为机械卡点数。
     DebouncedSwitch switch_;                // 对 SW 电平去抖。
     ButtonGestureDecoder button_gestures_;  // 从稳定按下状态识别手势。
+
+    // A/B 相的最短采样间隔为 1 ms；主循环若延迟，实际间隔可能更长。
+    static constexpr uint32_t encoder_sample_interval_ms = 1;
+
+    // 每个卡点按四次格雷码跳变计算；当前模块已实机验证每格动作符合预期。
+    static constexpr uint8_t transitions_per_detent = 4;
+    static_assert(transitions_per_detent > 0);
+
+    // 内置机械按键的电平变化后需连续稳定 20 ms 才接受新状态。
+    static constexpr uint32_t switch_debounce_ms = 20;
 };

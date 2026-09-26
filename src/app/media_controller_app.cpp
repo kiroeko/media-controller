@@ -7,25 +7,25 @@
 
 namespace {
 // RP2350-Zero-M 排针上的 GP2–GP5；SIA 是编码器 A 相，SIB 是 B 相。
-constexpr uint kModeSwitchPin = 2;
-constexpr uint kEncoderSiaPin = 3;
-constexpr uint kEncoderSibPin = 4;
-constexpr uint kEncoderSwPin = 5;
+constexpr uint mode_switch_pin = 2;
+constexpr uint encoder_sia_pin = 3;
+constexpr uint encoder_sib_pin = 4;
+constexpr uint encoder_sw_pin = 5;
 
 // 切歌后短时间忽略后续旋转，避免越过相邻卡点时连续跳过歌曲。
-constexpr uint32_t kTrackChangeCooldownMs = 500;
+constexpr uint32_t track_change_cooldown_ms = 500;
 
 // 交互阈值由应用定义：长按 700 ms；当前关闭双击，250 ms 窗口暂未使用。
-constexpr uint32_t kButtonLongPressMs = 700;
-constexpr bool kDetectDoublePress = false;
-constexpr uint32_t kButtonDoubleGapMs = 250;
-constexpr ButtonGestureConfig kButtonGestureConfig{
-    kButtonLongPressMs, kDetectDoublePress, kButtonDoubleGapMs,
+constexpr uint32_t button_long_press_ms = 700;
+constexpr bool detect_double_press = false;
+constexpr uint32_t button_double_gap_ms = 250;
+constexpr ButtonGestureConfig button_gesture_config{
+    button_long_press_ms, detect_double_press, button_double_gap_ms,
 };
 
 // 把接线和手势规则合成旋转模块的完整初始化配置。
-constexpr WaveshareRotationSensor::Config kRotationSensorConfig{
-    kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin, kButtonGestureConfig,
+constexpr WaveshareRotationSensor::Config rotation_sensor_config{
+    encoder_sia_pin, encoder_sib_pin, encoder_sw_pin, button_gesture_config,
 };
 
 // SDK 返回 32 位毫秒时间；约 49.7 天回绕，使用方应比较时间差。
@@ -39,8 +39,8 @@ uint32_t now_ms() {
     board_init();
 
     const uint32_t initial_time_ms = now_ms();
-    mode_switch_.init(kModeSwitchPin, initial_time_ms);
-    rotation_sensor_.init(kRotationSensorConfig, initial_time_ms);
+    mode_switch_.init(mode_switch_pin, initial_time_ms);
+    rotation_sensor_.init(rotation_sensor_config, initial_time_ms);
     media_hid_init();
 
     while (true) {
@@ -96,7 +96,7 @@ void MediaControllerApp::enqueue_detent_actions(int detents, bool track_mode, ui
     if (track_mode) {
         if (detents == 0 ||
             (has_last_track_change_ &&
-             now_ms - last_track_change_ms_ < kTrackChangeCooldownMs)) {
+             now_ms - last_track_change_ms_ < track_change_cooldown_ms)) {
             return;
         }
 

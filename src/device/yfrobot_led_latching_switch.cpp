@@ -9,7 +9,7 @@ void YfrobotLedLatchingSwitch::init(uint sig_pin, uint32_t now_ms) {
     gpio_disable_pulls(sig_pin_);
 
     // 单独供电实测灯灭时 SIG 约 0 V、灯亮时约 3.3 V，直接把高电平作为有效状态。
-    sig_.init(kSigDebounceMs, now_ms, gpio_get(sig_pin_));
+    sig_.init(sig_debounce_ms, now_ms, gpio_get(sig_pin_));
 }
 
 // SIG 高电平为开、低电平为关；读取后交给去抖逻辑。

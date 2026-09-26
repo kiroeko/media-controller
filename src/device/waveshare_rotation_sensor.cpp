@@ -19,9 +19,9 @@ void WaveshareRotationSensor::init(const Config& config, uint32_t now_ms) {
     gpio_set_dir(pin_switch_, GPIO_IN);
     gpio_disable_pulls(pin_switch_);
 
-    decoder_.init(kTransitionsPerDetent, read_state());
-    last_encoder_sample_ms_ = now_ms - kEncoderSampleIntervalMs;
-    switch_.init(kSwitchDebounceMs, now_ms, !gpio_get(pin_switch_));
+    last_encoder_sample_ms_ = now_ms - encoder_sample_interval_ms;
+    decoder_.init(transitions_per_detent, read_state());
+    switch_.init(switch_debounce_ms, now_ms, !gpio_get(pin_switch_));
     button_gestures_.init(config.gesture_config, now_ms, switch_.is_active());
 }
 
@@ -30,7 +30,7 @@ void WaveshareRotationSensor::update(uint32_t now_ms) {
     switch_.update(now_ms, !gpio_get(pin_switch_));
     button_gestures_.update(now_ms, switch_.is_active());
 
-    if (now_ms - last_encoder_sample_ms_ >= kEncoderSampleIntervalMs) {
+    if (now_ms - last_encoder_sample_ms_ >= encoder_sample_interval_ms) {
         last_encoder_sample_ms_ = now_ms;
         decoder_.update(read_state());
     }
