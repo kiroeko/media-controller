@@ -5,7 +5,7 @@
 **/*~
 **/*_backup/
 
-# Reproducible or obsolete copies; the manufacturing Gerber ZIP stays tracked.
+# Generated or obsolete local copies; keep the editable source project in Git.
 /media-controller-carrier-v1-project.zip
 /manufacturing/gerber/
 /manufacturing/board-top.*

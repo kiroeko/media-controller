@@ -2,25 +2,24 @@
 
 本目录用于保存媒体控制器载板的嘉立创 EDA 工程，包括原理图、PCB 布局及工程使用的本地库文件。
 
-学习从零绘制同类接线板：[从新建工程到制造文件的分步教程](TUTORIAL.md)。
+学习从零绘制同类接线板：[从新建工程到制板的分步教程](TUTORIAL.md)。
 
-当前工程入口：[media-controller-carrier-v1.eprj3](media-controller-carrier-v1/media-controller-carrier-v1.eprj3)（嘉立创 EDA 专业版，Git 友好格式）。v1 已完成原理图、封装、32 × 35 mm 双层 PCB、布线和原生 PCB DRC（141 项、0 问题），并已导出 [Gerber 与钻孔 ZIP](manufacturing/media-controller-carrier-v1-gerber.zip)。请先阅读 [连接件清单与装配说明](ASSEMBLY.md)。尚未制作实体样板。
+当前工程入口：[media-controller-carrier-v1.eprj3](media-controller-carrier-v1/media-controller-carrier-v1.eprj3)（嘉立创 EDA 专业版，Git 友好格式）。v1 已完成原理图、封装、32 × 35 mm 双层 PCB、布线和原生 PCB DRC（141 项、0 问题）。用户于 2026-09-26 确认已重新下单，待到货后验证实物。请先阅读 [连接件清单与装配说明](ASSEMBLY.md)。
 
 当前 PCB 丝印为 `KIRO MEDIA CTRL v1.0`。可编辑工程使用嘉立创 EDA 的目录格式，直接纳入 Git；保留整个 `media-controller-carrier-v1/`，不要只复制其中的 `.eprj3` 索引文件。
 
-2026-09-26 下单后，源工程补齐了 J1/J2 的六个针脚标签，统一左右标签间距，并将外设接口的 `G` 写全为 `GND`；电路、焊盘及孔位未改动。`manufacturing/media-controller-carrier-v1-gerber.zip` 暂保留已下单版本，**不包含这次丝印修正**。本地修改不会自动更新工厂订单；后续生产需从修正后的源工程重新导出制造文件。
+源工程包含 J1～J4 的完整针脚标签，左右标签间距一致，地线统一标为 `GND`。制板使用嘉立创 EDA 一键下单，由客户端自动上传生产文件，不需要手动导出或上传 ZIP；仓库保留可编辑源工程，不保留制造 ZIP。
 
 ## 目录与版本管理
 
 | 路径 | 用途 |
 | --- | --- |
 | `media-controller-carrier-v1/` | 唯一的正式原理图与 PCB 源工程 |
-| `manufacturing/` | 已下单版本的 Gerber 与钻孔 ZIP（早于本次丝印修正） |
 | `ASSEMBLY.md` | 连接件规格、焊接步骤和接口方向 |
 | `reference/` | 官方尺寸图与实物照片，供外壳设计参考 |
 | 本文件 | 设计说明与用户确认的测量记录 |
 
-修改后先在 EDA 保存工程并运行 DRC，再重新导出并替换制造 ZIP，最后一起提交 Git。需要分享工程时，可从 Git 获取整个源工程目录；不在仓库重复保存工程压缩包、Gerber 解压副本、预览图或生成过程文件。
+制板前在 EDA 保存工程并运行 DRC，核对下单文件预览；用 Git 提交或标签记录对应的源工程版本，生产资料按订单留存。本地保存或推送 Git 不会自动更新工厂订单。需要分享工程时，可从 Git 获取整个源工程目录；不在仓库重复保存工程压缩包、制造 ZIP、Gerber 解压副本、预览图或生成过程文件。
 
 验证记录摘要：原理图 DRC 为 0 错误、0 警告；PCB 原生 DRC 141 项、0 问题。独立几何核对确认六个网络连通、26 个连接器孔和四个固定孔，最小异网铜间距 0.64 mm。检查结果不代替实物焊接和功能测试。
 
