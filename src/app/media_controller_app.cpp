@@ -5,34 +5,10 @@
 
 #include "usb/media_hid.h"
 
-namespace {
-// RP2350-Zero-M 排针上的 GP2–GP5；SIA 是编码器 A 相，SIB 是 B 相。
-constexpr uint mode_switch_pin = 2;
-constexpr uint encoder_sia_pin = 3;
-constexpr uint encoder_sib_pin = 4;
-constexpr uint encoder_sw_pin = 5;
-
-// 切歌后短时间忽略后续旋转，避免越过相邻卡点时连续跳过歌曲。
-constexpr uint32_t track_change_cooldown_ms = 500;
-
-// 交互阈值由应用定义：长按 700 ms；当前关闭双击，250 ms 窗口暂未使用。
-constexpr uint32_t button_long_press_ms = 700;
-constexpr bool detect_double_press = false;
-constexpr uint32_t button_double_gap_ms = 250;
-constexpr ButtonGestureConfig button_gesture_config{
-    button_long_press_ms, detect_double_press, button_double_gap_ms,
-};
-
-// 把接线和手势规则合成旋转模块的完整初始化配置。
-constexpr WaveshareRotationSensor::Config rotation_sensor_config{
-    encoder_sia_pin, encoder_sib_pin, encoder_sw_pin, button_gesture_config,
-};
-
-// SDK 返回 32 位毫秒时间；约 49.7 天回绕，使用方应比较时间差。
-uint32_t now_ms() {
+// 将 SDK 的启动时间转换为 32 位毫秒计数，供应用循环使用。
+uint32_t MediaControllerApp::now_ms() {
     return to_ms_since_boot(get_absolute_time());
 }
-}  // 匿名命名空间
 
 // 初始化后持续轮询输入与 USB；循环不能阻塞，以维持采样和去抖节奏。
 [[noreturn]] void MediaControllerApp::run() {

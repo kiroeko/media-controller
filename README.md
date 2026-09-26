@@ -51,7 +51,8 @@ main.cpp
 | 位置 | 职责 |
 | --- | --- |
 | [src/main.cpp](src/main.cpp) | 固件入口 |
-| [src/app/media_controller_app.cpp](src/app/media_controller_app.cpp) | 初始化、主循环、板级接线与产品行为映射 |
+| [include/app/media_controller_app.h](include/app/media_controller_app.h) | 应用接口、运行状态以及板级接线和交互时序常量 |
+| [src/app/media_controller_app.cpp](src/app/media_controller_app.cpp) | 初始化、主循环与产品行为映射 |
 | [src/device/waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) | 配置并读取 Waveshare 旋钮模块的 A/B/SW，A/B 两次采样至少间隔 1 ms |
 | [src/device/yfrobot_led_latching_switch.cpp](src/device/yfrobot_led_latching_switch.cpp) | 配置并读取 YFROBOT LED 自锁开关的 SIG |
 | [src/input/quadrature_decoder.cpp](src/input/quadrature_decoder.cpp) | 把两位 A/B 相位变化转换为带符号的机械卡点数 |
@@ -63,7 +64,7 @@ main.cpp
 
 这里没有额外包装 GPIO、SPI、USB 的通用“物理层”；底层访问直接使用 Pico SDK 和 TinyUSB。以后接屏幕时，屏幕驱动负责面板命令和总线传输；只有像素转换或渲染逻辑变复杂时，才需要单独提取不依赖硬件的编码组件。
 
-设备自身的采样间隔、去抖时长和每格跳变数放在对应类的 `private static constexpr` 常量中，供该类型的所有实例共用。应用的接线和交互时序配置、输入算法的转换表则保存在各自 `.cpp` 文件内。[media_hid.cpp](src/usb/media_hid.cpp) 将 USB 描述符保存为文件内常量；`MediaHidState` 则保存序列号、字符串描述符缓冲区、动作队列和按键发送状态，供 USB 回调在固件运行期间使用。这些状态不暴露给应用层。
+设备自身的采样间隔、去抖时长和每格跳变数放在对应类的 `private static constexpr` 常量中，供该类型的所有实例共用。应用的接线和交互时序配置也集中在 `MediaControllerApp` 的类内常量中；读取时间的辅助函数是该类的私有静态函数。输入算法的转换表保存在对应 `.cpp` 文件内。[media_hid.cpp](src/usb/media_hid.cpp) 将 USB 描述符保存为文件内常量；`MediaHidState` 则保存序列号、字符串描述符缓冲区、动作队列和按键发送状态，供 USB 回调在固件运行期间使用。这些状态不暴露给应用层。
 
 配置参数、描述符和查表常量的名称统一使用小写加下划线，例如 `sig_debounce_ms`、`device_descriptor`、`transition_delta`；常量性质由 `constexpr` 或 `const` 表达，名称不加 `k` 前缀。
 
