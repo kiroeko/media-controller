@@ -1,17 +1,5 @@
 #include "device/waveshare_rotation_sensor.h"
 
-namespace {
-// 当前 A/B 相的最短采样间隔为 1 ms；主循环若延迟，实际间隔可能更长。
-constexpr uint32_t kEncoderSampleIntervalMs = 1;
-
-// 当前模块按每个卡点四次格雷码跳变计算；需上板实测确认。
-constexpr uint8_t kTransitionsPerDetent = 4;
-static_assert(kTransitionsPerDetent > 0);
-
-// 模块的机械按键需持续稳定 20 ms 才认定为按下或松开。
-constexpr uint32_t kSwitchDebounceMs = 20;
-}  // 匿名命名空间
-
 // 保存接线、配置 GPIO，再将完整配置和初始读数交给内部输入组件。
 void WaveshareRotationSensor::init(const Config& config, uint32_t now_ms) {
     pin_a_ = config.pin_a;

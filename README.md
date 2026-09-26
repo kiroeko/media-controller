@@ -63,7 +63,7 @@ main.cpp
 
 这里没有额外包装 GPIO、SPI、USB 的通用“物理层”；底层访问直接使用 Pico SDK 和 TinyUSB。以后接屏幕时，屏幕驱动负责面板命令和总线传输；只有像素转换或渲染逻辑变复杂时，才需要单独提取不依赖硬件的编码组件。
 
-各 `.cpp` 文件里的 `constexpr` 引脚、时序和转换表只供该文件使用，属于只读配置。[media_hid.cpp](src/usb/media_hid.cpp) 将 USB 描述符保存为文件内常量；`MediaHidState` 则保存序列号、字符串描述符缓冲区、动作队列和按键发送状态，供 USB 回调在固件运行期间使用。这些状态不暴露给应用层。
+设备自身的采样间隔、去抖时长和每格跳变数放在对应类的 `private static constexpr` 常量中，供该类型的所有实例共用。应用的接线和交互时序配置、输入算法的转换表则保存在各自 `.cpp` 文件内。[media_hid.cpp](src/usb/media_hid.cpp) 将 USB 描述符保存为文件内常量；`MediaHidState` 则保存序列号、字符串描述符缓冲区、动作队列和按键发送状态，供 USB 回调在固件运行期间使用。这些状态不暴露给应用层。
 
 ### 初始化约定
 
@@ -99,8 +99,8 @@ main.cpp
 | --- | --- |
 | 顺逆时针相反 | 核对 `SIA`→`GP3`、`SIB`→`GP4` 接线和 [quadrature_decoder.cpp](src/input/quadrature_decoder.cpp) 的方向查表 |
 | 灯亮时仍处于音量模式 | 核对 `SIG`→`GP2` 和共地接线；灯亮时 `SIG` 应约为 3.3 V，固件按高电平表示开处理 |
-| 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kTransitionsPerDetent` |
-| 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kEncoderSampleIntervalMs` |
+| 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.h](include/device/waveshare_rotation_sensor.h) 的 `kTransitionsPerDetent` |
+| 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.h](include/device/waveshare_rotation_sensor.h) 的 `kEncoderSampleIntervalMs` |
 
 [Waveshare Rotation Sensor 的规格页](https://www.waveshare.com/wiki/Rotation_Sensor)标称每圈 20 个脉冲，但没有给出机械卡点数；当前使用 `kTransitionsPerDetent = 4`，实机操作得到预期的每格动作。应用模块的 `kButtonGestureConfig` 设置长按阈值为 700 ms，250 ms 双击窗口当前未启用。方向查表的符号也已按 SIA→GP3、SIB→GP4 接线调整并完成实机验证。
 

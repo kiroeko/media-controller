@@ -34,6 +34,16 @@ public:
     ButtonGesture take_button_gesture();
 
 private:
+    // A/B 相的最短采样间隔为 1 ms；主循环若延迟，实际间隔可能更长。
+    static constexpr uint32_t kEncoderSampleIntervalMs = 1;
+
+    // 每个卡点按四次格雷码跳变计算；当前模块已实机验证每格动作符合预期。
+    static constexpr uint8_t kTransitionsPerDetent = 4;
+    static_assert(kTransitionsPerDetent > 0);
+
+    // 内置机械按键的电平变化后需连续稳定 20 ms 才接受新状态。
+    static constexpr uint32_t kSwitchDebounceMs = 20;
+
     // 将 A/B 电平合成为两位状态：SIA 是 bit 1，SIB 是 bit 0。
     [[nodiscard]] uint8_t read_state() const;
 
