@@ -1,10 +1,5 @@
 #include "device/yfrobot_led_latching_switch.h"
 
-namespace {
-// 自锁开关的原始电平需持续 20 ms 才作为稳定状态使用。
-constexpr uint32_t kSigDebounceMs = 20;
-}  // 匿名命名空间
-
 // 保存并配置 SIG 引脚，再将去抖时长、时间基准和初始采样交给去抖组件。
 void YfrobotLedLatchingSwitch::init(uint sig_pin, uint32_t now_ms) {
     sig_pin_ = sig_pin;
