@@ -3,6 +3,7 @@
 **/*.bak
 **/*.lock
 **/*~
+**/*_backup/
 
 # Reproducible or obsolete copies; the manufacturing Gerber ZIP stays tracked.
 /media-controller-carrier-v1-project.zip

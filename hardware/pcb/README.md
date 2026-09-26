@@ -2,6 +2,8 @@
 
 本目录用于保存媒体控制器载板的嘉立创 EDA 工程，包括原理图、PCB 布局及工程使用的本地库文件。
 
+学习从零绘制同类接线板：[从新建工程到制造文件的分步教程](TUTORIAL.md)。
+
 当前工程入口：[media-controller-carrier-v1.eprj3](media-controller-carrier-v1/media-controller-carrier-v1.eprj3)（嘉立创 EDA 专业版，Git 友好格式）。v1 已完成原理图、封装、32 × 35 mm 双层 PCB、布线和原生 PCB DRC（141 项、0 问题），并已导出 [Gerber 与钻孔 ZIP](manufacturing/media-controller-carrier-v1-gerber.zip)。请先阅读 [连接件清单与装配说明](ASSEMBLY.md)。尚未制作实体样板。
 
 当前 PCB 丝印为 `KIRO MEDIA CTRL v1.0`。可编辑工程使用嘉立创 EDA 的目录格式，直接纳入 Git；保留整个 `media-controller-carrier-v1/`，不要只复制其中的 `.eprj3` 索引文件。
