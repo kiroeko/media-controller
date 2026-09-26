@@ -1,0 +1,72 @@
+{
+  "name": "media-controller-carrier-v1",
+  "owner_uuid": "c99538f11857acf3c6be40cda96c112a",
+  "creator_uuid": "c99538f11857acf3c6be40cda96c112a",
+  "created_at": "2026-09-26 20:13:12",
+  "updated_at": "2026-09-26 20:13:13",
+  "modifier_uuid": "c99538f11857acf3c6be40cda96c112a",
+  "content": "",
+  "archive": false,
+  "cbb_project": 0,
+  "thumb": "",
+  "ticket": 1,
+  "g_ticket": 1,
+  "boards": [],
+  "block_symbol_attrs_groups": {},
+  "default_sheet": "",
+  "branch_uuid": "",
+  "pcb_count": 1,
+  "format": "folder",
+  "profile": {
+    "boards": {
+      "dd2f7acdb55f483d": {
+        "uuid": "dd2f7acdb55f483d",
+        "title": "Board1",
+        "zIndex": 1
+      }
+    },
+    "schematics": {
+      "f10deba9e8f7ecd1": {
+        "uuid": "f10deba9e8f7ecd1",
+        "name": "Schematic1",
+        "board": "dd2f7acdb55f483d",
+        "source": "",
+        "version": "1790424792694",
+        "updateTime": 1790424792694
+      }
+    },
+    "sheets": {
+      "59b171601169114a": {
+        "uuid": "59b171601169114a",
+        "title": "P1",
+        "schematic_uuid": "f10deba9e8f7ecd1",
+        "zIndex": 1,
+        "source": "",
+        "version": "1790424792694",
+        "updateTime": 1790424792694
+      }
+    },
+    "pcbs": {
+      "b9b6fa0ef931d98a": {
+        "uuid": "b9b6fa0ef931d98a",
+        "title": "PCB1",
+        "board": "dd2f7acdb55f483d",
+        "parent_uuid": "",
+        "source": "",
+        "version": "1790425895926",
+        "updateTime": 1790425895926
+      }
+    },
+    "panels": {},
+    "blockSymbols": {},
+    "owner": {
+      "uuid": "c99538f11857acf3c6be40cda96c112a"
+    },
+    "simSchematics": {},
+    "simulations": {}
+  },
+  "config": {
+    "defaultSheet": "",
+    "settings": {}
+  }
+}

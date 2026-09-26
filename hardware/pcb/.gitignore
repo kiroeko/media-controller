@@ -1,0 +1,11 @@
+# EDA local working state; keep native .eprj3/.esch2/.epcb2/.ecfg/.evar files.
+**/.tmp/
+**/*.bak
+**/*.lock
+**/*~
+
+# Reproducible or obsolete copies; the manufacturing Gerber ZIP stays tracked.
+/media-controller-carrier-v1-project.zip
+/manufacturing/gerber/
+/manufacturing/board-top.*
+/manufacturing/schematic.*
