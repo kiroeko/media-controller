@@ -6,7 +6,8 @@
 
 #include "input/debounced_switch.h"
 
-// YFROBOT LED 自锁按键模块：SIG 电平跟随自锁开关状态，LED 由模块自身驱动。
+// YFROBOT LED 自锁按键模块（Latching）：每按一次切换开/关，松手后保持状态。
+// SIG 高电平表示开、低电平表示关；LED 由模块自身驱动。
 // 默认构造后须先调用 init()，再更新或读取结果。
 class YfrobotLedLatchingSwitch {
 public:
@@ -21,8 +22,6 @@ public:
     [[nodiscard]] bool is_on() const;
 
 private:
-    [[nodiscard]] bool read_active() const;
-
     uint sig_pin_ = 0;     // init() 指定的模块 SIG 引脚。
     DebouncedSwitch sig_;  // 对 SIG 电平去抖。
 };

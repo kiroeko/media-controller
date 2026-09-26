@@ -4,6 +4,8 @@
 
 ## 使用方式
 
+模式开关使用 YFROBOT LED **自锁版**：每按一次切换开/关，松手后保持状态。
+
 | LED 自锁开关 | 顺时针旋转 | 逆时针旋转 | 短按旋钮 | 长按旋钮 |
 | --- | --- | --- | --- | --- |
 | 熄灭：音量模式 | 音量加 | 音量减 | 播放/暂停 | 静音切换 |
@@ -96,7 +98,7 @@ main.cpp
 | 现象 | 调整位置 |
 | --- | --- |
 | 顺逆时针相反 | 核对 `SIA`→`GP3`、`SIB`→`GP4` 接线和 [quadrature_decoder.cpp](src/input/quadrature_decoder.cpp) 的方向查表 |
-| 灯亮时仍处于音量模式 | 检查 [yfrobot_led_latching_switch.cpp](src/device/yfrobot_led_latching_switch.cpp) 的 `kSigActiveHigh` |
+| 灯亮时仍处于音量模式 | 核对 `SIG`→`GP2` 和共地接线；灯亮时 `SIG` 应约为 3.3 V，固件按高电平表示开处理 |
 | 一格触发多次，或多格才触发一次 | 实测后调整 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kTransitionsPerDetent` |
 | 快速旋转漏格 | 检查主循环是否阻塞、USB 队列是否满，以及 [waveshare_rotation_sensor.cpp](src/device/waveshare_rotation_sensor.cpp) 的 `kEncoderSampleIntervalMs` |
 
