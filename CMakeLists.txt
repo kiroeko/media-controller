@@ -69,7 +69,7 @@ target_include_directories(media-controller PRIVATE
     ${CMAKE_CURRENT_LIST_DIR}/include/usb
 )
 
-target_compile_options(media-controller PRIVATE -Wall -Wextra)
+target_compile_options(media-controller PRIVATE -Wall)
 
 # -Wconversion only on our own sources: third-party conversion warnings are
 # reported against code we cannot fix, and an SDK bump would dirty the build.

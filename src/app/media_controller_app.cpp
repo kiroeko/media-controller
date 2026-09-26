@@ -53,12 +53,12 @@ void MediaControllerApp::update(uint32_t now_ms) {
 
     // 同一轮内先排入按键动作，避免快速旋转占满剩余队列位置。
     if (short_press) {
-        (void)media_hid_enqueue(MediaAction::PlayPause,
-                                MediaQueueAdmission::AllowReservedSlot);
+        media_hid_enqueue(MediaAction::PlayPause,
+                          MediaQueueAdmission::AllowReservedSlot);
     }
     if (long_press) {
-        (void)media_hid_enqueue(MediaAction::Mute,
-                                MediaQueueAdmission::AllowReservedSlot);
+        media_hid_enqueue(MediaAction::Mute,
+                          MediaQueueAdmission::AllowReservedSlot);
     }
 
     // 队列满时舍弃新旋转动作，限制停转后仍待发送的步数。
@@ -88,12 +88,12 @@ void MediaControllerApp::enqueue_detent_actions(int detents, bool track_mode, ui
     }
 
     while (detents > 0) {
-        (void)media_hid_enqueue(MediaAction::VolumeUp);
+        media_hid_enqueue(MediaAction::VolumeUp);
         --detents;
     }
 
     while (detents < 0) {
-        (void)media_hid_enqueue(MediaAction::VolumeDown);
+        media_hid_enqueue(MediaAction::VolumeDown);
         ++detents;
     }
 }
