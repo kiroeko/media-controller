@@ -1,10 +1,8 @@
 #include "input/button_gesture_decoder.h"
 
-ButtonGestureDecoder::ButtonGestureDecoder(ButtonGestureConfig config)
-    : config_(config) {}
-
-// 用稳定的启动状态建立按压基准，并清空待处理事件。
-void ButtonGestureDecoder::init(uint32_t now_ms, bool pressed) {
+// 一次设置手势配置、稳定的启动状态和计时基准，并清空待处理事件。
+void ButtonGestureDecoder::init(ButtonGestureConfig config, uint32_t now_ms, bool pressed) {
+    config_ = config;
     short_event_ready_ = false;
     double_event_ready_ = false;
     long_event_ready_ = false;

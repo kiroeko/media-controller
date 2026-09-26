@@ -10,14 +10,19 @@
 
 // Waveshare 旋转模块的硬件适配：配置三个 GPIO，采样编码器与内置按键，
 // 再把采样值交给不依赖 Pico SDK 的解码器。
+// 默认构造后须先调用 init()，再更新或读取结果。
 class WaveshareRotationSensor {
 public:
-    // 引脚编号由应用装配；本类型只保存模块各信号的角色。
-    WaveshareRotationSensor(uint pin_a, uint pin_b, uint pin_switch,
-                            ButtonGestureConfig gesture_config);
+    // 应用在 init() 时提供的接线和交互配置；采样、去抖时序由模块自身定义。
+    struct Config {
+        uint pin_a;                          // SIA 对应的 GPIO 编号。
+        uint pin_b;                          // SIB 对应的 GPIO 编号。
+        uint pin_switch;                     // SW 对应的 GPIO 编号。
+        ButtonGestureConfig gesture_config;  // 内置按键的手势时间阈值与双击开关。
+    };
 
-    // 配置三个输入引脚，用当前读数建立旋转解码、按键去抖和手势识别的初始状态。
-    void init(uint32_t now_ms);
+    // 接收完整配置并设置三个输入引脚，再用当前读数和 now_ms 初始化内部输入组件。
+    void init(const Config& config, uint32_t now_ms);
 
     // 每轮读取按键；距上次 A/B 相采样至少 1 ms 才再次读取，主循环延迟时不会补采样。
     void update(uint32_t now_ms);
@@ -32,9 +37,9 @@ private:
     // 将 A/B 电平合成为两位状态：SIA 是 bit 1，SIB 是 bit 0。
     [[nodiscard]] uint8_t read_state() const;
 
-    uint pin_a_;                            // 模块 SIA 引脚。
-    uint pin_b_;                            // 模块 SIB 引脚。
-    uint pin_switch_;                       // 模块 SW 引脚，低电平表示按下。
+    uint pin_a_ = 0;                        // init() 指定的模块 SIA 引脚。
+    uint pin_b_ = 0;                        // init() 指定的模块 SIB 引脚。
+    uint pin_switch_ = 0;                   // init() 指定的模块 SW 引脚，低电平表示按下。
     uint32_t last_encoder_sample_ms_ = 0;   // 上次采样 A/B 相的时刻。
     QuadratureDecoder decoder_;             // 将相位变化解码为机械卡点数。
     DebouncedSwitch switch_;                // 对 SW 电平去抖。

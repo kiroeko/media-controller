@@ -11,12 +11,9 @@ constexpr uint32_t kSigDebounceMs = 20;
 constexpr bool kUseInternalPullDown = false;
 }  // 匿名命名空间
 
-// 保存模式模块的 SIG 引脚；构造时不访问硬件。
-YfrobotLedLatchingSwitch::YfrobotLedLatchingSwitch(uint sig_pin)
-    : sig_pin_(sig_pin), sig_(kSigDebounceMs) {}
-
-// 配置 SIG 输入，并用当前电平建立去抖基准。
-void YfrobotLedLatchingSwitch::init(uint32_t now_ms) {
+// 保存并配置 SIG 引脚，再将去抖时长、时间基准和初始采样交给去抖组件。
+void YfrobotLedLatchingSwitch::init(uint sig_pin, uint32_t now_ms) {
+    sig_pin_ = sig_pin;
     gpio_init(sig_pin_);
     gpio_set_dir(sig_pin_, GPIO_IN);
     if (kUseInternalPullDown) {
@@ -24,7 +21,7 @@ void YfrobotLedLatchingSwitch::init(uint32_t now_ms) {
     } else {
         gpio_disable_pulls(sig_pin_);
     }
-    sig_.init(now_ms, read_active());
+    sig_.init(kSigDebounceMs, now_ms, read_active());
 }
 
 // 读取 SIG，再将有效/无效状态交给纯去抖逻辑。

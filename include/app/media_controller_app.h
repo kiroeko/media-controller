@@ -8,8 +8,6 @@
 // 产品行为的装配与主循环：把输入器件的状态映射为 USB 媒体动作。
 class MediaControllerApp {
 public:
-    MediaControllerApp();
-
     // 初始化板级支持、输入器件和 USB，然后持续处理输入与输出。
     [[noreturn]] void run();
 

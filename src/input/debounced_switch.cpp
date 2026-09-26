@@ -1,10 +1,8 @@
 #include "input/debounced_switch.h"
 
-DebouncedSwitch::DebouncedSwitch(uint32_t debounce_ms)
-    : debounce_ms_(debounce_ms) {}
-
-// 启动时直接接受当前状态，不把它当作新一次按下或松开。
-void DebouncedSwitch::init(uint32_t now_ms, bool raw_active) {
+// 设置去抖时长并直接接受启动采样，无需让初始状态先等待一个去抖窗口。
+void DebouncedSwitch::init(uint32_t debounce_ms, uint32_t now_ms, bool raw_active) {
+    debounce_ms_ = debounce_ms;
     stable_active_ = raw_active;
     candidate_active_ = raw_active;
     last_change_ms_ = now_ms;

@@ -23,25 +23,24 @@ constexpr ButtonGestureConfig kButtonGestureConfig{
     kButtonLongPressMs, kDetectDoublePress, kButtonDoubleGapMs,
 };
 
+// 把接线和手势规则合成旋转模块的完整初始化配置。
+constexpr WaveshareRotationSensor::Config kRotationSensorConfig{
+    kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin, kButtonGestureConfig,
+};
+
 // SDK 返回 32 位毫秒时间；约 49.7 天回绕，使用方应比较时间差。
 uint32_t now_ms() {
     return to_ms_since_boot(get_absolute_time());
 }
 }  // 匿名命名空间
 
-// 将板级接线注入两个物理器件；构造时尚未访问 GPIO。
-MediaControllerApp::MediaControllerApp()
-    : mode_switch_(kModeSwitchPin)
-    , rotation_sensor_(kEncoderSiaPin, kEncoderSibPin, kEncoderSwPin,
-                       kButtonGestureConfig) {}
-
 // 初始化后持续轮询输入与 USB；循环不能阻塞，以维持采样和去抖节奏。
 [[noreturn]] void MediaControllerApp::run() {
     board_init();
 
     const uint32_t initial_time_ms = now_ms();
-    mode_switch_.init(initial_time_ms);
-    rotation_sensor_.init(initial_time_ms);
+    mode_switch_.init(kModeSwitchPin, initial_time_ms);
+    rotation_sensor_.init(kRotationSensorConfig, initial_time_ms);
     media_hid_init();
 
     while (true) {

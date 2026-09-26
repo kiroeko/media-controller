@@ -12,18 +12,12 @@ static_assert(kTransitionsPerDetent > 0);
 constexpr uint32_t kSwitchDebounceMs = 20;
 }  // 匿名命名空间
 
-// 保存模块引脚及应用指定的手势阈值；构造时不访问硬件。
-WaveshareRotationSensor::WaveshareRotationSensor(uint pin_a, uint pin_b, uint pin_switch,
-                                                 ButtonGestureConfig gesture_config)
-    : pin_a_(pin_a)
-    , pin_b_(pin_b)
-    , pin_switch_(pin_switch)
-    , decoder_(kTransitionsPerDetent)
-    , switch_(kSwitchDebounceMs)
-    , button_gestures_(gesture_config) {}
+// 保存接线、配置 GPIO，再将完整配置和初始读数交给内部输入组件。
+void WaveshareRotationSensor::init(const Config& config, uint32_t now_ms) {
+    pin_a_ = config.pin_a;
+    pin_b_ = config.pin_b;
+    pin_switch_ = config.pin_switch;
 
-// 配置模块的三个输入脚，用上电时的读数作为解码起点。
-void WaveshareRotationSensor::init(uint32_t now_ms) {
     // 模块自带上拉，不叠加 MCU 内部上下拉。
     gpio_init(pin_a_);
     gpio_set_dir(pin_a_, GPIO_IN);
@@ -37,10 +31,10 @@ void WaveshareRotationSensor::init(uint32_t now_ms) {
     gpio_set_dir(pin_switch_, GPIO_IN);
     gpio_disable_pulls(pin_switch_);
 
-    decoder_.init(read_state());
+    decoder_.init(kTransitionsPerDetent, read_state());
     last_encoder_sample_ms_ = now_ms - kEncoderSampleIntervalMs;
-    switch_.init(now_ms, !gpio_get(pin_switch_));
-    button_gestures_.init(now_ms, switch_.is_active());
+    switch_.init(kSwitchDebounceMs, now_ms, !gpio_get(pin_switch_));
+    button_gestures_.init(config.gesture_config, now_ms, switch_.is_active());
 }
 
 // 每轮读取按键；经过至少 1 ms 后读取一次 A/B 相，再交给输入解码器。

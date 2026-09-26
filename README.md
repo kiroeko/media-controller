@@ -63,6 +63,16 @@ main.cpp
 
 各 `.cpp` 文件里的 `constexpr` 引脚、时序和转换表只供该文件使用，属于只读配置。[media_hid.cpp](src/usb/media_hid.cpp) 将 USB 描述符保存为文件内常量；`MediaHidState` 则保存序列号、字符串描述符缓冲区、动作队列和按键发送状态，供 USB 回调在固件运行期间使用。这些状态不暴露给应用层。
 
+### 初始化约定
+
+`input` 和 `device` 类型使用默认构造，不显式定义构造函数，也不在构造时访问硬件。调用方通过一次 `init()` 提供所需的外部配置和初始状态。对象默认构造后仍须先调用 `init()`，才能调用 `update()` 或读取结果。
+
+1. `MediaControllerApp::run()` 先调用 `board_init()`，再把接线配置和起始时间交给设备的 `init()`。旋转模块用自身的 `WaveshareRotationSensor::Config` 收拢三个引脚和手势规则；模式开关直接接收 SIG 引脚。
+2. 设备的 `init()` 配置 GPIO、读取初始电平，再调用内部输入组件的 `init()`。模块自身的采样间隔、去抖时长和每格跳变数仍由设备实现定义。
+3. 输入组件的 `init()` 一次接收算法配置、初始采样以及需要的时间戳，建立状态基准并清空累计结果或待取事件。后续 `update()` 持续处理新采样。
+
+接口参数统一将配置放在前面，时间戳和初始采样放在后面。例如 `DebouncedSwitch::init(debounce_ms, now_ms, raw_active)`，以及 `ButtonGestureDecoder::init(config, now_ms, pressed)`。
+
 ### 从旋钮到电脑的一次操作
 
 1. `WaveshareRotationSensor` 在主循环中至少间隔 1 ms 才再次读取 SIA/SIB，组成两位相位状态；SW 在主循环每轮读取。主循环如果延迟，A/B 相的采样也会变慢，不会补读中间状态。

@@ -5,12 +5,12 @@
 #include "input/button_gesture.h"
 
 // 根据已去抖的按下/松开状态识别手势；不访问 GPIO，也不负责电平去抖。
+// 默认构造后须先调用 init()，再更新或读取结果。
 class ButtonGestureDecoder {
 public:
-    explicit ButtonGestureDecoder(ButtonGestureConfig config);
-
-    // 用当前稳定的按下状态建立基准，并清空尚未取出的手势事件。
-    void init(uint32_t now_ms, bool pressed);
+    // 设置时间阈值和双击开关，用当前稳定的按下状态建立基准，并清空待取事件。
+    // 若启动时已按下，长按时长从 now_ms 开始计算。
+    void init(ButtonGestureConfig config, uint32_t now_ms, bool pressed);
 
     // 每轮输入去抖后的按下状态；pressed 为 true 表示按键稳定按下。
     // 松开→按下时记录起点；保持按下或刚松开时检查长按，再判断短按。
@@ -45,5 +45,5 @@ private:
     // 按住期间据此避免重复报 Long，松开时阻止再生成 Short；处理完松开后清零。
     bool press_generated_long_ = false;
 
-    ButtonGestureConfig config_;  // 构造时传入的时间阈值与双击开关。
+    ButtonGestureConfig config_{};  // init() 传入的时间阈值与双击开关。
 };
