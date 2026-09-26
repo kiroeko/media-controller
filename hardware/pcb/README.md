@@ -8,12 +8,14 @@
 
 当前 PCB 丝印为 `KIRO MEDIA CTRL v1.0`。可编辑工程使用嘉立创 EDA 的目录格式，直接纳入 Git；保留整个 `media-controller-carrier-v1/`，不要只复制其中的 `.eprj3` 索引文件。
 
+2026-09-26 下单后，源工程补齐了 J1/J2 的六个针脚标签，统一左右标签间距，并将外设接口的 `G` 写全为 `GND`；电路、焊盘及孔位未改动。`manufacturing/media-controller-carrier-v1-gerber.zip` 暂保留已下单版本，**不包含这次丝印修正**。本地修改不会自动更新工厂订单；后续生产需从修正后的源工程重新导出制造文件。
+
 ## 目录与版本管理
 
 | 路径 | 用途 |
 | --- | --- |
 | `media-controller-carrier-v1/` | 唯一的正式原理图与 PCB 源工程 |
-| `manufacturing/` | 与当前 PCB 对应的 Gerber 与钻孔 ZIP |
+| `manufacturing/` | 已下单版本的 Gerber 与钻孔 ZIP（早于本次丝印修正） |
 | `ASSEMBLY.md` | 连接件规格、焊接步骤和接口方向 |
 | `reference/` | 官方尺寸图与实物照片，供外壳设计参考 |
 | 本文件 | 设计说明与用户确认的测量记录 |
