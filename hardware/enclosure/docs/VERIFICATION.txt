@@ -1,3 +1,98 @@
+2026-09-27 USB-C 圆角内凹修订（当前底壳检查）
+当前入口：cad/Music_Controller.SLDASM
+当前打印底壳：print/Base_Smooth_20deg.STL
+本段优先于下方历史记录；上盖及两件托架的打印 STL 未改动。
+
+实测包胶 11.26 × 6.43 mm，金属头露出 6.9 mm。
+用户实测完全插入后包胶前沿到插座口 1.8..2 mm；本版按 1.8 mm。
+外槽 13 × 8 mm，R1.5，深 1.2 mm；中心 X=50、Z=22.29 mm。
+外槽边界 X=43.5..56.5、Z=18.29..26.29 mm；槽底 Y=82.8 mm。
+内孔 10.5 × 5 mm，R1.5；边界 X=44.75..55.25、Z=19.79..24.79 mm。
+局部背衬 16 × 10 mm、R2.5，Y=81.3..84 mm；槽底厚 1.5 mm。
+主后壁 Y=81.5..84 mm，厚 2.5 mm。
+USB 插座参考最外端 Y=82.0651945 mm；槽底前移 0.7348055 mm。
+插到底包胶距槽底名义余量 1.8−0.7348055=1.0651945 mm。
+局部背衬距主控 PCB 后边名义余量约 0.29137 mm。
+包胶矩形四角在外槽圆角内；按官方插座竖向中心复核，最小角部余量约 0.25569 mm。
+小孔周围槽底遮挡内部，仍保留装配间隙，不是密封结构。
+
+当前原生特征：
+USB_Pocket_Backing_Y81p3_to84
+USB_Socket_Opening_10p5x5_R1p5
+USB_Cable_Recess_depth1p2_floor1p5
+旧直通孔相关特征已抑制，新特征为草图、拉伸及切除。
+原生单一实体；遍历特征错误数 0；重建 True。
+底壳关闭重新打开 errors=0、warnings=0；保存 True、errors=0、warnings=0。
+整机关闭重新打开 errors=0、warnings=32（需要重建）；重建 True。
+整机保存 True、errors=0、warnings=0。
+本轮首次访问已打开整机时 warning=128 为 AlreadyOpen，并非损坏。
+跨组件体积干涉检查：0；包括隐藏实体，不计重合接触，不做参考零件内部多实体自干涉。
+原生底壳及整机的后部斜视预览已检查，docs/USB_RECESS.png 为整机原生导出图。
+
+STL 由当前原生底壳重新导出，mm、精细、二进制，保留原点。
+对接缝坐标以 0.00001 mm 量化，最大顶点位移 0.00001144409 mm；
+保留全部三角形，按最终顶点重新计算存储法向量。
+SHA-256: a811fd3ed507400d3e65361c9801615f80f676fd8dd1d163336221ff0a864394
+Triangles: 4046
+Unique vertices: 2007
+Size mm: 100 × 84 × 48.5735016
+Volume mm^3: 45919.1626803
+Connected components: 1
+Boundary edges: 0
+Non-manifold edges / vertices: 0 / 0
+Self-intersecting faces: 0
+All edges paired with opposite winding: True
+Independent manifold3d status: Error.NoError，正体积。
+内孔 767 个截面射线样本无阻挡；槽底 714 个样本厚度 1.5 mm；
+局部背衬周边 688 个样本交点符合 Y=81.3..84；所有截面检查失败数 0。
+
+检查范围：数字模型与网格检查通过，尚未实物打印、试插或获得厂方复审。
+重新向打印厂提交当前 Base_Smooth_20deg.STL；其余打印件无需因本次 USB 修订重传。
+
+===== 以下为此前直通孔修订及文件整理历史记录，不是当前几何 =====
+2026-09-27 USB-C 薄壁修订（当前底壳检查）
+当前入口：cad/Music_Controller.SLDASM
+当前打印底壳：print/Base_Smooth_20deg.STL
+以下最新记录优先于后面的文件整理历史记录；其余三个打印件未修改。
+
+线材实测：包胶宽 11.26 mm，高 6.43 mm；金属头露出 6.9 mm。
+最终开口：13 × 8 mm 直通，中心 X=50、Z=22.29 mm。
+开口边界：X=43.5..56.5、Z=18.29..26.29 mm。
+后壁 Y=81.5..84 mm，厚 2.5 mm。原外侧沉口的 0.5 mm 薄边已去除。
+草图放大并将切除设为从 Y=81 到 Y=85 mm，贯穿全部后壁厚度。
+原生特征：USB_C_cable_clearance_13x8；单一实体，特征错误数 0。
+原生底壳保存：True，errors=0，warnings=0。
+关闭并重新打开底壳：errors=0，warnings=0。
+装配 10 个组件的引用均在当前 cad 目录。
+装配重开：errors=0，warnings=32（swFileLoadWarning_NeedsRegen，需要重建）。
+执行 ForceRebuild3：True；装配再次保存：True，errors=0，warnings=0。
+该提示不是 STEP 文件损坏；本轮没有改动任何参考零件或其位置。
+
+STL 由修改后的原生底壳重新导出，单位 mm，原点和外形尺寸保留。
+对浮点接缝进行 0.00001 mm 坐标量化，最大顶点位移 0.00001145 mm；
+未增删三角形、未改变三角形顺序，按最终顶点重新计算存储法向量。
+SHA-256: 0fd41c0f227a2d322a193bd71c01fab6d2ada973f9dc743907d7129dd7616a56
+Triangles: 3582
+Unique vertices: 1775
+Size mm: 100 × 84 × 48.5735016
+Volume mm^3: 45826.4942
+Connected components: 1
+Boundary edges: 0
+Non-manifold edges / vertices: 0 / 0
+Self-intersecting faces: 0
+All edges paired with opposite winding: True
+Stored normal dot geometric normal minimum: 0.9999999679
+Independent manifold3d status: Error.NoError，正体积。
+开口内部 27 × 17 = 459 条穿过后壁的射线均无阻挡。
+孔左右、上下周围 6 个抽查位置，后壁交点均为 Y=81.5 和 Y=84 mm，厚 2.5 mm。
+原生底壳导出预览已检查：开口为单一直通矩形，没有旧薄边台阶。
+
+参考装配 USB 插座外端包围盒约 Y=82.065 mm，距后壁外表面约 1.935 mm。
+包胶与开口居中时，左右单侧名义余量 0.87 mm，上下单侧 0.785 mm。
+检查说明：模型与网格检查通过，不等于厂家审核或实物试插通过。
+尚需重新提交底壳给打印厂复核；线材后段形状、实际插合深度和打印公差需试装确认。
+
+===== 以下为本次 USB 修订之前的文件整理历史记录 =====
 2026-09-27 外壳文件整理与检查记录
 当前入口：cad/Music_Controller.SLDASM
 正式 CAD 的 10 个零件和 4 个 STL 与原工作目录 SHA-256 核对一致。
