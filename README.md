@@ -1,5 +1,7 @@
 # media-controller
 
+外壳的当前模型、打印文件和装配说明统一位于 [hardware/enclosure](hardware/enclosure/README.md)。SOLIDWORKS 整机入口为 `hardware/enclosure/cad/Music_Controller.SLDASM`。
+
 这是一个用于 **Waveshare RP2350-Zero-M** 的 USB 媒体旋钮固件。它读取 Waveshare Rotation Sensor 和 YFROBOT LED 自锁开关，通过 TinyUSB 向电脑发送标准 HID Consumer Control 媒体按键。电脑不需要安装本项目专用驱动。
 
 ## 使用方式

@@ -1,0 +1,189 @@
+2026-09-27 外壳文件整理与检查记录
+当前入口：cad/Music_Controller.SLDASM
+正式 CAD 的 10 个零件和 4 个 STL 与原工作目录 SHA-256 核对一致。
+以下为整理期间的原始检查输出；首次打开曾出现 warning=32，保存后最终重开为 0 错误、0 警告。
+未进行实物打印或试装。
+
+===== migration_check.txt =====
+stage activate
+stage get pack
+stage options
+stage names
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\Enclosure_Smooth_20deg.SLDASM => C:\public\hard\media-controller\hardware\enclosure\cad\Music_Controller.SLDASM
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\Base_Smooth_20deg.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\Base_Smooth_20deg.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\Lid_Smooth_20deg.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\Lid_Smooth_20deg.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\REF_Carrier.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Carrier.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\REF_Encoder.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Encoder.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\REF_Knob.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Knob.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\REF_Button_PCB.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_PCB.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\REF_Button_Cap.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_Cap.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\Button_Cradle.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\Button_Cradle.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\Encoder_Cradle.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\Encoder_Cradle.SLDPRT
+PACK C:\Users\kiro\Pictures\kiro_media_controller_3d\REF_RP2350_Official.SLDPRT => C:\public\hard\media-controller\hardware\enclosure\cad\REF_RP2350_Official.SLDPRT
+SetNames=True
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+Pack status=0
+COLD REOPEN errors=0 warnings=0
+COMPONENT COUNT=10
+COMPONENT Button_Cradle-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Button_Cradle.SLDPRT
+SOLID BODIES=1
+COMPONENT REF_Button_Cap-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_Cap.SLDPRT
+SOLID BODIES=1
+COMPONENT Encoder_Cradle-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Encoder_Cradle.SLDPRT
+SOLID BODIES=1
+COMPONENT REF_RP2350_Official-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_RP2350_Official.SLDPRT
+SOLID BODIES=130
+COMPONENT Base_Smooth_20deg-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Base_Smooth_20deg.SLDPRT
+SOLID BODIES=1
+COMPONENT REF_Encoder-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Encoder.SLDPRT
+SOLID BODIES=1
+COMPONENT REF_Knob-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Knob.SLDPRT
+SOLID BODIES=1
+COMPONENT REF_Button_PCB-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_PCB.SLDPRT
+SOLID BODIES=1
+COMPONENT Lid_Smooth_20deg-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Lid_Smooth_20deg.SLDPRT
+SOLID BODIES=1
+COMPONENT REF_Carrier-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Carrier.SLDPRT
+SOLID BODIES=11
+SAVE=True errors=0 warnings=0
+
+===== final_check.txt =====
+OPEN errors=0 warnings=32
+FRONT PREVIEW=True
+REAR PREVIEW=True
+STEP EXPORT=True errors=0 warnings=0
+SAVE=True errors=0 warnings=0
+FINAL REOPEN errors=0 warnings=0
+COMPONENTS=10
+REF_Encoder-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Encoder.SLDPRT
+REF_Carrier-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Carrier.SLDPRT
+Base_Smooth_20deg-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Base_Smooth_20deg.SLDPRT
+Lid_Smooth_20deg-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Lid_Smooth_20deg.SLDPRT
+REF_RP2350_Official-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_RP2350_Official.SLDPRT
+Button_Cradle-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Button_Cradle.SLDPRT
+Encoder_Cradle-1 => C:\public\hard\media-controller\hardware\enclosure\cad\Encoder_Cradle.SLDPRT
+REF_Button_Cap-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_Cap.SLDPRT
+REF_Button_PCB-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_PCB.SLDPRT
+REF_Knob-1 => C:\public\hard\media-controller\hardware\enclosure\cad\REF_Knob.SLDPRT
+STORED DEPENDENCY=Base_Smooth_20deg
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\Base_Smooth_20deg.SLDPRT
+STORED DEPENDENCY=Lid_Smooth_20deg
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\Lid_Smooth_20deg.SLDPRT
+STORED DEPENDENCY=REF_Carrier
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\REF_Carrier.SLDPRT
+STORED DEPENDENCY=REF_Encoder
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\REF_Encoder.SLDPRT
+STORED DEPENDENCY=REF_Knob
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\REF_Knob.SLDPRT
+STORED DEPENDENCY=REF_Button_PCB
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_PCB.SLDPRT
+STORED DEPENDENCY=REF_Button_Cap
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_Cap.SLDPRT
+STORED DEPENDENCY=Button_Cradle
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\Button_Cradle.SLDPRT
+STORED DEPENDENCY=Encoder_Cradle
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\Encoder_Cradle.SLDPRT
+STORED DEPENDENCY=REF_RP2350_Official
+STORED DEPENDENCY=C:\public\hard\media-controller\hardware\enclosure\cad\REF_RP2350_Official.SLDPRT
+
+===== legacy_import.txt =====
+Original 3DInterconnect=True; MultibodyAsPart=False
+TEST 3DInterconnect=False MultibodyAsPart=True
+IMPORT errors=0
+Doc type=2 title=3D_PCB1_2026-09-27.SLDASM
+SAVE independent part=True errors=0 warnings=0
+Preferences restored
+
+===== legacy_reopen.txt =====
+REOPEN errors=0 warnings=0
+SOLID BODIES=11
+EXTERNAL DEPENDENCIES=none
+SECOND SAVE=True errors=0 warnings=0
+
+===== quality_test.txt =====
+TEST 3DInterconnect=True
+IMPORT errors=0
+IMPORT document type=2
+SAVE=True errors=0 warnings=0
+REOPEN errors=0 warnings=0
+SECOND SAVE=True errors=0 warnings=0
+TEST 3DInterconnect=False
+IMPORT errors=0
+IMPORT document type=2
+SAVE=True errors=0 warnings=0
+REOPEN errors=0 warnings=0
+SOLIDS=11
+SECOND SAVE=True errors=0 warnings=0
+TESTS COMPLETE; preferences restored
+
+===== smooth_print_validation.json =====
+[
+  {
+    "file": "Base_Smooth_20deg.STL",
+    "units": "mm",
+    "triangles": 3746,
+    "size_mm": [
+      100.0,
+      84.0,
+      48.5735
+    ],
+    "solid_volume_mm3": 45891.95,
+    "manifold_edges": true,
+    "orientation": "flat base down"
+  },
+  {
+    "file": "Button_Cradle.STL",
+    "units": "mm",
+    "triangles": 1360,
+    "size_mm": [
+      40.67299,
+      36.73,
+      3.0
+    ],
+    "solid_volume_mm3": 1051.547,
+    "manifold_edges": true,
+    "orientation": "flat base down"
+  },
+  {
+    "file": "Encoder_Cradle.STL",
+    "units": "mm",
+    "triangles": 1380,
+    "size_mm": [
+      33.435,
+      34.97149,
+      3.0
+    ],
+    "solid_volume_mm3": 886.864,
+    "manifold_edges": true,
+    "orientation": "flat base down"
+  },
+  {
+    "file": "Lid_Smooth_20deg.STL",
+    "units": "mm",
+    "triangles": 4636,
+    "size_mm": [
+      100.0,
+      94.19937,
+      45.31051
+    ],
+    "solid_volume_mm3": 36184.073,
+    "manifold_edges": true,
+    "orientation": "flat exterior panel down; inspect nut-slot bridging"
+  }
+]
+
+
+清理完成后的独立启动检查：
+已删除旧 Pictures 工作目录、source、export、preview，共 160 个旧版、重复或测试文件。
+彻底退出并重新启动 SOLIDWORKS 2026，从当前 cad/Music_Controller.SLDASM 打开。
+10 个组件在特征树完整显示，无丢失文件或损坏弹窗；随后 Ctrl+S 保存，无报错。
+当前交付目录包含 1 个装配体、10 个零件、4 个打印 STL、入口说明和 3 份文档。
