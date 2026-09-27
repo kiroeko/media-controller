@@ -1,4 +1,4 @@
-{"type":"DOCHEAD"}||{"docType":"SYMBOL","client":"eaf4e40d08aac96f","uuid":"1d1f442717be975c","updateTime":1790447442812,"version":"1790445226111","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"SYMBOL","client":"2c9a220621768d4c","uuid":"1d1f442717be975c","updateTime":1790447442812,"version":"1790445226111","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":194,"id":"META"}||{"title":"FG-PZ2.54-01-05P","description":"","tags":["连接器","排针"],"docType":2,"source":"e3af857979614d99b03a99ada475c1a0|0819f05c4eef4c71ace90d822a990e87"}|
 {"type":"CANVAS","ticket":1,"id":"CANVAS"}||{"originX":0,"originY":0,"yAxisDirection":"up"}|
 {"type":"PART","ticket":2,"id":"FG-PZ2.54-01-05P.1"}||{"BBOX":[-10,-30,10,30],"title":"FG-PZ2.54-01-05P.1"}|
@@ -33,7 +33,7 @@
 {"type":"ATTR","ticket":2584,"id":"e22"}||{"x":10,"y":-20,"rotation":0,"color":null,"fontFamily":null,"fontSize":6,"fontWeight":false,"italic":false,"underline":false,"strikeout":false,"align":"LEFT_MIDDLE","value":"5","keyVisible":false,"valueVisible":true,"key":"Pin Name","fillColor":null,"parentId":"e21","zIndex":22,"locked":false,"partId":"FG-PZ2.54-01-05P.1","yAxisDirection":"up"}|
 {"type":"ATTR","ticket":2503,"id":"e23"}||{"x":-10,"y":-20,"rotation":0,"color":"#00FF00","fontFamily":null,"fontSize":6,"fontWeight":false,"italic":false,"underline":false,"strikeout":false,"align":"RIGHT_BOTTOM","value":"5","keyVisible":false,"valueVisible":true,"key":"Pin Number","fillColor":"#00FF00","parentId":"e21","zIndex":23,"locked":false,"partId":"FG-PZ2.54-01-05P.1","yAxisDirection":"up"}|
 {"type":"ATTR","ticket":2504,"id":"e24"}||{"x":-10,"y":-20,"rotation":0,"color":null,"fontFamily":null,"fontSize":null,"fontWeight":null,"italic":null,"underline":null,"strikeout":null,"align":"LEFT_BOTTOM","value":"Undefined","keyVisible":false,"valueVisible":false,"key":"Pin Type","fillColor":null,"parentId":"e21","zIndex":24,"locked":false,"partId":"FG-PZ2.54-01-05P.1","yAxisDirection":"up"}|
-{"type":"DOCHEAD"}||{"docType":"SYMBOL","client":"eaf4e40d08aac96f","uuid":"25afe795ea1e2c4f","updateTime":1790447442813,"version":"1790445240662","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"SYMBOL","client":"2c9a220621768d4c","uuid":"25afe795ea1e2c4f","updateTime":1790447442813,"version":"1790445240662","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":195,"id":"META"}||{"title":"Header-Male-2.54_1x3","description":"2.54mm 1*3P","tags":["连接器","排针"],"docType":2,"source":"1064433be98e421685b1688ac6865e61|0819f05c4eef4c71ace90d822a990e87"}|
 {"type":"CANVAS","ticket":1,"id":"CANVAS"}||{"originX":0,"originY":0,"yAxisDirection":"up"}|
 {"type":"PART","ticket":2,"id":"Header-Male-2.54_1x3.1"}||{"BBOX":[-5,-20,15,20],"title":"Header-Male-2.54_1x3.1"}|
@@ -56,7 +56,7 @@
 {"type":"ATTR","ticket":2684,"id":"e13"}||{"x":5,"y":0,"rotation":0,"color":null,"fontFamily":null,"fontSize":6,"fontWeight":false,"italic":false,"underline":false,"strikeout":false,"align":"LEFT_MIDDLE","value":"2","keyVisible":false,"valueVisible":true,"key":"Pin Name","fillColor":null,"parentId":"e12","zIndex":13,"locked":false,"partId":"Header-Male-2.54_1x3.1","yAxisDirection":"up"}|
 {"type":"ATTR","ticket":2669,"id":"e14"}||{"x":-5,"y":0,"rotation":0,"color":"#00FF00","fontFamily":null,"fontSize":6,"fontWeight":false,"italic":false,"underline":false,"strikeout":false,"align":"RIGHT_BOTTOM","value":"2","keyVisible":false,"valueVisible":true,"key":"Pin Number","fillColor":"#00FF00","parentId":"e12","zIndex":14,"locked":false,"partId":"Header-Male-2.54_1x3.1","yAxisDirection":"up"}|
 {"type":"ATTR","ticket":2667,"id":"e15"}||{"x":-10,"y":0,"rotation":0,"color":null,"fontFamily":null,"fontSize":null,"fontWeight":null,"italic":null,"underline":null,"strikeout":null,"align":"LEFT_BOTTOM","value":"IN","keyVisible":false,"valueVisible":false,"key":"Pin Type","fillColor":null,"parentId":"e12","zIndex":15,"locked":false,"partId":"Header-Male-2.54_1x3.1","yAxisDirection":"up"}|
-{"type":"DOCHEAD"}||{"docType":"SYMBOL","client":"eaf4e40d08aac96f","uuid":"ae117644000f77da","updateTime":1790447442816,"version":"1790445501110","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"SYMBOL","client":"2c9a220621768d4c","uuid":"ae117644000f77da","updateTime":1790447442816,"version":"1790445501110","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":196,"id":"META"}||{"title":"Header-Female-2.54_1x9","description":"2.54mm 1*9","tags":["连接器","排母"],"docType":2,"source":"dec7ee8974704068bc7c941b46490a4f|0819f05c4eef4c71ace90d822a990e87"}|
 {"type":"CANVAS","ticket":1,"id":"CANVAS"}||{"originX":0,"originY":0,"yAxisDirection":"up"}|
 {"type":"PART","ticket":2,"id":"Header-Female-2.54_1x9.1"}||{"BBOX":[-5,-50,15,50],"title":"Header-Female-2.54_1x9.1"}|
@@ -109,7 +109,7 @@
 {"type":"ATTR","ticket":2803,"id":"e37"}||{"x":10,"y":-40,"rotation":0,"color":null,"fontFamily":null,"fontSize":6,"fontWeight":false,"italic":false,"underline":false,"strikeout":false,"align":"LEFT_MIDDLE","value":"9","keyVisible":false,"valueVisible":true,"key":"Pin Name","fillColor":null,"parentId":"e36","zIndex":37,"locked":false,"partId":"Header-Female-2.54_1x9.1","yAxisDirection":"up"}|
 {"type":"ATTR","ticket":2901,"id":"e38"}||{"x":-10,"y":-40,"rotation":0,"color":"#00FF00","fontFamily":null,"fontSize":6,"fontWeight":false,"italic":false,"underline":false,"strikeout":false,"align":"CENTER_BOTTOM","value":"9","keyVisible":false,"valueVisible":true,"key":"Pin Number","fillColor":"#00FF00","parentId":"e36","zIndex":38,"locked":false,"partId":"Header-Female-2.54_1x9.1","yAxisDirection":"up"}|
 {"type":"ATTR","ticket":2733,"id":"e39"}||{"x":-10,"y":-40,"rotation":0,"color":null,"fontFamily":null,"fontSize":null,"fontWeight":null,"italic":null,"underline":null,"strikeout":null,"align":"LEFT_BOTTOM","value":"IN","keyVisible":false,"valueVisible":false,"key":"Pin Type","fillColor":null,"parentId":"e36","zIndex":39,"locked":false,"partId":"Header-Female-2.54_1x9.1","yAxisDirection":"up"}|
-{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"eaf4e40d08aac96f","uuid":"2d8c2f28f71980e8","updateTime":1790470579882,"version":"1790470579882","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"2c9a220621768d4c","uuid":"2d8c2f28f71980e8","updateTime":1790470579882,"version":"1790470579882","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":197,"id":"META"}||{"title":"HDR-TH_5P-P2.54-V-M-3","description":"","tags":["HDR-TH"],"source":"e0a5be5eae2e46c993c5b9e989c8b718|0819f05c4eef4c71ace90d822a990e87"}|
 {"type":"LAYER","ticket":1,"id":"[\"LAYER\",1]"}||{"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#FF0000","activateTransparency":1,"inactiveColor":"#7F0000","inactiveTransparency":1}|
 {"type":"LAYER","ticket":2,"id":"[\"LAYER\",2]"}||{"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000FF","activateTransparency":1,"inactiveColor":"#00007F","inactiveTransparency":1}|
@@ -168,7 +168,7 @@
 {"type":"PRIMITIVE","ticket":1708,"id":"[\"PRIMITIVE\",\"BOLDGRID\"]"}||{"display":true,"color":"#ffffff"}|
 {"type":"PRIMITIVE","ticket":1709,"id":"[\"PRIMITIVE\",\"COORDINATEAXIS\"]"}||{"display":true,"color":"#ffffff"}|
 {"type":"PRIMITIVE","ticket":1710,"id":"[\"PRIMITIVE\",\"SELECTBOX\"]"}||{"display":true,"color":"#00ffff"}|
-{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"eaf4e40d08aac96f","uuid":"6891456c00cf9d45","updateTime":1790471065220,"version":"1790471065220","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"2c9a220621768d4c","uuid":"6891456c00cf9d45","updateTime":1790471065220,"version":"1790471065220","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":198,"id":"META"}||{"title":"HDR-TH_3P-P2.54-V-M-1","description":"ThroughHole;直插,P=2.54mm;插件,P=2.54mm;TH-3P;HDR-TH_40P-P2.54-V-M-L101.6-W2.5;2.54x3;HDR1X3_254M;插件;2.54-180-3P;HDR-TH-3P;CON-SIP-3P;HDR1X3/红色;TH-3P,P=2.54mm;HDR-2X3;-;HDR-TH_3P-P2.54","tags":["HDR-TH"],"source":"28ec716cb96a485887b9d342b47ecf21|0819f05c4eef4c71ace90d822a990e87"}|
 {"type":"CANVAS","ticket":1,"id":"CANVAS"}||{"originX":0,"originY":0,"unit":"mm","gridXSize":100,"gridYSize":100,"snapXSize":10,"snapYSize":10,"altSnapXSize":1,"altSnapYSize":1,"gridType":"NONE","multiGridType":"NONE","multiGridRatio":5,"highlightValue":0.5,"layerBrightness":"NORMAL"}|
 {"type":"LAYER","ticket":5828,"id":"[\"LAYER\",1]"}||{"layerId":1,"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#ff0000","activateTransparency":1,"inactiveColor":"#ff0000","inactiveTransparency":1}|
@@ -317,7 +317,7 @@
 {"type":"PRIMITIVE","ticket":5856,"id":"[\"PRIMITIVE\",\"UNLOCKED\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":5857,"id":"[\"PRIMITIVE\",\"D3BODY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
 {"type":"POLY","ticket":5763,"id":"6a6117be6d4b81ad"}||{"groupId":0,"netName":"","layerId":48,"width":2.0079,"path":["R",-150,50,300,100,0,0],"locked":false,"zIndex":-1,"polyType":"NORMAL"}|
-{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"eaf4e40d08aac96f","uuid":"71be73e4b752d361","updateTime":1790470262598,"version":"1790470262598","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"2c9a220621768d4c","uuid":"71be73e4b752d361","updateTime":1790470262598,"version":"1790470262598","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":199,"id":"META"}||{"title":"HDR-TH_9P-P2.54-V-F-1","description":";插件,P=2.54mm;HDR-TN_9P;TH-9P","tags":["HDR-TH"],"source":"7b70dd461d2749809fbcfbc95e4b9903|0819f05c4eef4c71ace90d822a990e87"}|
 {"type":"LAYER","ticket":1,"id":"[\"LAYER\",1]"}||{"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#FF0000","activateTransparency":1,"inactiveColor":"#7F0000","inactiveTransparency":1}|
 {"type":"LAYER","ticket":2,"id":"[\"LAYER\",2]"}||{"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000FF","activateTransparency":1,"inactiveColor":"#00007F","inactiveTransparency":1}|
@@ -383,73 +383,7 @@
 {"type":"PRIMITIVE","ticket":5074,"id":"[\"PRIMITIVE\",\"BOLDGRID\"]"}||{"display":true,"color":"#ffffff"}|
 {"type":"PRIMITIVE","ticket":5075,"id":"[\"PRIMITIVE\",\"COORDINATEAXIS\"]"}||{"display":true,"color":"#ffffff"}|
 {"type":"PRIMITIVE","ticket":5076,"id":"[\"PRIMITIVE\",\"SELECTBOX\"]"}||{"display":true,"color":"#00ffff"}|
-{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"eaf4e40d08aac96f","uuid":"58152c01a70be19b_b8fb580331f66a9f","updateTime":1790472329003,"version":"1790472329003","editVersion":"4.1.60","user":{}}|
-{"type":"META","ticket":6194,"id":"META"}||{"title":"HDR-TH_9P-P2.54-V-F-1","description":";插件,P=2.54mm;HDR-TN_9P;TH-9P","tags":["HDR-TH"],"source":"71be73e4b752d361|a94d06582e030fe794752c6e1297c9548a7a23add148f4bd740d8e9ea91faaed"}|
-{"type":"LAYER","ticket":2,"id":"[\"LAYER\",1]"}||{"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#FF0000","activateTransparency":1,"inactiveColor":"#7F0000","inactiveTransparency":1}|
-{"type":"LAYER","ticket":3,"id":"[\"LAYER\",2]"}||{"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000FF","activateTransparency":1,"inactiveColor":"#00007F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":4,"id":"[\"LAYER\",3]"}||{"layerType":"TOP_SILK","layerName":"Top Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#FFCC00","activateTransparency":1,"inactiveColor":"#7F6600","inactiveTransparency":1}|
-{"type":"LAYER","ticket":5,"id":"[\"LAYER\",4]"}||{"layerType":"BOT_SILK","layerName":"Bottom Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#66CC33","activateTransparency":1,"inactiveColor":"#336619","inactiveTransparency":1}|
-{"type":"LAYER","ticket":6,"id":"[\"LAYER\",7]"}||{"layerType":"TOP_PASTE_MASK","layerName":"Top Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#808080","activateTransparency":1,"inactiveColor":"#404040","inactiveTransparency":1}|
-{"type":"LAYER","ticket":7,"id":"[\"LAYER\",8]"}||{"layerType":"BOT_PASTE_MASK","layerName":"Bottom Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800000","activateTransparency":1,"inactiveColor":"#400000","inactiveTransparency":1}|
-{"type":"LAYER","ticket":8,"id":"[\"LAYER\",5]"}||{"layerType":"TOP_SOLDER_MASK","layerName":"Top Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800080","activateTransparency":1,"inactiveColor":"#400040","inactiveTransparency":1}|
-{"type":"LAYER","ticket":9,"id":"[\"LAYER\",6]"}||{"layerType":"BOT_SOLDER_MASK","layerName":"Bottom Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#AA00FF","activateTransparency":1,"inactiveColor":"#55007F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":10,"id":"[\"LAYER\",13]"}||{"layerType":"DOCUMENT","layerName":"Document Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":11,"id":"[\"LAYER\",11]"}||{"layerType":"OUTLINE","layerName":"Board Outline Layer","use":true,"show":true,"locked":false,"activeColor":"#FF00FF","activateTransparency":1,"inactiveColor":"#7F007F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":12,"id":"[\"LAYER\",12]"}||{"layerType":"MULTI","layerName":"Multi-Layer","use":true,"show":true,"locked":false,"activeColor":"#C0C0C0","activateTransparency":1,"inactiveColor":"#606060","inactiveTransparency":1}|
-{"type":"LAYER","ticket":13,"id":"[\"LAYER\",9]"}||{"layerType":"TOP_ASSEMBLY","layerName":"Top Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#33CC99","activateTransparency":1,"inactiveColor":"#19664C","inactiveTransparency":1}|
-{"type":"LAYER","ticket":14,"id":"[\"LAYER\",10]"}||{"layerType":"BOT_ASSEMBLY","layerName":"Bottom Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#5555FF","activateTransparency":1,"inactiveColor":"#2A2A7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":15,"id":"[\"LAYER\",14]"}||{"layerType":"MECHANICAL","layerName":"Mechanical Layer","use":true,"show":true,"locked":false,"activeColor":"#F022F0","activateTransparency":1,"inactiveColor":"#781178","inactiveTransparency":1}|
-{"type":"LAYER","ticket":16,"id":"[\"LAYER\",52]"}||{"layerType":"COMPONENT_MODEL","layerName":"Component Model Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":17,"id":"[\"LAYER\",48]"}||{"layerType":"COMPONENT_SHAPE","layerName":"Component Shape Layer","use":true,"show":true,"locked":false,"activeColor":"#00CCCC","activateTransparency":1,"inactiveColor":"#006666","inactiveTransparency":1}|
-{"type":"LAYER","ticket":18,"id":"[\"LAYER\",51]"}||{"layerType":"PIN_FLOATING","layerName":"Pin Floating Layer","use":true,"show":true,"locked":false,"activeColor":"#FF99FF","activateTransparency":1,"inactiveColor":"#7F4C7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":19,"id":"[\"LAYER\",49]"}||{"layerType":"COMPONENT_MARKING","layerName":"Component Marking Layer","use":true,"show":true,"locked":false,"activeColor":"#66FFCC","activateTransparency":1,"inactiveColor":"#337F66","inactiveTransparency":1}|
-{"type":"LAYER","ticket":20,"id":"[\"LAYER\",50]"}||{"layerType":"PIN_SOLDERING","layerName":"Pin Soldering Layer","use":true,"show":true,"locked":false,"activeColor":"#CC9999","activateTransparency":1,"inactiveColor":"#664C4C","inactiveTransparency":1}|
-{"type":"ACTIVE_LAYER","ticket":22,"id":"ACTIVE_LAYER"}||{"layerId":1}|
-{"type":"CANVAS","ticket":23,"id":"CANVAS"}||{"originX":0,"originY":0,"unit":"mm","gridXSize":10,"gridYSize":10,"snapXSize":0.03937,"snapYSize":0.03937,"gridType":"NONE","multiGridType":"NONE","highlightValue":0.5,"layerBrightness":"NORMAL"}|
-{"type":"ELE_PLACEHOLDER","ticket":23,"id":"placeholder1"}||{"dataType":"FILL","max":1}|
-{"type":"FILL","ticket":25,"id":"e1"}|||
-{"type":"FILL","ticket":26,"id":"e2"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[384.252,5.906,"L",415.748,5.906,415.748,-5.906,384.252,-5.906,384.252,5.906]],"locked":false,"zIndex":2,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":27,"id":"e3"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[284.252,5.906,"L",315.748,5.906,315.748,-5.906,284.252,-5.906,284.252,5.906]],"locked":false,"zIndex":3,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":28,"id":"e4"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[184.252,5.906,"L",215.748,5.906,215.748,-5.906,184.252,-5.906,184.252,5.906]],"locked":false,"zIndex":4,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":29,"id":"e5"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[84.252,5.906,"L",115.748,5.906,115.748,-5.906,84.252,-5.906,84.252,5.906]],"locked":false,"zIndex":5,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":30,"id":"e6"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-15.748,5.906,"L",15.748,5.906,15.748,-5.906,-15.748,-5.906,-15.748,5.906]],"locked":false,"zIndex":6,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":31,"id":"e7"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-115.748,5.906,"L",-84.252,5.906,-84.252,-5.906,-115.748,-5.906,-115.748,5.906]],"locked":false,"zIndex":7,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":32,"id":"e8"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-215.748,5.906,"L",-184.252,5.906,-184.252,-5.906,-215.748,-5.906,-215.748,5.906]],"locked":false,"zIndex":8,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":33,"id":"e9"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-315.748,5.906,"L",-284.252,5.906,-284.252,-5.906,-315.748,-5.906,-315.748,5.906]],"locked":false,"zIndex":9,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":34,"id":"e10"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-415.748,5.906,"L",-384.252,5.906,-384.252,-5.906,-415.748,-5.906,-415.748,5.906]],"locked":false,"zIndex":10,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"ELE_PLACEHOLDER","ticket":34,"id":"placeholder2"}||{"dataType":"POLY","max":11}|
-{"type":"POLY","ticket":36,"id":"e11"}||{"groupId":0,"netName":"","layerId":48,"width":2,"path":[452.9129,-49.213,"L",-453.1496,-49.213,-453.1496,49.212,453.1496,49.212,452.9129,-49.213],"locked":false,"zIndex":11,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":37,"id":"e12"}|||
-{"type":"POLY","ticket":38,"id":"e13"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-453.1496,-49.213,"L",453.1496,-49.213],"locked":false,"zIndex":13,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":39,"id":"e14"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-453.3853,49.212,"L",-453.3853,-49.213],"locked":false,"zIndex":14,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":40,"id":"e15"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[453.1496,49.212,"L",-453.1496,49.212],"locked":false,"zIndex":15,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":41,"id":"e16"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[452.9129,-49.213,"L",452.9129,49.212],"locked":false,"zIndex":16,"polyType":"NORMAL"}|
-{"type":"ELE_PLACEHOLDER","ticket":41,"id":"placeholder3"}||{"dataType":"PAD","max":17}|
-{"type":"PAD","ticket":6276,"id":"e17"}||{"groupId":0,"netName":"","layerId":12,"num":"1","centerX":-400,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"RECT","width":74.8031,"height":74.8031,"radius":0},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":17,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6277,"id":"e18"}||{"groupId":0,"netName":"","layerId":12,"num":"2","centerX":-300,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":18,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6278,"id":"e19"}||{"groupId":0,"netName":"","layerId":12,"num":"3","centerX":-200,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":19,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6279,"id":"e20"}||{"groupId":0,"netName":"","layerId":12,"num":"4","centerX":-100,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":20,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6280,"id":"e21"}||{"groupId":0,"netName":"","layerId":12,"num":"5","centerX":0,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":21,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6281,"id":"e22"}||{"groupId":0,"netName":"","layerId":12,"num":"6","centerX":100,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":22,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6282,"id":"e23"}||{"groupId":0,"netName":"","layerId":12,"num":"7","centerX":200,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":23,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6283,"id":"e24"}||{"groupId":0,"netName":"","layerId":12,"num":"8","centerX":300,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":24,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6284,"id":"e25"}||{"groupId":0,"netName":"","layerId":12,"num":"9","centerX":400,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":25,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"ELE_PLACEHOLDER","ticket":51,"id":"placeholder4"}||{"dataType":"ATTR","max":26}|
-{"type":"ATTR","ticket":53,"id":"e26"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Footprint","value":"HDR-TH_9P-P2.54-V-F-1","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":26}|
-{"type":"ATTR","ticket":54,"id":"e27"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Designator","value":"U?","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":27}|
-{"type":"NET","ticket":5065,"id":"[\"NET\",\"\"]"}||{"netType":null,"specialColor":null,"retLine":true,"differentialName":null,"isPositiveNet":false,"equalLengthGroupName":null}|
-{"type":"PRIMITIVE","ticket":5268,"id":"[\"PRIMITIVE\",\"ALL\"]"}||{"layerId":0,"display":true,"color":null}|
-{"type":"PRIMITIVE","ticket":5269,"id":"[\"PRIMITIVE\",\"DRC\"]"}||{"layerId":0,"color":"#FFCC00"}|
-{"type":"PRIMITIVE","ticket":5270,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\"]"}||{"layerId":0,"color":"#9966FF"}|
-{"type":"PRIMITIVE","ticket":5271,"id":"[\"PRIMITIVE\",\"BOARDSHAPE\"]"}||{"layerId":0,"color":"#6D6A69"}|
-{"type":"PRIMITIVE","ticket":5272,"id":"[\"PRIMITIVE\",\"PARTITION\"]"}||{"layerId":0,"color":"#C0C0C0"}|
-{"type":"PRIMITIVE","ticket":5071,"id":"[\"PRIMITIVE\",\"CURSOR\"]"}||{"display":true,"color":"#00ffff"}|
-{"type":"PRIMITIVE","ticket":5072,"id":"[\"PRIMITIVE\",\"BACKGROUND\"]"}||{"display":true,"color":"#000000"}|
-{"type":"PRIMITIVE","ticket":5073,"id":"[\"PRIMITIVE\",\"GRID\"]"}||{"display":true,"color":"#ffffff"}|
-{"type":"PRIMITIVE","ticket":5074,"id":"[\"PRIMITIVE\",\"BOLDGRID\"]"}||{"display":true,"color":"#ffffff"}|
-{"type":"PRIMITIVE","ticket":5075,"id":"[\"PRIMITIVE\",\"COORDINATEAXIS\"]"}||{"display":true,"color":"#ffffff"}|
-{"type":"PRIMITIVE","ticket":5076,"id":"[\"PRIMITIVE\",\"SELECTBOX\"]"}||{"display":true,"color":"#00ffff"}|
-{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"eaf4e40d08aac96f","uuid":"58152c01a70be19b_5daa1d076b314027","updateTime":1790472329001,"version":"1790472329001","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"2c9a220621768d4c","uuid":"58152c01a70be19b_5daa1d076b314027","updateTime":1790472329001,"version":"1790472329001","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":6191,"id":"META"}||{"title":"HDR-TH_9P-P2.54-V-F-1","description":";插件,P=2.54mm;HDR-TN_9P;TH-9P","tags":["HDR-TH"],"source":"71be73e4b752d361|a94d06582e030fe794752c6e1297c9548a7a23add148f4bd740d8e9ea91faaed"}|
 {"type":"LAYER","ticket":2,"id":"[\"LAYER\",1]"}||{"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#FF0000","activateTransparency":1,"inactiveColor":"#7F0000","inactiveTransparency":1}|
 {"type":"LAYER","ticket":3,"id":"[\"LAYER\",2]"}||{"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000FF","activateTransparency":1,"inactiveColor":"#00007F","inactiveTransparency":1}|
@@ -515,7 +449,132 @@
 {"type":"PRIMITIVE","ticket":5074,"id":"[\"PRIMITIVE\",\"BOLDGRID\"]"}||{"display":true,"color":"#ffffff"}|
 {"type":"PRIMITIVE","ticket":5075,"id":"[\"PRIMITIVE\",\"COORDINATEAXIS\"]"}||{"display":true,"color":"#ffffff"}|
 {"type":"PRIMITIVE","ticket":5076,"id":"[\"PRIMITIVE\",\"SELECTBOX\"]"}||{"display":true,"color":"#00ffff"}|
-{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"eaf4e40d08aac96f","uuid":"58152c01a70be19b_f732029e446d2af8","updateTime":1790476043040,"version":"1790476043040","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"2c9a220621768d4c","uuid":"58152c01a70be19b_b8fb580331f66a9f","updateTime":1790472329003,"version":"1790472329003","editVersion":"4.1.60","user":{}}|
+{"type":"META","ticket":6194,"id":"META"}||{"title":"HDR-TH_9P-P2.54-V-F-1","description":";插件,P=2.54mm;HDR-TN_9P;TH-9P","tags":["HDR-TH"],"source":"71be73e4b752d361|a94d06582e030fe794752c6e1297c9548a7a23add148f4bd740d8e9ea91faaed"}|
+{"type":"LAYER","ticket":2,"id":"[\"LAYER\",1]"}||{"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#FF0000","activateTransparency":1,"inactiveColor":"#7F0000","inactiveTransparency":1}|
+{"type":"LAYER","ticket":3,"id":"[\"LAYER\",2]"}||{"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000FF","activateTransparency":1,"inactiveColor":"#00007F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":4,"id":"[\"LAYER\",3]"}||{"layerType":"TOP_SILK","layerName":"Top Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#FFCC00","activateTransparency":1,"inactiveColor":"#7F6600","inactiveTransparency":1}|
+{"type":"LAYER","ticket":5,"id":"[\"LAYER\",4]"}||{"layerType":"BOT_SILK","layerName":"Bottom Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#66CC33","activateTransparency":1,"inactiveColor":"#336619","inactiveTransparency":1}|
+{"type":"LAYER","ticket":6,"id":"[\"LAYER\",7]"}||{"layerType":"TOP_PASTE_MASK","layerName":"Top Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#808080","activateTransparency":1,"inactiveColor":"#404040","inactiveTransparency":1}|
+{"type":"LAYER","ticket":7,"id":"[\"LAYER\",8]"}||{"layerType":"BOT_PASTE_MASK","layerName":"Bottom Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800000","activateTransparency":1,"inactiveColor":"#400000","inactiveTransparency":1}|
+{"type":"LAYER","ticket":8,"id":"[\"LAYER\",5]"}||{"layerType":"TOP_SOLDER_MASK","layerName":"Top Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800080","activateTransparency":1,"inactiveColor":"#400040","inactiveTransparency":1}|
+{"type":"LAYER","ticket":9,"id":"[\"LAYER\",6]"}||{"layerType":"BOT_SOLDER_MASK","layerName":"Bottom Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#AA00FF","activateTransparency":1,"inactiveColor":"#55007F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":10,"id":"[\"LAYER\",13]"}||{"layerType":"DOCUMENT","layerName":"Document Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":11,"id":"[\"LAYER\",11]"}||{"layerType":"OUTLINE","layerName":"Board Outline Layer","use":true,"show":true,"locked":false,"activeColor":"#FF00FF","activateTransparency":1,"inactiveColor":"#7F007F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":12,"id":"[\"LAYER\",12]"}||{"layerType":"MULTI","layerName":"Multi-Layer","use":true,"show":true,"locked":false,"activeColor":"#C0C0C0","activateTransparency":1,"inactiveColor":"#606060","inactiveTransparency":1}|
+{"type":"LAYER","ticket":13,"id":"[\"LAYER\",9]"}||{"layerType":"TOP_ASSEMBLY","layerName":"Top Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#33CC99","activateTransparency":1,"inactiveColor":"#19664C","inactiveTransparency":1}|
+{"type":"LAYER","ticket":14,"id":"[\"LAYER\",10]"}||{"layerType":"BOT_ASSEMBLY","layerName":"Bottom Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#5555FF","activateTransparency":1,"inactiveColor":"#2A2A7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":15,"id":"[\"LAYER\",14]"}||{"layerType":"MECHANICAL","layerName":"Mechanical Layer","use":true,"show":true,"locked":false,"activeColor":"#F022F0","activateTransparency":1,"inactiveColor":"#781178","inactiveTransparency":1}|
+{"type":"LAYER","ticket":16,"id":"[\"LAYER\",52]"}||{"layerType":"COMPONENT_MODEL","layerName":"Component Model Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":17,"id":"[\"LAYER\",48]"}||{"layerType":"COMPONENT_SHAPE","layerName":"Component Shape Layer","use":true,"show":true,"locked":false,"activeColor":"#00CCCC","activateTransparency":1,"inactiveColor":"#006666","inactiveTransparency":1}|
+{"type":"LAYER","ticket":18,"id":"[\"LAYER\",51]"}||{"layerType":"PIN_FLOATING","layerName":"Pin Floating Layer","use":true,"show":true,"locked":false,"activeColor":"#FF99FF","activateTransparency":1,"inactiveColor":"#7F4C7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":19,"id":"[\"LAYER\",49]"}||{"layerType":"COMPONENT_MARKING","layerName":"Component Marking Layer","use":true,"show":true,"locked":false,"activeColor":"#66FFCC","activateTransparency":1,"inactiveColor":"#337F66","inactiveTransparency":1}|
+{"type":"LAYER","ticket":20,"id":"[\"LAYER\",50]"}||{"layerType":"PIN_SOLDERING","layerName":"Pin Soldering Layer","use":true,"show":true,"locked":false,"activeColor":"#CC9999","activateTransparency":1,"inactiveColor":"#664C4C","inactiveTransparency":1}|
+{"type":"ACTIVE_LAYER","ticket":22,"id":"ACTIVE_LAYER"}||{"layerId":1}|
+{"type":"CANVAS","ticket":23,"id":"CANVAS"}||{"originX":0,"originY":0,"unit":"mm","gridXSize":10,"gridYSize":10,"snapXSize":0.03937,"snapYSize":0.03937,"gridType":"NONE","multiGridType":"NONE","highlightValue":0.5,"layerBrightness":"NORMAL"}|
+{"type":"ELE_PLACEHOLDER","ticket":23,"id":"placeholder1"}||{"dataType":"FILL","max":1}|
+{"type":"FILL","ticket":25,"id":"e1"}|||
+{"type":"FILL","ticket":26,"id":"e2"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[384.252,5.906,"L",415.748,5.906,415.748,-5.906,384.252,-5.906,384.252,5.906]],"locked":false,"zIndex":2,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":27,"id":"e3"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[284.252,5.906,"L",315.748,5.906,315.748,-5.906,284.252,-5.906,284.252,5.906]],"locked":false,"zIndex":3,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":28,"id":"e4"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[184.252,5.906,"L",215.748,5.906,215.748,-5.906,184.252,-5.906,184.252,5.906]],"locked":false,"zIndex":4,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":29,"id":"e5"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[84.252,5.906,"L",115.748,5.906,115.748,-5.906,84.252,-5.906,84.252,5.906]],"locked":false,"zIndex":5,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":30,"id":"e6"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-15.748,5.906,"L",15.748,5.906,15.748,-5.906,-15.748,-5.906,-15.748,5.906]],"locked":false,"zIndex":6,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":31,"id":"e7"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-115.748,5.906,"L",-84.252,5.906,-84.252,-5.906,-115.748,-5.906,-115.748,5.906]],"locked":false,"zIndex":7,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":32,"id":"e8"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-215.748,5.906,"L",-184.252,5.906,-184.252,-5.906,-215.748,-5.906,-215.748,5.906]],"locked":false,"zIndex":8,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":33,"id":"e9"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-315.748,5.906,"L",-284.252,5.906,-284.252,-5.906,-315.748,-5.906,-315.748,5.906]],"locked":false,"zIndex":9,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":34,"id":"e10"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-415.748,5.906,"L",-384.252,5.906,-384.252,-5.906,-415.748,-5.906,-415.748,5.906]],"locked":false,"zIndex":10,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"ELE_PLACEHOLDER","ticket":34,"id":"placeholder2"}||{"dataType":"POLY","max":11}|
+{"type":"POLY","ticket":36,"id":"e11"}||{"groupId":0,"netName":"","layerId":48,"width":2,"path":[452.9129,-49.213,"L",-453.1496,-49.213,-453.1496,49.212,453.1496,49.212,452.9129,-49.213],"locked":false,"zIndex":11,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":37,"id":"e12"}|||
+{"type":"POLY","ticket":38,"id":"e13"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-453.1496,-49.213,"L",453.1496,-49.213],"locked":false,"zIndex":13,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":39,"id":"e14"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-453.3853,49.212,"L",-453.3853,-49.213],"locked":false,"zIndex":14,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":40,"id":"e15"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[453.1496,49.212,"L",-453.1496,49.212],"locked":false,"zIndex":15,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":41,"id":"e16"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[452.9129,-49.213,"L",452.9129,49.212],"locked":false,"zIndex":16,"polyType":"NORMAL"}|
+{"type":"ELE_PLACEHOLDER","ticket":41,"id":"placeholder3"}||{"dataType":"PAD","max":17}|
+{"type":"PAD","ticket":6276,"id":"e17"}||{"groupId":0,"netName":"","layerId":12,"num":"1","centerX":-400,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"RECT","width":74.8031,"height":74.8031,"radius":0},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":17,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6277,"id":"e18"}||{"groupId":0,"netName":"","layerId":12,"num":"2","centerX":-300,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":18,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6278,"id":"e19"}||{"groupId":0,"netName":"","layerId":12,"num":"3","centerX":-200,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":19,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6279,"id":"e20"}||{"groupId":0,"netName":"","layerId":12,"num":"4","centerX":-100,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":20,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6280,"id":"e21"}||{"groupId":0,"netName":"","layerId":12,"num":"5","centerX":0,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":21,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6281,"id":"e22"}||{"groupId":0,"netName":"","layerId":12,"num":"6","centerX":100,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":22,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6282,"id":"e23"}||{"groupId":0,"netName":"","layerId":12,"num":"7","centerX":200,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":23,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6283,"id":"e24"}||{"groupId":0,"netName":"","layerId":12,"num":"8","centerX":300,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":24,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6284,"id":"e25"}||{"groupId":0,"netName":"","layerId":12,"num":"9","centerX":400,"centerY":0,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0,"padOffsetY":0,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":25,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"ELE_PLACEHOLDER","ticket":51,"id":"placeholder4"}||{"dataType":"ATTR","max":26}|
+{"type":"ATTR","ticket":53,"id":"e26"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Footprint","value":"HDR-TH_9P-P2.54-V-F-1","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":26}|
+{"type":"ATTR","ticket":54,"id":"e27"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Designator","value":"U?","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":27}|
+{"type":"NET","ticket":5065,"id":"[\"NET\",\"\"]"}||{"netType":null,"specialColor":null,"retLine":true,"differentialName":null,"isPositiveNet":false,"equalLengthGroupName":null}|
+{"type":"PRIMITIVE","ticket":5268,"id":"[\"PRIMITIVE\",\"ALL\"]"}||{"layerId":0,"display":true,"color":null}|
+{"type":"PRIMITIVE","ticket":5269,"id":"[\"PRIMITIVE\",\"DRC\"]"}||{"layerId":0,"color":"#FFCC00"}|
+{"type":"PRIMITIVE","ticket":5270,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\"]"}||{"layerId":0,"color":"#9966FF"}|
+{"type":"PRIMITIVE","ticket":5271,"id":"[\"PRIMITIVE\",\"BOARDSHAPE\"]"}||{"layerId":0,"color":"#6D6A69"}|
+{"type":"PRIMITIVE","ticket":5272,"id":"[\"PRIMITIVE\",\"PARTITION\"]"}||{"layerId":0,"color":"#C0C0C0"}|
+{"type":"PRIMITIVE","ticket":5071,"id":"[\"PRIMITIVE\",\"CURSOR\"]"}||{"display":true,"color":"#00ffff"}|
+{"type":"PRIMITIVE","ticket":5072,"id":"[\"PRIMITIVE\",\"BACKGROUND\"]"}||{"display":true,"color":"#000000"}|
+{"type":"PRIMITIVE","ticket":5073,"id":"[\"PRIMITIVE\",\"GRID\"]"}||{"display":true,"color":"#ffffff"}|
+{"type":"PRIMITIVE","ticket":5074,"id":"[\"PRIMITIVE\",\"BOLDGRID\"]"}||{"display":true,"color":"#ffffff"}|
+{"type":"PRIMITIVE","ticket":5075,"id":"[\"PRIMITIVE\",\"COORDINATEAXIS\"]"}||{"display":true,"color":"#ffffff"}|
+{"type":"PRIMITIVE","ticket":5076,"id":"[\"PRIMITIVE\",\"SELECTBOX\"]"}||{"display":true,"color":"#00ffff"}|
+{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"2c9a220621768d4c","uuid":"58152c01a70be19b_f71a32bd3f0885a1","updateTime":1790476118095,"version":"1790476118095","editVersion":"4.1.60","user":{}}|
+{"type":"META","ticket":6197,"id":"META"}||{"title":"HDR-TH_5P-P2.54-V-M-3","description":"","tags":["HDR-TH"],"source":"2d8c2f28f71980e8|a94d06582e030fe794752c6e1297c9548a7a23add148f4bd740d8e9ea91faaed"}|
+{"type":"LAYER","ticket":2,"id":"[\"LAYER\",1]"}||{"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#FF0000","activateTransparency":1,"inactiveColor":"#7F0000","inactiveTransparency":1}|
+{"type":"LAYER","ticket":3,"id":"[\"LAYER\",2]"}||{"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000FF","activateTransparency":1,"inactiveColor":"#00007F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":4,"id":"[\"LAYER\",3]"}||{"layerType":"TOP_SILK","layerName":"Top Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#FFCC00","activateTransparency":1,"inactiveColor":"#7F6600","inactiveTransparency":1}|
+{"type":"LAYER","ticket":5,"id":"[\"LAYER\",4]"}||{"layerType":"BOT_SILK","layerName":"Bottom Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#66CC33","activateTransparency":1,"inactiveColor":"#336619","inactiveTransparency":1}|
+{"type":"LAYER","ticket":6,"id":"[\"LAYER\",7]"}||{"layerType":"TOP_PASTE_MASK","layerName":"Top Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#808080","activateTransparency":1,"inactiveColor":"#404040","inactiveTransparency":1}|
+{"type":"LAYER","ticket":7,"id":"[\"LAYER\",8]"}||{"layerType":"BOT_PASTE_MASK","layerName":"Bottom Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800000","activateTransparency":1,"inactiveColor":"#400000","inactiveTransparency":1}|
+{"type":"LAYER","ticket":8,"id":"[\"LAYER\",5]"}||{"layerType":"TOP_SOLDER_MASK","layerName":"Top Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800080","activateTransparency":1,"inactiveColor":"#400040","inactiveTransparency":1}|
+{"type":"LAYER","ticket":9,"id":"[\"LAYER\",6]"}||{"layerType":"BOT_SOLDER_MASK","layerName":"Bottom Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#AA00FF","activateTransparency":1,"inactiveColor":"#55007F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":10,"id":"[\"LAYER\",13]"}||{"layerType":"DOCUMENT","layerName":"Document Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":11,"id":"[\"LAYER\",11]"}||{"layerType":"OUTLINE","layerName":"Board Outline Layer","use":true,"show":true,"locked":false,"activeColor":"#FF00FF","activateTransparency":1,"inactiveColor":"#7F007F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":12,"id":"[\"LAYER\",12]"}||{"layerType":"MULTI","layerName":"Multi-Layer","use":true,"show":true,"locked":false,"activeColor":"#C0C0C0","activateTransparency":1,"inactiveColor":"#606060","inactiveTransparency":1}|
+{"type":"LAYER","ticket":13,"id":"[\"LAYER\",9]"}||{"layerType":"TOP_ASSEMBLY","layerName":"Top Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#33CC99","activateTransparency":1,"inactiveColor":"#19664C","inactiveTransparency":1}|
+{"type":"LAYER","ticket":14,"id":"[\"LAYER\",10]"}||{"layerType":"BOT_ASSEMBLY","layerName":"Bottom Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#5555FF","activateTransparency":1,"inactiveColor":"#2A2A7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":15,"id":"[\"LAYER\",14]"}||{"layerType":"MECHANICAL","layerName":"Mechanical Layer","use":true,"show":true,"locked":false,"activeColor":"#F022F0","activateTransparency":1,"inactiveColor":"#781178","inactiveTransparency":1}|
+{"type":"LAYER","ticket":16,"id":"[\"LAYER\",52]"}||{"layerType":"COMPONENT_MODEL","layerName":"Component Model Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":17,"id":"[\"LAYER\",48]"}||{"layerType":"COMPONENT_SHAPE","layerName":"Component Shape Layer","use":true,"show":true,"locked":false,"activeColor":"#00CCCC","activateTransparency":1,"inactiveColor":"#006666","inactiveTransparency":1}|
+{"type":"LAYER","ticket":18,"id":"[\"LAYER\",51]"}||{"layerType":"PIN_FLOATING","layerName":"Pin Floating Layer","use":true,"show":true,"locked":false,"activeColor":"#FF99FF","activateTransparency":1,"inactiveColor":"#7F4C7F","inactiveTransparency":1}|
+{"type":"LAYER","ticket":19,"id":"[\"LAYER\",49]"}||{"layerType":"COMPONENT_MARKING","layerName":"Component Marking Layer","use":true,"show":true,"locked":false,"activeColor":"#66FFCC","activateTransparency":1,"inactiveColor":"#337F66","inactiveTransparency":1}|
+{"type":"LAYER","ticket":20,"id":"[\"LAYER\",50]"}||{"layerType":"PIN_SOLDERING","layerName":"Pin Soldering Layer","use":true,"show":true,"locked":false,"activeColor":"#CC9999","activateTransparency":1,"inactiveColor":"#664C4C","inactiveTransparency":1}|
+{"type":"ACTIVE_LAYER","ticket":22,"id":"ACTIVE_LAYER"}||{"layerId":1}|
+{"type":"CANVAS","ticket":23,"id":"CANVAS"}||{"originX":0,"originY":0,"unit":"mm","gridXSize":10,"gridYSize":10,"snapXSize":0.5,"snapYSize":0.5,"gridType":"NONE","multiGridType":"NONE","highlightValue":0.5,"layerBrightness":"NORMAL"}|
+{"type":"ELE_PLACEHOLDER","ticket":23,"id":"placeholder1"}||{"dataType":"FILL","max":1}|
+{"type":"FILL","ticket":25,"id":"e1"}||{"groupId":0,"netName":"","layerId":49,"width":0.2,"fillStyle":"SOLID","path":[["CIRCLE",-250,50,2.362]],"locked":false,"zIndex":1,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":26,"id":"e2"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-212.6,12.599,"L",-187.404,12.599,-187.404,-12.597,-212.6,-12.597,-212.6,12.599]],"locked":false,"zIndex":2,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":27,"id":"e3"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-112.6,12.599,"L",-87.404,12.599,-87.404,-12.597,-112.6,-12.597,-112.6,12.599]],"locked":false,"zIndex":3,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":28,"id":"e4"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-12.6,12.599,"L",12.596,12.599,12.596,-12.597,-12.6,-12.597,-12.6,12.599]],"locked":false,"zIndex":4,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":29,"id":"e5"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[87.4,12.599,"L",112.596,12.599,112.596,-12.597,87.4,-12.597,87.4,12.599]],"locked":false,"zIndex":5,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"FILL","ticket":30,"id":"e6"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[187.4,12.599,"L",212.596,12.599,212.596,-12.597,187.4,-12.597,187.4,12.599]],"locked":false,"zIndex":6,"isBridgingCopper":false,"networkList":[],"refs":[]}|
+{"type":"ELE_PLACEHOLDER","ticket":30,"id":"placeholder2"}||{"dataType":"POLY","max":7}|
+{"type":"POLY","ticket":32,"id":"e7"}||{"groupId":0,"netName":"","layerId":48,"width":2,"path":[-250,-50,"L",-250,50,250,50,250,-50,-250,-50],"locked":false,"zIndex":7,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":33,"id":"e8"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[250,50,"L",250,-50],"locked":false,"zIndex":8,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":34,"id":"e9"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[250,-50,"L",-250,-50],"locked":false,"zIndex":9,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":35,"id":"e10"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-250,-50,"L",-250,50],"locked":false,"zIndex":10,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":36,"id":"e11"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-250,50,"L",250,50],"locked":false,"zIndex":11,"polyType":"NORMAL"}|
+{"type":"POLY","ticket":37,"id":"e12"}|||
+{"type":"ELE_PLACEHOLDER","ticket":37,"id":"placeholder3"}||{"dataType":"PAD","max":13}|
+{"type":"PAD","ticket":6276,"id":"e13"}||{"groupId":0,"netName":"","layerId":12,"num":"5","centerX":199.998,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":13,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6277,"id":"e14"}||{"groupId":0,"netName":"","layerId":12,"num":"4","centerX":99.998,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":14,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6278,"id":"e15"}||{"groupId":0,"netName":"","layerId":12,"num":"3","centerX":-0.002,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":15,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6279,"id":"e16"}||{"groupId":0,"netName":"","layerId":12,"num":"2","centerX":-100.002,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":16,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"PAD","ticket":6280,"id":"e17"}||{"groupId":0,"netName":"","layerId":12,"num":"1","centerX":-200.002,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"RECT","width":74.8031,"height":74.8031,"radius":0},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":17,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
+{"type":"ELE_PLACEHOLDER","ticket":43,"id":"placeholder4"}||{"dataType":"ATTR","max":18}|
+{"type":"ATTR","ticket":45,"id":"e18"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Footprint","value":"HDR-TH_5P-P2.54-V-M-3","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":18}|
+{"type":"ATTR","ticket":46,"id":"e19"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Designator","value":"U?","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":19}|
+{"type":"NET","ticket":1413,"id":"[\"NET\",\"\"]"}||{"netType":null,"specialColor":null,"retLine":true,"differentialName":null,"isPositiveNet":false,"equalLengthGroupName":null}|
+{"type":"PRIMITIVE","ticket":7442,"id":"[\"PRIMITIVE\",\"ALL\"]"}||{"layerId":56,"display":false,"color":null}|
+{"type":"PRIMITIVE","ticket":7433,"id":"[\"PRIMITIVE\",\"DRC\"]"}||{"layerId":0,"color":"#FFCC00"}|
+{"type":"PRIMITIVE","ticket":7434,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\"]"}||{"layerId":0,"color":"#9966FF"}|
+{"type":"PRIMITIVE","ticket":7435,"id":"[\"PRIMITIVE\",\"BOARDSHAPE\"]"}||{"layerId":0,"color":"#6D6A69"}|
+{"type":"PRIMITIVE","ticket":7436,"id":"[\"PRIMITIVE\",\"PARTITION\"]"}||{"layerId":0,"color":"#C0C0C0"}|
+{"type":"PRIMITIVE","ticket":7443,"id":"[\"PRIMITIVE\",\"PROPERTY\"]"}||{"layerId":0,"display":false,"color":null}|
+{"type":"PRIMITIVE","ticket":1706,"id":"[\"PRIMITIVE\",\"CURSOR\"]"}||{"display":true,"color":"#00ffff"}|
+{"type":"PRIMITIVE","ticket":1707,"id":"[\"PRIMITIVE\",\"BACKGROUND\"]"}||{"display":true,"color":"#000000"}|
+{"type":"PRIMITIVE","ticket":1708,"id":"[\"PRIMITIVE\",\"GRID\"]"}||{"display":true,"color":"#ffffff"}|
+{"type":"PRIMITIVE","ticket":1709,"id":"[\"PRIMITIVE\",\"BOLDGRID\"]"}||{"display":true,"color":"#ffffff"}|
+{"type":"PRIMITIVE","ticket":1710,"id":"[\"PRIMITIVE\",\"COORDINATEAXIS\"]"}||{"display":true,"color":"#ffffff"}|
+{"type":"PRIMITIVE","ticket":1711,"id":"[\"PRIMITIVE\",\"SELECTBOX\"]"}||{"display":true,"color":"#00ffff"}|
+{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"2c9a220621768d4c","uuid":"58152c01a70be19b_f732029e446d2af8","updateTime":1790476043040,"version":"1790476043040","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":6200,"id":"META"}||{"title":"HDR-TH_3P-P2.54-V-M-1","description":"ThroughHole;直插,P=2.54mm;插件,P=2.54mm;TH-3P;HDR-TH_40P-P2.54-V-M-L101.6-W2.5;2.54x3;HDR1X3_254M;插件;2.54-180-3P;HDR-TH-3P;CON-SIP-3P;HDR1X3/红色;TH-3P,P=2.54mm;HDR-2X3;-;HDR-TH_3P-P2.54","tags":["HDR-TH"],"source":"6891456c00cf9d45|a94d06582e030fe794752c6e1297c9548a7a23add148f4bd740d8e9ea91faaed"}|
 {"type":"CANVAS","ticket":2,"id":"CANVAS"}||{"originX":0,"originY":0,"unit":"mm","gridXSize":100,"gridYSize":100,"snapXSize":10,"snapYSize":10,"altSnapXSize":1,"altSnapYSize":1,"gridType":"NONE","multiGridType":"NONE","multiGridRatio":5,"highlightValue":0.5,"layerBrightness":"NORMAL"}|
 {"type":"LAYER","ticket":3,"id":"[\"LAYER\",1]"}||{"layerId":1,"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#ff0000","activateTransparency":1,"inactiveColor":"#ff0000","inactiveTransparency":1}|
@@ -664,109 +723,50 @@
 {"type":"PRIMITIVE","ticket":5856,"id":"[\"PRIMITIVE\",\"UNLOCKED\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":5857,"id":"[\"PRIMITIVE\",\"D3BODY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
 {"type":"POLY","ticket":5763,"id":"6a6117be6d4b81ad"}||{"groupId":0,"netName":"","layerId":48,"width":2.0079,"path":["R",-150,50,300,100,0,0],"locked":false,"zIndex":-1,"polyType":"NORMAL"}|
-{"type":"DOCHEAD"}||{"docType":"FOOTPRINT","client":"eaf4e40d08aac96f","uuid":"58152c01a70be19b_f71a32bd3f0885a1","updateTime":1790476118095,"version":"1790476118095","editVersion":"4.1.60","user":{}}|
-{"type":"META","ticket":6197,"id":"META"}||{"title":"HDR-TH_5P-P2.54-V-M-3","description":"","tags":["HDR-TH"],"source":"2d8c2f28f71980e8|a94d06582e030fe794752c6e1297c9548a7a23add148f4bd740d8e9ea91faaed"}|
-{"type":"LAYER","ticket":2,"id":"[\"LAYER\",1]"}||{"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#FF0000","activateTransparency":1,"inactiveColor":"#7F0000","inactiveTransparency":1}|
-{"type":"LAYER","ticket":3,"id":"[\"LAYER\",2]"}||{"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000FF","activateTransparency":1,"inactiveColor":"#00007F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":4,"id":"[\"LAYER\",3]"}||{"layerType":"TOP_SILK","layerName":"Top Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#FFCC00","activateTransparency":1,"inactiveColor":"#7F6600","inactiveTransparency":1}|
-{"type":"LAYER","ticket":5,"id":"[\"LAYER\",4]"}||{"layerType":"BOT_SILK","layerName":"Bottom Silkscreen Layer","use":true,"show":true,"locked":false,"activeColor":"#66CC33","activateTransparency":1,"inactiveColor":"#336619","inactiveTransparency":1}|
-{"type":"LAYER","ticket":6,"id":"[\"LAYER\",7]"}||{"layerType":"TOP_PASTE_MASK","layerName":"Top Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#808080","activateTransparency":1,"inactiveColor":"#404040","inactiveTransparency":1}|
-{"type":"LAYER","ticket":7,"id":"[\"LAYER\",8]"}||{"layerType":"BOT_PASTE_MASK","layerName":"Bottom Paste Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800000","activateTransparency":1,"inactiveColor":"#400000","inactiveTransparency":1}|
-{"type":"LAYER","ticket":8,"id":"[\"LAYER\",5]"}||{"layerType":"TOP_SOLDER_MASK","layerName":"Top Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#800080","activateTransparency":1,"inactiveColor":"#400040","inactiveTransparency":1}|
-{"type":"LAYER","ticket":9,"id":"[\"LAYER\",6]"}||{"layerType":"BOT_SOLDER_MASK","layerName":"Bottom Solder Mask Layer","use":true,"show":true,"locked":false,"activeColor":"#AA00FF","activateTransparency":1,"inactiveColor":"#55007F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":10,"id":"[\"LAYER\",13]"}||{"layerType":"DOCUMENT","layerName":"Document Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":11,"id":"[\"LAYER\",11]"}||{"layerType":"OUTLINE","layerName":"Board Outline Layer","use":true,"show":true,"locked":false,"activeColor":"#FF00FF","activateTransparency":1,"inactiveColor":"#7F007F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":12,"id":"[\"LAYER\",12]"}||{"layerType":"MULTI","layerName":"Multi-Layer","use":true,"show":true,"locked":false,"activeColor":"#C0C0C0","activateTransparency":1,"inactiveColor":"#606060","inactiveTransparency":1}|
-{"type":"LAYER","ticket":13,"id":"[\"LAYER\",9]"}||{"layerType":"TOP_ASSEMBLY","layerName":"Top Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#33CC99","activateTransparency":1,"inactiveColor":"#19664C","inactiveTransparency":1}|
-{"type":"LAYER","ticket":14,"id":"[\"LAYER\",10]"}||{"layerType":"BOT_ASSEMBLY","layerName":"Bottom Assembly Layer","use":true,"show":true,"locked":false,"activeColor":"#5555FF","activateTransparency":1,"inactiveColor":"#2A2A7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":15,"id":"[\"LAYER\",14]"}||{"layerType":"MECHANICAL","layerName":"Mechanical Layer","use":true,"show":true,"locked":false,"activeColor":"#F022F0","activateTransparency":1,"inactiveColor":"#781178","inactiveTransparency":1}|
-{"type":"LAYER","ticket":16,"id":"[\"LAYER\",52]"}||{"layerType":"COMPONENT_MODEL","layerName":"Component Model Layer","use":true,"show":true,"locked":false,"activeColor":"#FFFFFF","activateTransparency":1,"inactiveColor":"#7F7F7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":17,"id":"[\"LAYER\",48]"}||{"layerType":"COMPONENT_SHAPE","layerName":"Component Shape Layer","use":true,"show":true,"locked":false,"activeColor":"#00CCCC","activateTransparency":1,"inactiveColor":"#006666","inactiveTransparency":1}|
-{"type":"LAYER","ticket":18,"id":"[\"LAYER\",51]"}||{"layerType":"PIN_FLOATING","layerName":"Pin Floating Layer","use":true,"show":true,"locked":false,"activeColor":"#FF99FF","activateTransparency":1,"inactiveColor":"#7F4C7F","inactiveTransparency":1}|
-{"type":"LAYER","ticket":19,"id":"[\"LAYER\",49]"}||{"layerType":"COMPONENT_MARKING","layerName":"Component Marking Layer","use":true,"show":true,"locked":false,"activeColor":"#66FFCC","activateTransparency":1,"inactiveColor":"#337F66","inactiveTransparency":1}|
-{"type":"LAYER","ticket":20,"id":"[\"LAYER\",50]"}||{"layerType":"PIN_SOLDERING","layerName":"Pin Soldering Layer","use":true,"show":true,"locked":false,"activeColor":"#CC9999","activateTransparency":1,"inactiveColor":"#664C4C","inactiveTransparency":1}|
-{"type":"ACTIVE_LAYER","ticket":22,"id":"ACTIVE_LAYER"}||{"layerId":1}|
-{"type":"CANVAS","ticket":23,"id":"CANVAS"}||{"originX":0,"originY":0,"unit":"mm","gridXSize":10,"gridYSize":10,"snapXSize":0.5,"snapYSize":0.5,"gridType":"NONE","multiGridType":"NONE","highlightValue":0.5,"layerBrightness":"NORMAL"}|
-{"type":"ELE_PLACEHOLDER","ticket":23,"id":"placeholder1"}||{"dataType":"FILL","max":1}|
-{"type":"FILL","ticket":25,"id":"e1"}||{"groupId":0,"netName":"","layerId":49,"width":0.2,"fillStyle":"SOLID","path":[["CIRCLE",-250,50,2.362]],"locked":false,"zIndex":1,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":26,"id":"e2"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-212.6,12.599,"L",-187.404,12.599,-187.404,-12.597,-212.6,-12.597,-212.6,12.599]],"locked":false,"zIndex":2,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":27,"id":"e3"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-112.6,12.599,"L",-87.404,12.599,-87.404,-12.597,-112.6,-12.597,-112.6,12.599]],"locked":false,"zIndex":3,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":28,"id":"e4"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[-12.6,12.599,"L",12.596,12.599,12.596,-12.597,-12.6,-12.597,-12.6,12.599]],"locked":false,"zIndex":4,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":29,"id":"e5"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[87.4,12.599,"L",112.596,12.599,112.596,-12.597,87.4,-12.597,87.4,12.599]],"locked":false,"zIndex":5,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"FILL","ticket":30,"id":"e6"}||{"groupId":0,"netName":"","layerId":50,"width":0.2,"fillStyle":"SOLID","path":[[187.4,12.599,"L",212.596,12.599,212.596,-12.597,187.4,-12.597,187.4,12.599]],"locked":false,"zIndex":6,"isBridgingCopper":false,"networkList":[],"refs":[]}|
-{"type":"ELE_PLACEHOLDER","ticket":30,"id":"placeholder2"}||{"dataType":"POLY","max":7}|
-{"type":"POLY","ticket":32,"id":"e7"}||{"groupId":0,"netName":"","layerId":48,"width":2,"path":[-250,-50,"L",-250,50,250,50,250,-50,-250,-50],"locked":false,"zIndex":7,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":33,"id":"e8"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[250,50,"L",250,-50],"locked":false,"zIndex":8,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":34,"id":"e9"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[250,-50,"L",-250,-50],"locked":false,"zIndex":9,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":35,"id":"e10"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-250,-50,"L",-250,50],"locked":false,"zIndex":10,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":36,"id":"e11"}||{"groupId":0,"netName":"","layerId":3,"width":5.9843,"path":[-250,50,"L",250,50],"locked":false,"zIndex":11,"polyType":"NORMAL"}|
-{"type":"POLY","ticket":37,"id":"e12"}|||
-{"type":"ELE_PLACEHOLDER","ticket":37,"id":"placeholder3"}||{"dataType":"PAD","max":13}|
-{"type":"PAD","ticket":6276,"id":"e13"}||{"groupId":0,"netName":"","layerId":12,"num":"5","centerX":199.998,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":13,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6277,"id":"e14"}||{"groupId":0,"netName":"","layerId":12,"num":"4","centerX":99.998,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":14,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6278,"id":"e15"}||{"groupId":0,"netName":"","layerId":12,"num":"3","centerX":-0.002,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":15,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6279,"id":"e16"}||{"groupId":0,"netName":"","layerId":12,"num":"2","centerX":-100.002,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"ELLIPSE","width":74.8031,"height":74.8031},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":16,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"PAD","ticket":6280,"id":"e17"}||{"groupId":0,"netName":"","layerId":12,"num":"1","centerX":-200.002,"centerY":0.001,"padAngle":0,"hole":{"holeType":"ROUND","width":41.3386,"height":41.3386,"cornerRadius":11.811},"defaultPad":{"padType":"RECT","width":74.8031,"height":74.8031,"radius":0},"specialPad":[],"padOffsetX":0.002,"padOffsetY":-0.001,"relativeAngle":0,"plated":true,"padType":"NORMAL","topSolderExpansion":null,"bottomSolderExpansion":null,"topPasteExpansion":null,"bottomPasteExpansion":null,"locked":false,"zIndex":17,"connectMode":null,"spokeSpace":null,"spokeWidth":null,"spokeAngle":null,"unusedInnerLayers":[],"padLen":0,"propagationDelay":0,"attrsMap":{}}|
-{"type":"ELE_PLACEHOLDER","ticket":43,"id":"placeholder4"}||{"dataType":"ATTR","max":18}|
-{"type":"ATTR","ticket":45,"id":"e18"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Footprint","value":"HDR-TH_5P-P2.54-V-M-3","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":18}|
-{"type":"ATTR","ticket":46,"id":"e19"}||{"groupId":0,"parentId":"","layerId":3,"x":null,"y":null,"key":"Designator","value":"U?","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":67.5,"strokeWidth":6,"bold":false,"italic":false,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":19}|
-{"type":"NET","ticket":1413,"id":"[\"NET\",\"\"]"}||{"netType":null,"specialColor":null,"retLine":true,"differentialName":null,"isPositiveNet":false,"equalLengthGroupName":null}|
-{"type":"PRIMITIVE","ticket":7442,"id":"[\"PRIMITIVE\",\"ALL\"]"}||{"layerId":56,"display":false,"color":null}|
-{"type":"PRIMITIVE","ticket":7433,"id":"[\"PRIMITIVE\",\"DRC\"]"}||{"layerId":0,"color":"#FFCC00"}|
-{"type":"PRIMITIVE","ticket":7434,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\"]"}||{"layerId":0,"color":"#9966FF"}|
-{"type":"PRIMITIVE","ticket":7435,"id":"[\"PRIMITIVE\",\"BOARDSHAPE\"]"}||{"layerId":0,"color":"#6D6A69"}|
-{"type":"PRIMITIVE","ticket":7436,"id":"[\"PRIMITIVE\",\"PARTITION\"]"}||{"layerId":0,"color":"#C0C0C0"}|
-{"type":"PRIMITIVE","ticket":7443,"id":"[\"PRIMITIVE\",\"PROPERTY\"]"}||{"layerId":0,"display":false,"color":null}|
-{"type":"PRIMITIVE","ticket":1706,"id":"[\"PRIMITIVE\",\"CURSOR\"]"}||{"display":true,"color":"#00ffff"}|
-{"type":"PRIMITIVE","ticket":1707,"id":"[\"PRIMITIVE\",\"BACKGROUND\"]"}||{"display":true,"color":"#000000"}|
-{"type":"PRIMITIVE","ticket":1708,"id":"[\"PRIMITIVE\",\"GRID\"]"}||{"display":true,"color":"#ffffff"}|
-{"type":"PRIMITIVE","ticket":1709,"id":"[\"PRIMITIVE\",\"BOLDGRID\"]"}||{"display":true,"color":"#ffffff"}|
-{"type":"PRIMITIVE","ticket":1710,"id":"[\"PRIMITIVE\",\"COORDINATEAXIS\"]"}||{"display":true,"color":"#ffffff"}|
-{"type":"PRIMITIVE","ticket":1711,"id":"[\"PRIMITIVE\",\"SELECTBOX\"]"}||{"display":true,"color":"#00ffff"}|
-{"type":"DOCHEAD"}||{"docType":"DEVICE","client":"eaf4e40d08aac96f","uuid":"8a2639a2fbfad04e","updateTime":1790447442819,"version":"1790445226838","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"DEVICE","client":"2c9a220621768d4c","uuid":"8a2639a2fbfad04e","updateTime":1790447442819,"version":"1790445226838","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":200,"id":"META"}||{"title":"FG-PZ2.54-01-05P","tags":["连接器","排针"],"source":"72f02d9cd42d43e58742bfcb118bae5f|0819f05c4eef4c71ace90d822a990e87","images":["https://alimg.szlcsc.com/upload/public/product/middle/20241213/0D64441765A4070D957103E006064C0A.jpg"],"attributes":{"LCSC Part Name":"1x5P 间距:2.54mm 方针 直插","Supplier Part":"C42391439","Manufacturer":"FG(富港)","Manufacturer Part":"FG-PZ2.54-01-05P","Supplier Footprint":"插件,P=2.54mm","JLCPCB Part Class":"Extended Part","Datasheet":"https://item.szlcsc.com/datasheet/FG-PZ2.54-01-05P/44326034.html","Supplier":"LCSC","Add into BOM":"yes","Convert to PCB":"yes","Symbol":"1d1f442717be975c","Designator":"H?","Footprint":"2d8c2f28f71980e8","3D Model":"70c2fce3a47c4ce6bc0418a805e76a28|0819f05c4eef4c71ace90d822a990e87","3D Model Title":"HDR-TH_5P-P2.54-V-M-3","3D Model Transform":"500.3927,98.425,0,0,0,0,0,0,-118.11","Pin Structure":"1x5P","Pitch":"2.54mm","Circluar Pins/Square Pins":"方针","Mounting Type":"直插","Number of Rows":"单排","Number of Pins":"5P","Current Rating":"3A","Length of Mating Pin":"6mm","Insulation Height":"2.5mm","Length of End Connection Pin":"3mm","Contact Plating":"金","Color":"黑色","Name":"={Manufacturer Part}","Description":"插针结构:1x5P;间距:2.54mm;圆针/方针:方针;安装方式:直插;排数:单排;总PIN位数:5P;额定电流:3A;配合针长度:6mm;塑高:2.5mm;端接针长度:3mm;触头镀层:金;颜色:黑色;","SymbolName":"{\"name\":\"FG-PZ2.54-01-05P\",\"uuid\":\"1d1f442717be975c\",\"source\":\"\"}","FootprintName":"{\"name\":\"HDR-TH_5P-P2.54-V-M-3\",\"uuid\":\"2d8c2f28f71980e8\",\"source\":\"\"}"}}|
-{"type":"DOCHEAD"}||{"docType":"DEVICE","client":"eaf4e40d08aac96f","uuid":"912508ca311cb8d2","updateTime":1790447442822,"version":"1790445241391","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"DEVICE","client":"2c9a220621768d4c","uuid":"912508ca311cb8d2","updateTime":1790447442822,"version":"1790445241391","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":201,"id":"META"}||{"title":"2.54-1*3P针","tags":["连接器","排针"],"source":"fcc8b7ab7d4046188f57c59f3b17b90d|0819f05c4eef4c71ace90d822a990e87","images":["https://alimg.szlcsc.com/upload/public/product/middle/20221230/7B46F3D5942F108863A97C9C30EC2917.jpg"],"attributes":{"LCSC Part Name":"1x3P 间距:2.54mm 方针 直插","Supplier Part":"C49257","Manufacturer":"BOOMELE(博穆精密)","Manufacturer Part":"2.54-1*3P针","Supplier Footprint":"插件,P=2.54mm","JLCPCB Part Class":"Extended Part","Datasheet":"https://item.szlcsc.com/datasheet/2.54-1*3P%25E9%2592%2588/50265.html","Supplier":"LCSC","Add into BOM":"yes","Convert to PCB":"yes","Symbol":"25afe795ea1e2c4f","Designator":"H?","Footprint":"6891456c00cf9d45","3D Model":"94a8ffe137b6410295cb18cd3ffd99db|0819f05c4eef4c71ace90d822a990e87","3D Model Title":"HDR-M-2.54_1x3","3D Model Transform":"299.9994,100,0,0,0,0,0,0,-118.11","Pin Structure":"1x3P","Pitch":"2.54mm","Row Spacing":"-","Circluar Pins/Square Pins":"方针","Mounting Type":"直插","Number of Rows":"单排","Number of Pins":"3P","Current Rating":"3A","Voltage Rating (Max)":"-","Length of Mating Pin":"6mm","Insulation Height":"2.5mm","Length of End Connection Pin":"3mm","Contact Material":"黄铜","Contact Plating":"金","Operating Temperature":"-40℃~+105℃","Color":"黑色","Name":"={Manufacturer Part}","Description":"插针结构:1x3P;间距:2.54mm;行距:-;圆针/方针:方针;安装方式:直插;排数:单排;总PIN位数:3P;额定电流:3A;额定电压:-;配合针长度:6mm;塑高:2.5mm;端接针长度:3mm;触头材质:黄铜;触头镀层:金;工作温度:-40℃~+105℃;颜色:黑色;","SymbolName":"{\"name\":\"Header-Male-2.54_1x3\",\"uuid\":\"25afe795ea1e2c4f\",\"source\":\"\"}","FootprintName":"{\"name\":\"HDR-TH_3P-P2.54-V-M-1\",\"uuid\":\"6891456c00cf9d45\",\"source\":\"\"}"}}|
-{"type":"DOCHEAD"}||{"docType":"DEVICE","client":"eaf4e40d08aac96f","uuid":"ef886a2a69c81ed0","updateTime":1790447442823,"version":"1790445501851","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"DEVICE","client":"2c9a220621768d4c","uuid":"ef886a2a69c81ed0","updateTime":1790447442823,"version":"1790445501851","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":202,"id":"META"}||{"title":"2.54-1*9P母","tags":["连接器","排母"],"source":"dbe2fccef13f42bcbb5afbae07cc9eaa|0819f05c4eef4c71ace90d822a990e87","images":["https://alimg.szlcsc.com/upload/public/product/middle/20221229/9823F090A8AD78170F101F76B64DBF4C.jpg"],"attributes":{"LCSC Part Name":"1x9P 间距:2.54mm 直插","Supplier Part":"C39576","Manufacturer":"BOOMELE(博穆精密)","Manufacturer Part":"2.54-1*9P母","Supplier Footprint":"插件,P=2.54mm","JLCPCB Part Class":"Extended Part","Datasheet":"https://item.szlcsc.com/datasheet/2.54-1*9P%25E6%25AF%258D/40559.html","Supplier":"LCSC","Add into BOM":"yes","Convert to PCB":"yes","Symbol":"ae117644000f77da","Designator":"H?","Footprint":"71be73e4b752d361","3D Model":"3a7016416d904017ac5ead6cc0f14e9c|0819f05c4eef4c71ace90d822a990e87","3D Model Title":"HDR-TH_9P-P2.54-F-LI-1X9P","3D Model Transform":"915.746,94.488,0,0,0,0,0,0,-125.984","Holes Structure":"1x9P","Pitch":"2.54mm","Row Spacing":"-","Circular Hole / Square Hole":"方孔","Mounting Type":"直插","Number of Rows":"单排","Number of Positions":"9P","Current Rating":"3A","Voltage Rating (Max)":"-","Holes Direction":"顶部","Insulation Height":"-","Contact Material":"黄铜","Contact Plating":"金；锡","Operating Temperature":"-40℃~+105℃","Supplementary Features":"-","PIN Length":"3.3mm","Name":"={Manufacturer Part}","Description":"插孔结构:1x9P;间距:2.54mm;行距:-;圆孔/方孔:方孔;安装方式:直插;排数:单排;总孔位数:9P;额定电流:3A;额定电压:-;插孔方向:顶部;塑高:-;触头材质:黄铜;触头镀层:金；锡;工作温度:-40℃~+105℃;","SymbolName":"{\"name\":\"Header-Female-2.54_1x9\",\"uuid\":\"ae117644000f77da\",\"source\":\"\"}","FootprintName":"{\"name\":\"HDR-TH_9P-P2.54-V-F-1\",\"uuid\":\"71be73e4b752d361\",\"source\":\"\"}"}}|
-{"type":"DOCHEAD"}||{"docType":"PCB","client":"eaf4e40d08aac96f","uuid":"58152c01a70be19b","updateTime":1790476118110,"version":"1790476118110","editVersion":"4.1.60","user":{}}|
+{"type":"DOCHEAD"}||{"docType":"PCB","client":"2c9a220621768d4c","uuid":"58152c01a70be19b","updateTime":1790477171650,"version":"1790477171650","editVersion":"4.1.60","user":{}}|
 {"type":"META","ticket":4,"id":"META"}||{"title":"PCB1","parent":"","source":"","board":"4ba716506dd318f8","zIndex":null}|
-{"type":"PRIMITIVE","ticket":7304,"id":"[\"PRIMITIVE\",\"ALL\"]"}||{"display":true,"pick":false,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7305,"id":"[\"PRIMITIVE\",\"COMPONENT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7306,"id":"[\"PRIMITIVE\",\"PROPERTY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7239,"id":"[\"PRIMITIVE\",\"TRACK\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7314,"id":"[\"PRIMITIVE\",\"FPC_STIFFENER\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7307,"id":"[\"PRIMITIVE\",\"TESTPOINT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7308,"id":"[\"PRIMITIVE\",\"PAD\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7309,"id":"[\"PRIMITIVE\",\"VIA\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7310,"id":"[\"PRIMITIVE\",\"SUTUREHOLE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7311,"id":"[\"PRIMITIVE\",\"TEXT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7313,"id":"[\"PRIMITIVE\",\"IMAGE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7312,"id":"[\"PRIMITIVE\",\"PICTURE\"]"}||{"display":true,"pick":true,"transparency":0.5,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7315,"id":"[\"PRIMITIVE\",\"DIMENSION\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7317,"id":"[\"PRIMITIVE\",\"BOARDOUTLINE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7318,"id":"[\"PRIMITIVE\",\"SLOTREGION\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7319,"id":"[\"PRIMITIVE\",\"COPPEROUTLINE\"]"}||{"display":true,"pick":true,"transparency":0.3,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7320,"id":"[\"PRIMITIVE\",\"COPPERFILLED\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7321,"id":"[\"PRIMITIVE\",\"FILLREGIEN\"]"}||{"display":true,"pick":true,"transparency":0.3,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7322,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7323,"id":"[\"PRIMITIVE\",\"LINE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7324,"id":"[\"PRIMITIVE\",\"CONSTRAINT\"]"}||{"display":true,"pick":true,"transparency":0.5,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8575,"id":"[\"PRIMITIVE\",\"ALL\"]"}||{"display":true,"pick":false,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8576,"id":"[\"PRIMITIVE\",\"COMPONENT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8577,"id":"[\"PRIMITIVE\",\"PROPERTY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8516,"id":"[\"PRIMITIVE\",\"TRACK\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8585,"id":"[\"PRIMITIVE\",\"FPC_STIFFENER\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8578,"id":"[\"PRIMITIVE\",\"TESTPOINT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8579,"id":"[\"PRIMITIVE\",\"PAD\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8580,"id":"[\"PRIMITIVE\",\"VIA\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8581,"id":"[\"PRIMITIVE\",\"SUTUREHOLE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8582,"id":"[\"PRIMITIVE\",\"TEXT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8584,"id":"[\"PRIMITIVE\",\"IMAGE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8583,"id":"[\"PRIMITIVE\",\"PICTURE\"]"}||{"display":true,"pick":true,"transparency":0.5,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8586,"id":"[\"PRIMITIVE\",\"DIMENSION\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8588,"id":"[\"PRIMITIVE\",\"BOARDOUTLINE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8589,"id":"[\"PRIMITIVE\",\"SLOTREGION\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8590,"id":"[\"PRIMITIVE\",\"COPPEROUTLINE\"]"}||{"display":true,"pick":true,"transparency":0.3,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8591,"id":"[\"PRIMITIVE\",\"COPPERFILLED\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8592,"id":"[\"PRIMITIVE\",\"FILLREGIEN\"]"}||{"display":true,"pick":true,"transparency":0.3,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8593,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\"]"}||{"display":true,"pick":true,"transparency":0,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8594,"id":"[\"PRIMITIVE\",\"LINE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8595,"id":"[\"PRIMITIVE\",\"CONSTRAINT\"]"}||{"display":true,"pick":true,"transparency":0.5,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":6163,"id":"[\"PRIMITIVE\",\"PADSPAIR\"]"}||{"display":true,"pick":false,"transparency":null,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":6164,"id":"[\"PRIMITIVE\",\"NETWORK\"]"}||{"display":true,"pick":false,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":6165,"id":"[\"PRIMITIVE\",\"TEARDROP\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":6166,"id":"[\"PRIMITIVE\",null]"}||{"display":true,"pick":false,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8542,"id":"[\"PRIMITIVE\",\"TEARDROP\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8543,"id":"[\"PRIMITIVE\",null]"}||{"display":true,"pick":false,"transparency":null,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":6167,"id":"[\"PRIMITIVE\",\"GROUP\"]"}||{"display":true,"pick":false,"transparency":null,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":6168,"id":"[\"PRIMITIVE\",\"LOCKED\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":6169,"id":"[\"PRIMITIVE\",\"UNLOCKED\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7325,"id":"[\"PRIMITIVE\",\"SHELL\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7326,"id":"[\"PRIMITIVE\",\"BOSS\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7327,"id":"[\"PRIMITIVE\",\"CREASE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7328,"id":"[\"PRIMITIVE\",\"SIDESHELLCUT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7329,"id":"[\"PRIMITIVE\",\"TOPSHELLCUT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7331,"id":"[\"PRIMITIVE\",\"TOPBOTTOMENTITY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7330,"id":"[\"PRIMITIVE\",\"SIDEENTITY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
-{"type":"PRIMITIVE","ticket":7316,"id":"[\"PRIMITIVE\",\"D3BODY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8596,"id":"[\"PRIMITIVE\",\"SHELL\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8597,"id":"[\"PRIMITIVE\",\"BOSS\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8598,"id":"[\"PRIMITIVE\",\"CREASE\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8599,"id":"[\"PRIMITIVE\",\"SIDESHELLCUT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8600,"id":"[\"PRIMITIVE\",\"TOPSHELLCUT\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8602,"id":"[\"PRIMITIVE\",\"TOPBOTTOMENTITY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8601,"id":"[\"PRIMITIVE\",\"SIDEENTITY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
+{"type":"PRIMITIVE","ticket":8587,"id":"[\"PRIMITIVE\",\"D3BODY\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
 {"type":"CANVAS","ticket":3316,"id":"CANVAS"}||{"originX":0,"originY":0,"unit":"mm","gridXSize":5,"gridYSize":5,"snapXSize":5,"snapYSize":5,"altSnapXSize":1,"altSnapYSize":1,"gridType":"OUTLETS","multiGridType":"NONE","multiGridRatio":5,"highlightValue":0.5,"layerBrightness":"NORMAL"}|
 {"type":"LAYER","ticket":6126,"id":"[\"LAYER\",1]"}||{"layerId":1,"layerType":"TOP","layerName":"Top Layer","use":true,"show":true,"locked":false,"activeColor":"#ff0000","activateTransparency":1,"inactiveColor":"#7f0000","inactiveTransparency":1}|
 {"type":"LAYER","ticket":6128,"id":"[\"LAYER\",2]"}||{"layerId":2,"layerType":"BOTTOM","layerName":"Bottom Layer","use":true,"show":true,"locked":false,"activeColor":"#0000ff","activateTransparency":1,"inactiveColor":"#00007f","inactiveTransparency":1}|
@@ -855,7 +855,7 @@
 {"type":"RULE","ticket":3401,"id":"[\"RULE\",\"PASTE\",\"pasteMaskExpansion\"]"}||{"ruleState":"DEFAULT","ruleContext":{"unit":"mm","padTopExpan":0,"padBotExpan":0,"testPointTopExpan":-1000,"testPointBotExpan":-1000}}|
 {"type":"RULE","ticket":3402,"id":"[\"RULE\",\"SOLDER\",\"solderMaskExpansion\"]"}||{"ruleState":"DEFAULT","ruleContext":{"unit":"mm","padTopExpan":2,"padBotExpan":2,"viaTopExpan":-1000,"viaBotExpan":-1000,"testPointTopExpan":2,"testPointBotExpan":2}}|
 {"type":"RULE","ticket":3403,"id":"[\"RULE\",\"AUTO_ROUTER\",\"Common\"]"}||{"ruleState":"DEFAULT","ruleContext":{"routingCorner":"L45","isKeep":1,"viaQuantity":"LESS","routingEffectPriority":"COMPLETION_FIRST","layers":[1,2,12],"ignoreNets":[]}}|
-{"type":"PRIMITIVE","ticket":3407,"id":"[\"PRIMITIVE\",\"COMPONENTSILK\"]"}||{"display":true,"pick":true}|
+{"type":"PRIMITIVE","ticket":8514,"id":"[\"PRIMITIVE\",\"COMPONENTSILK\"]"}||{"display":true,"pick":true,"transparency":null,"viewMode":null}|
 {"type":"PRIMITIVE","ticket":3416,"id":"[\"PRIMITIVE\",\"RATLINE\"]"}||{"display":false,"pick":false}|
 {"type":"PRIMITIVE","ticket":3427,"id":"[\"PRIMITIVE\",\"PLANE\"]"}||{"display":true,"pick":true,"transparency":0.35}|
 {"type":"PRIMITIVE","ticket":3430,"id":"[\"PRIMITIVE\",\"PARTITION\"]"}||{"display":false,"pick":false,"transparency":1}|
@@ -867,8 +867,8 @@
 {"type":"PRIMITIVE","ticket":3448,"id":"[\"PRIMITIVE\",\"PADMETALLICDRILLING\"]"}||{"display":false,"pick":false,"transparency":0}|
 {"type":"PRIMITIVE","ticket":3449,"id":"[\"PRIMITIVE\",\"PADNONMETALLICDRILLING\"]"}||{"display":false,"pick":false,"transparency":0}|
 {"type":"PRIMITIVE","ticket":3496,"id":"[\"PRIMITIVE\",\"ALL\",0]"}||{"display":true,"color":null}|
-{"type":"PRIMITIVE","ticket":3497,"id":"[\"PRIMITIVE\",\"DRC\",0]"}||{"color":"#FFCC00"}|
-{"type":"PRIMITIVE","ticket":3498,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\",0]"}||{"color":"#9966FF"}|
+{"type":"PRIMITIVE","ticket":8574,"id":"[\"PRIMITIVE\",\"DRC\",0]"}||{"color":"#FFCC00"}|
+{"type":"PRIMITIVE","ticket":8563,"id":"[\"PRIMITIVE\",\"PROHIBITEDREGION\",0]"}||{"color":"#9966FF"}|
 {"type":"PRIMITIVE","ticket":3499,"id":"[\"PRIMITIVE\",\"BOARDSHAPE\",0]"}||{"color":"#6D6A69"}|
 {"type":"PRIMITIVE","ticket":3500,"id":"[\"PRIMITIVE\",\"PARTITION\",0]"}||{"color":"#C0C0C0"}|
 {"type":"PRIMITIVE","ticket":3505,"id":"[\"PRIMITIVE\",\"CURSOR\"]"}||{"display":true,"color":"#00ffff"}|
@@ -918,15 +918,15 @@
 {"type":"ATTR","ticket":7102,"id":"f732029e446d2af8e2"}||{"partitionId":"","groupID":0,"parentId":"f732029e446d2af8","layerId":3,"x":220,"y":-1025,"key":"Designator","value":"J3","keyVisible":false,"valueVisible":true,"fontFamily":"default","fontSize":39.3701,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"ATTR","ticket":7103,"id":"f732029e446d2af8ee0"}||{"partitionId":"","groupID":0,"parentId":"f732029e446d2af8","layerId":3,"x":null,"y":null,"key":"Footprint","value":"58152c01a70be19b_f732029e446d2af8","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"ATTR","ticket":7104,"id":"f732029e446d2af8e0"}||{"partitionId":"","groupID":0,"parentId":"f732029e446d2af8","layerId":3,"x":null,"y":null,"key":"Device","value":"912508ca311cb8d2","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
-{"type":"PAD_NET","ticket":7445,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"5\",\"e13\"]"}||{"partitionId":"","padNet":"3V3","padLen":null,"propagationDelay":null,"attrsMap":{}}|
-{"type":"PAD_NET","ticket":7446,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"4\",\"e14\"]"}||{"partitionId":"","padNet":"GND","padLen":null,"propagationDelay":null,"attrsMap":{}}|
-{"type":"PAD_NET","ticket":7447,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"3\",\"e15\"]"}||{"partitionId":"","padNet":"ENC_SW","padLen":null,"propagationDelay":null,"attrsMap":{}}|
-{"type":"PAD_NET","ticket":7448,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"2\",\"e16\"]"}||{"partitionId":"","padNet":"ENC_SIB","padLen":null,"propagationDelay":null,"attrsMap":{}}|
-{"type":"PAD_NET","ticket":7449,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"1\",\"e17\"]"}||{"partitionId":"","padNet":"ENC_SIA","padLen":null,"propagationDelay":null,"attrsMap":{}}|
-{"type":"COMPONENT","ticket":7444,"id":"f71a32bd3f0885a1"}||{"partitionId":"","groupId":0,"layerId":1,"x":850,"y":-1102.3622,"angle":0,"attrs":{"3D Model":"405fb18905df47838000bc9f7596a5db|0819f05c4eef4c71ace90d822a990e87","3D Model Title":"HDR-M-2.54_1X5 COPY","3D Model Transform":"499.99901000000006,99.99979824538423,452.75499885557133,0,0,0,0,0,-118.11024","Unique ID":"gge4","Reuse Block":"","Group ID":"","Channel ID":"$1I5","DeviceName":"{\"name\":\"FG-PZ2.54-01-05P\",\"source\":\"\",\"uuid\":\"8a2639a2fbfad04e\"}"},"locked":false,"zIndex":-1,"pinSwap":false,"pinSwapInfo":{"f71a32bd3f0885a1e13":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e14":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e15":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e16":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e17":{"pinClass":"","differentialPairClass":""}},"footprintPrimitives":true}|
-{"type":"ATTR","ticket":7450,"id":"f71a32bd3f0885a1e18"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":null,"y":null,"key":"Footprint","value":"58152c01a70be19b_f71a32bd3f0885a1","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":18,"specialColor":null}|
-{"type":"ATTR","ticket":7451,"id":"f71a32bd3f0885a1e19"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":620,"y":-1025,"key":"Designator","value":"J4","keyVisible":false,"valueVisible":true,"fontFamily":"default","fontSize":39.3701,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":19,"specialColor":null}|
-{"type":"ATTR","ticket":7452,"id":"f71a32bd3f0885a1e0"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":null,"y":null,"key":"Device","value":"8a2639a2fbfad04e","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"PAD_NET","ticket":8354,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"5\",\"e13\"]"}||{"partitionId":"","padNet":"3V3","padLen":null,"propagationDelay":null,"attrsMap":{}}|
+{"type":"PAD_NET","ticket":8353,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"4\",\"e14\"]"}||{"partitionId":"","padNet":"GND","padLen":null,"propagationDelay":null,"attrsMap":{}}|
+{"type":"PAD_NET","ticket":8352,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"3\",\"e15\"]"}||{"partitionId":"","padNet":"ENC_SW","padLen":null,"propagationDelay":null,"attrsMap":{}}|
+{"type":"PAD_NET","ticket":8351,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"2\",\"e16\"]"}||{"partitionId":"","padNet":"ENC_SIB","padLen":null,"propagationDelay":null,"attrsMap":{}}|
+{"type":"PAD_NET","ticket":8350,"id":"[\"PAD_NET\",\"f71a32bd3f0885a1\",\"1\",\"e17\"]"}||{"partitionId":"","padNet":"ENC_SIA","padLen":null,"propagationDelay":null,"attrsMap":{}}|
+{"type":"COMPONENT","ticket":8349,"id":"f71a32bd3f0885a1"}||{"partitionId":"","groupId":0,"layerId":1,"x":809.8425,"y":-1102.3622,"angle":0,"attrs":{"3D Model":"405fb18905df47838000bc9f7596a5db|0819f05c4eef4c71ace90d822a990e87","3D Model Transform":"499.99901000000006,99.99979824538423,452.75499885557133,0,0,0,0,0,-118.11024","Unique ID":"gge4","Reuse Block":"","Group ID":"","Channel ID":"$1I5","3D Model Title":"HDR-M-2.54_1X5 COPY","DeviceName":"{\"name\":\"FG-PZ2.54-01-05P\",\"source\":\"\",\"uuid\":\"8a2639a2fbfad04e\"}"},"locked":false,"zIndex":-1,"pinSwap":false,"pinSwapInfo":{"f71a32bd3f0885a1e17":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e16":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e15":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e14":{"pinClass":"","differentialPairClass":""},"f71a32bd3f0885a1e13":{"pinClass":"","differentialPairClass":""}},"footprintPrimitives":true}|
+{"type":"ATTR","ticket":8355,"id":"f71a32bd3f0885a1e18"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":null,"y":null,"key":"Footprint","value":"58152c01a70be19b_f71a32bd3f0885a1","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"ATTR","ticket":8356,"id":"f71a32bd3f0885a1e19"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":579.8425,"y":-1025,"key":"Designator","value":"J4","keyVisible":false,"valueVisible":true,"fontFamily":"default","fontSize":39.3701,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"ATTR","ticket":8357,"id":"f71a32bd3f0885a1e0"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":null,"y":null,"key":"Device","value":"8a2639a2fbfad04e","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"POLY","ticket":4072,"id":"8df9288cef2820bf"}||{"partitionId":"","groupId":0,"netName":"","layerId":11,"width":10,"path":["R",0,0,1259.8425,1377.9528,0,0],"locked":false,"zIndex":-1,"polyType":"BOARD_OUTLINE"}|
 {"type":"PRIMITIVE","ticket":3789,"id":"[\"PRIMITIVE\",\"ALL\",53]"}|||
 {"type":"PRIMITIVE","ticket":3790,"id":"[\"PRIMITIVE\",\"ALL\",54]"}|||
@@ -992,15 +992,15 @@
 {"type":"STRING","ticket":6567,"id":"1d46232d501af1a2"}||{"partitionId":"","groupId":0,"layerId":3,"x":212.4803,"y":-867.5984,"text":"GP14","fontFamily":"default","fontSize":29.5276,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"STRING","ticket":6376,"id":"2f2bdde0ad262ca4"}||{"partitionId":"","groupId":0,"layerId":3,"x":350,"y":-1199.7244,"text":"3V3","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"STRING","ticket":6377,"id":"c0a0d9c878428d15"}||{"partitionId":"","groupId":0,"layerId":3,"x":450,"y":-1199.7244,"text":"GND","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
-{"type":"STRING","ticket":6798,"id":"8cf79183e47db4c2"}||{"partitionId":"","groupId":0,"layerId":3,"x":650,"y":-1199.7244,"text":"SIA","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
-{"type":"STRING","ticket":6799,"id":"72a58753a8ddbcef"}||{"partitionId":"","groupId":0,"layerId":3,"x":750,"y":-1199.7244,"text":"SIB","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
-{"type":"STRING","ticket":6380,"id":"676a6ab5c48ba110"}||{"partitionId":"","groupId":0,"layerId":3,"x":850,"y":-1199.7244,"text":"SW","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
-{"type":"STRING","ticket":6381,"id":"bb5c809dadb00cb6"}||{"partitionId":"","groupId":0,"layerId":3,"x":950,"y":-1199.7244,"text":"GND","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
-{"type":"STRING","ticket":6382,"id":"64d93ccbf2e71e8d"}||{"partitionId":"","groupId":0,"layerId":3,"x":1050,"y":-1199.7244,"text":"3V3","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"STRING","ticket":8608,"id":"8cf79183e47db4c2"}||{"partitionId":"","groupId":0,"layerId":3,"x":610,"y":-1199.7244,"text":"SIA","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"STRING","ticket":8607,"id":"72a58753a8ddbcef"}||{"partitionId":"","groupId":0,"layerId":3,"x":710,"y":-1199.7244,"text":"SIB","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"STRING","ticket":8606,"id":"676a6ab5c48ba110"}||{"partitionId":"","groupId":0,"layerId":3,"x":810,"y":-1199.7244,"text":"SW","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"STRING","ticket":8605,"id":"bb5c809dadb00cb6"}||{"partitionId":"","groupId":0,"layerId":3,"x":910,"y":-1199.7244,"text":"GND","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"STRING","ticket":8604,"id":"64d93ccbf2e71e8d"}||{"partitionId":"","groupId":0,"layerId":3,"x":1010,"y":-1199.7244,"text":"3V3","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"STRING","ticket":6814,"id":"473f8c47d92216f4"}||{"partitionId":"","groupId":0,"layerId":3,"x":655,"y":-1315,"text":"KIRO MEDIA CTRL v1.1","fontFamily":"default","fontSize":39.3701,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"STRING","ticket":6384,"id":"6901bdd1128eaca9"}||{"partitionId":"","groupId":0,"layerId":3,"x":250,"y":-1199.7244,"text":"S","fontFamily":"default","fontSize":30.7087,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"STRING","ticket":6436,"id":"35c99bd882d35912"}||{"partitionId":"","groupId":0,"layerId":3,"x":420,"y":-1025,"text":"LED-BTN","fontFamily":"default","fontSize":39.3701,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
-{"type":"STRING","ticket":6425,"id":"d6e1157959436206"}||{"partitionId":"","groupId":0,"layerId":3,"x":1015,"y":-1025,"text":"ENCODER","fontFamily":"default","fontSize":39.3701,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
+{"type":"STRING","ticket":8603,"id":"d6e1157959436206"}||{"partitionId":"","groupId":0,"layerId":3,"x":975,"y":-1025,"text":"ENCODER","fontFamily":"default","fontSize":39.3701,"strokeWidth":6,"bold":0,"italic":0,"origin":"CENTER_MIDDLE","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":null}|
 {"type":"POLY","ticket":6441,"id":"d916d0a10b8ae825"}|||
 {"type":"RULE_SELECTOR","ticket":6442,"id":"[\"RULE_SELECTOR\",[\"REGION\",\"d916d0a10b8ae825\"]]"}|||
 {"type":"POLY","ticket":6444,"id":"dbe9d01d6cb8a94b"}|||
@@ -1136,11 +1136,11 @@
 {"type":"LINE","ticket":6779,"id":"7e4f6a22e2a06406"}|||
 {"type":"LINE","ticket":6780,"id":"9167e65bb2ee2c6b"}|||
 {"type":"LINE","ticket":6818,"id":"35ff952c8bee8573"}||{"partitionId":"","groupId":0,"netName":"ENC_SW","layerId":1,"startX":929.9213,"startY":-562.5984,"endX":877.4016,"endY":-562.5984,"width":11.811,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6817,"id":"a862e661e97b66ae"}||{"partitionId":"","groupId":0,"netName":"ENC_SW","layerId":1,"startX":877.4016,"startY":-562.5984,"endX":850,"endY":-590,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":7628,"id":"a862e661e97b66ae"}|||
 {"type":"LINE","ticket":6786,"id":"6426a9893b8528cc"}|||
 {"type":"LINE","ticket":6789,"id":"db1c0b1f426f79c4"}|||
 {"type":"LINE","ticket":6790,"id":"0e69f3a1e3ea3fef"}|||
-{"type":"LINE","ticket":6816,"id":"40fb44ac96b16761"}||{"partitionId":"","groupId":0,"netName":"ENC_SW","layerId":1,"startX":849.998,"startY":-1102.3612,"endX":850,"endY":-590,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":7623,"id":"40fb44ac96b16761"}|||
 {"type":"LINE","ticket":6829,"id":"85b3dbfb046788d2"}||{"partitionId":"","groupId":0,"netName":"ENC_SIA","layerId":1,"startX":812.4016,"startY":-362.5984,"endX":745,"endY":-430,"width":11.811,"locked":false,"zIndex":-1}|
 {"type":"LINE","ticket":6907,"id":"d02ecc4d309cee59"}|||
 {"type":"LINE","ticket":6908,"id":"0831fa9c045c34fc"}|||
@@ -1170,9 +1170,9 @@
 {"type":"LINE","ticket":6872,"id":"f9a4e62c57f18e37"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":350,"startY":-1045,"endX":350,"endY":-1102.3622,"width":19.685,"locked":false,"zIndex":-1}|
 {"type":"LINE","ticket":6877,"id":"c1c9cff183b5355a"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":350,"startY":-1102.3622,"endX":350,"endY":-1130,"width":19.685,"locked":false,"zIndex":-1}|
 {"type":"LINE","ticket":6878,"id":"31ab8707f4dc0de1"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":350,"startY":-1130,"endX":395,"endY":-1175,"width":19.685,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6879,"id":"17456edaa97d8466"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":395,"startY":-1175,"endX":1000,"endY":-1175,"width":19.685,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6880,"id":"a4b24ceff6f7286a"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":1000,"startY":-1175,"endX":1049.998,"endY":-1125.002,"width":19.685,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6881,"id":"ffcd93c440ba48c9"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":1049.998,"startY":-1125.002,"endX":1049.998,"endY":-1102.3612,"width":19.685,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":7502,"id":"17456edaa97d8466"}|||
+{"type":"LINE","ticket":7503,"id":"a4b24ceff6f7286a"}|||
+{"type":"LINE","ticket":7504,"id":"ffcd93c440ba48c9"}|||
 {"type":"LINE","ticket":6970,"id":"04b90ea32f9c5593"}|||
 {"type":"LINE","ticket":6884,"id":"561c112656b4a5d7"}|||
 {"type":"LINE","ticket":6885,"id":"060c76efb8518e51"}|||
@@ -1186,12 +1186,12 @@
 {"type":"LINE","ticket":6898,"id":"2abb57b7716f554e"}|||
 {"type":"LINE","ticket":6958,"id":"5e527261e63d4973"}|||
 {"type":"LINE","ticket":6964,"id":"1d0fd2decc6f372c"}|||
-{"type":"LINE","ticket":6904,"id":"bf29f4c18a14e9d0"}||{"partitionId":"","groupId":0,"netName":"ENC_SIA","layerId":1,"startX":745,"startY":-430,"endX":745,"endY":-710,"width":11.811,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6905,"id":"dd117a9a64837fcd"}||{"partitionId":"","groupId":0,"netName":"ENC_SIA","layerId":1,"startX":745,"startY":-710,"endX":650,"endY":-805,"width":11.811,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6906,"id":"d576a97ea8fb2ede"}||{"partitionId":"","groupId":0,"netName":"ENC_SIA","layerId":1,"startX":650,"startY":-805,"endX":650,"endY":-1102.3592,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8159,"id":"bf29f4c18a14e9d0"}|||
+{"type":"LINE","ticket":7487,"id":"dd117a9a64837fcd"}|||
+{"type":"LINE","ticket":7488,"id":"d576a97ea8fb2ede"}|||
 {"type":"LINE","ticket":6910,"id":"c0f02fec651efba8"}||{"partitionId":"","groupId":0,"netName":"ENC_SIB","layerId":1,"startX":800,"startY":-510,"endX":800,"endY":-750,"width":11.811,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6911,"id":"1ad3cb03ef1b4763"}||{"partitionId":"","groupId":0,"netName":"ENC_SIB","layerId":1,"startX":800,"startY":-750,"endX":749.998,"endY":-800.002,"width":11.811,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":6912,"id":"e8ff2f2ba2b1211a"}||{"partitionId":"","groupId":0,"netName":"ENC_SIB","layerId":1,"startX":749.998,"startY":-800.002,"endX":749.998,"endY":-1102.3612,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":7604,"id":"1ad3cb03ef1b4763"}|||
+{"type":"LINE","ticket":7605,"id":"e8ff2f2ba2b1211a"}|||
 {"type":"LINE","ticket":6918,"id":"8c589be986b38189"}|||
 {"type":"LINE","ticket":6919,"id":"9d5cf285726cb0b7"}|||
 {"type":"LINE","ticket":6920,"id":"fede3fdd6e3a7eaa"}|||
@@ -1325,10 +1325,161 @@
 {"type":"LINE","ticket":7286,"id":"9cc1525b895818a2"}|||
 {"type":"LINE","ticket":7287,"id":"9f5858b66e08f6b9"}|||
 {"type":"LINE","ticket":7292,"id":"02cb8d69e493b87c"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":475,"startY":-950.3724,"endX":514.6276,"endY":-990,"width":19.685,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":7293,"id":"268afef957b55e4d"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":514.6276,"startY":-990,"endX":910,"endY":-990,"width":19.685,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":7294,"id":"e6e5316ffc9871e4"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":910,"startY":-990,"endX":949.998,"endY":-1029.998,"width":19.685,"locked":false,"zIndex":-1}|
-{"type":"LINE","ticket":7295,"id":"b94848c8760b4910"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":949.998,"startY":-1029.998,"endX":949.998,"endY":-1102.3612,"width":19.685,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":7666,"id":"268afef957b55e4d"}|||
+{"type":"LINE","ticket":7654,"id":"e6e5316ffc9871e4"}|||
+{"type":"LINE","ticket":7655,"id":"b94848c8760b4910"}|||
 {"type":"LINE","ticket":7296,"id":"b8e0a6ff6c5c0749"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":475,"startY":-307.6771,"endX":475,"endY":-950.3724,"width":19.685,"locked":false,"zIndex":-1}|
 {"type":"LINE","ticket":7297,"id":"b29340d78f49ac7d"}|||
 {"type":"LINE","ticket":7299,"id":"52ec47f32c5a25b8"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":475,"startY":-950.3724,"endX":475,"endY":-1077.3622,"width":19.685,"locked":false,"zIndex":-1}|
-{"type":"ATTR","ticket":7453,"id":"f71a32bd3f0885a14d425eb0a5c2b5d0"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":null,"y":null,"key":"3D Model Title","value":"HDR-M-2.54_1X5 COPY","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":"#000000"}
+{"type":"ATTR","ticket":8358,"id":"f71a32bd3f0885a14d425eb0a5c2b5d0"}||{"partitionId":"","groupID":0,"parentId":"f71a32bd3f0885a1","layerId":3,"x":null,"y":null,"key":"3D Model Title","value":"HDR-M-2.54_1X5 COPY","keyVisible":false,"valueVisible":false,"fontFamily":"default","fontSize":45,"strokeWidth":6,"bold":0,"italic":0,"origin":"LEFT_BOTTOM","angle":0,"reverse":false,"expansion":0,"mirror":false,"locked":false,"zIndex":-1,"specialColor":"#000000"}|
+{"type":"LINE","ticket":8153,"id":"8179c2baf32e0c7e"}|||
+{"type":"LINE","ticket":7485,"id":"e67c1722c665c92d"}|||
+{"type":"LINE","ticket":7486,"id":"ebb5d91459393327"}|||
+{"type":"LINE","ticket":7499,"id":"285926737e68e359"}|||
+{"type":"LINE","ticket":7500,"id":"7e2066fe890e77c0"}|||
+{"type":"LINE","ticket":7501,"id":"60b9cacef073c014"}|||
+{"type":"LINE","ticket":7517,"id":"814d9cdd356cbb91"}|||
+{"type":"LINE","ticket":7518,"id":"c0bfc6acc480aad1"}|||
+{"type":"LINE","ticket":7519,"id":"a9ddad128bb314fc"}|||
+{"type":"LINE","ticket":7575,"id":"fc4c1960a4f4fca2"}|||
+{"type":"LINE","ticket":7576,"id":"62ea74a0096e421b"}|||
+{"type":"LINE","ticket":7578,"id":"9f9f9d9d83f97c8f"}|||
+{"type":"LINE","ticket":7579,"id":"a2d56e615ae5a2c7"}|||
+{"type":"LINE","ticket":7582,"id":"30b4853e69dac902"}|||
+{"type":"LINE","ticket":7583,"id":"dc1eed738c920e3b"}|||
+{"type":"LINE","ticket":7584,"id":"a14ef68aad3b58d3"}|||
+{"type":"LINE","ticket":7587,"id":"0e07c812d850cd03"}|||
+{"type":"LINE","ticket":7588,"id":"c1be587d57728026"}|||
+{"type":"LINE","ticket":7592,"id":"4e1e2527fb9926d8"}|||
+{"type":"LINE","ticket":7593,"id":"9bd01e2c5676e96a"}|||
+{"type":"LINE","ticket":8148,"id":"dd25786c07a76428"}|||
+{"type":"LINE","ticket":7601,"id":"faa36bb6f86e2db0"}|||
+{"type":"LINE","ticket":7602,"id":"e542e243a035e8ee"}|||
+{"type":"LINE","ticket":7603,"id":"0ec9eb63ba29ba43"}|||
+{"type":"LINE","ticket":7606,"id":"e32b6c8b352f44d5"}|||
+{"type":"LINE","ticket":7607,"id":"d9afd69e80819170"}|||
+{"type":"LINE","ticket":7608,"id":"58dfa763f4cd3c93"}|||
+{"type":"LINE","ticket":7611,"id":"d1971e73390ab35c"}|||
+{"type":"LINE","ticket":7612,"id":"ed98f013d9191dc2"}|||
+{"type":"LINE","ticket":8143,"id":"76bfe4887a22fd94"}|||
+{"type":"LINE","ticket":8139,"id":"bcb1daa014cbaac4"}|||
+{"type":"LINE","ticket":7621,"id":"6bec0979347b21be"}|||
+{"type":"LINE","ticket":7622,"id":"04cdab970618da48"}|||
+{"type":"LINE","ticket":7624,"id":"35b53b9418c2da38"}|||
+{"type":"LINE","ticket":7625,"id":"cbc2ab7b39d1f132"}|||
+{"type":"LINE","ticket":7629,"id":"02103dbba7890b2d"}|||
+{"type":"LINE","ticket":7630,"id":"d684d43d4a7ae39e"}|||
+{"type":"LINE","ticket":7631,"id":"47329a598d532967"}|||
+{"type":"LINE","ticket":7634,"id":"a4aa11ab71d34467"}|||
+{"type":"LINE","ticket":7635,"id":"97a3bd504ea779f3"}|||
+{"type":"LINE","ticket":7636,"id":"09f4c77019197ade"}||{"partitionId":"","groupId":0,"netName":"ENC_SW","layerId":1,"startX":855,"startY":-585,"endX":877.4016,"endY":-562.5984,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":7640,"id":"8087c0b2de592e35"}|||
+{"type":"LINE","ticket":7641,"id":"967e9eff444cb9fd"}|||
+{"type":"LINE","ticket":7642,"id":"01871f47dc69a638"}|||
+{"type":"LINE","ticket":8124,"id":"a7304651385f7c37"}|||
+{"type":"LINE","ticket":8125,"id":"8298ce7a6addc071"}|||
+{"type":"LINE","ticket":7647,"id":"3a2548c8b9231e0e"}||{"partitionId":"","groupId":0,"netName":"ENC_SW","layerId":1,"startX":855,"startY":-795,"endX":855,"endY":-585,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":7651,"id":"68efc01c1452548a"}|||
+{"type":"LINE","ticket":7652,"id":"dcfffa222270df1e"}|||
+{"type":"LINE","ticket":7653,"id":"910bb632b7f2e356"}|||
+{"type":"LINE","ticket":7656,"id":"3c705989667caed4"}|||
+{"type":"LINE","ticket":7657,"id":"9782fb125749dee1"}|||
+{"type":"LINE","ticket":7660,"id":"7380e83318c62516"}|||
+{"type":"LINE","ticket":8118,"id":"e362d6cb208780eb"}|||
+{"type":"LINE","ticket":8106,"id":"5b7b38613af856e6"}|||
+{"type":"LINE","ticket":8107,"id":"2830b086f3bb5b85"}|||
+{"type":"LINE","ticket":7669,"id":"6a928c0df9e2d414"}|||
+{"type":"LINE","ticket":7670,"id":"d790f34fd957f6f7"}|||
+{"type":"LINE","ticket":7672,"id":"e0c0c7491a3482a5"}|||
+{"type":"LINE","ticket":7673,"id":"dbef4d101300b972"}|||
+{"type":"LINE","ticket":8445,"id":"d8c6afb2e56b1210"}|||
+{"type":"LINE","ticket":8442,"id":"1f72909d2bcf82fa"}|||
+{"type":"LINE","ticket":7678,"id":"b99f1b738c3d618d"}|||
+{"type":"PRIMITIVE","ticket":8544,"id":"[\"PRIMITIVE\",\"COMPONENT\",0]"}|||
+{"type":"PRIMITIVE","ticket":8545,"id":"[\"PRIMITIVE\",\"PROPERTY\",0]"}|||
+{"type":"PRIMITIVE","ticket":8546,"id":"[\"PRIMITIVE\",\"DESIGNATOR\",0]"}|||
+{"type":"PRIMITIVE","ticket":8547,"id":"[\"PRIMITIVE\",\"COMPONENTSILK\",0]"}|||
+{"type":"PRIMITIVE","ticket":8548,"id":"[\"PRIMITIVE\",\"TRACK\",0]"}|||
+{"type":"PRIMITIVE","ticket":8549,"id":"[\"PRIMITIVE\",\"TESTPOINT\",0]"}|||
+{"type":"PRIMITIVE","ticket":8550,"id":"[\"PRIMITIVE\",\"PAD\",0]"}|||
+{"type":"PRIMITIVE","ticket":8551,"id":"[\"PRIMITIVE\",\"VIA\",0]"}|||
+{"type":"PRIMITIVE","ticket":8552,"id":"[\"PRIMITIVE\",\"SUTUREHOLE\",0]"}|||
+{"type":"PRIMITIVE","ticket":8553,"id":"[\"PRIMITIVE\",\"TEXT\",0]"}|||
+{"type":"PRIMITIVE","ticket":8554,"id":"[\"PRIMITIVE\",\"PICTURE\",0]"}|||
+{"type":"PRIMITIVE","ticket":8555,"id":"[\"PRIMITIVE\",\"IMAGE\",0]"}|||
+{"type":"PRIMITIVE","ticket":8556,"id":"[\"PRIMITIVE\",\"FPC_STIFFENER\",0]"}|||
+{"type":"PRIMITIVE","ticket":8557,"id":"[\"PRIMITIVE\",\"DIMENSION\",0]"}|||
+{"type":"PRIMITIVE","ticket":8558,"id":"[\"PRIMITIVE\",\"D3BODY\",0]"}|||
+{"type":"PRIMITIVE","ticket":8559,"id":"[\"PRIMITIVE\",\"BOARDOUTLINE\",0]"}|||
+{"type":"PRIMITIVE","ticket":8560,"id":"[\"PRIMITIVE\",\"SLOTREGION\",0]"}|||
+{"type":"PRIMITIVE","ticket":8561,"id":"[\"PRIMITIVE\",\"COPPEROUTLINE\",0]"}|||
+{"type":"PRIMITIVE","ticket":8562,"id":"[\"PRIMITIVE\",\"FILLREGIEN\",0]"}|||
+{"type":"PRIMITIVE","ticket":8564,"id":"[\"PRIMITIVE\",\"LINE\",0]"}|||
+{"type":"PRIMITIVE","ticket":8565,"id":"[\"PRIMITIVE\",\"CONSTRAINT\",0]"}|||
+{"type":"PRIMITIVE","ticket":8566,"id":"[\"PRIMITIVE\",\"SHELL\",0]"}|||
+{"type":"PRIMITIVE","ticket":8567,"id":"[\"PRIMITIVE\",\"BOSS\",0]"}|||
+{"type":"PRIMITIVE","ticket":8568,"id":"[\"PRIMITIVE\",\"CREASE\",0]"}|||
+{"type":"PRIMITIVE","ticket":8569,"id":"[\"PRIMITIVE\",\"SIDESHELLCUT\",0]"}|||
+{"type":"PRIMITIVE","ticket":8570,"id":"[\"PRIMITIVE\",\"TOPSHELLCUT\",0]"}|||
+{"type":"PRIMITIVE","ticket":8571,"id":"[\"PRIMITIVE\",\"SIDEENTITY\",0]"}|||
+{"type":"PRIMITIVE","ticket":8572,"id":"[\"PRIMITIVE\",\"TOPBOTTOMENTITY\",0]"}|||
+{"type":"PRIMITIVE","ticket":8573,"id":"[\"PRIMITIVE\",\"TEARDROP\",0]"}|||
+{"type":"LINE","ticket":8103,"id":"78fe659ff71fc3ed"}|||
+{"type":"LINE","ticket":8104,"id":"4a9ffe3031e01c6b"}|||
+{"type":"LINE","ticket":8105,"id":"b6ce07c6935f18de"}|||
+{"type":"LINE","ticket":8108,"id":"a7043e7b718a6f9b"}|||
+{"type":"LINE","ticket":8109,"id":"5b3a09b8bafdb5c1"}|||
+{"type":"LINE","ticket":8112,"id":"1c3ed1b01671af5a"}|||
+{"type":"LINE","ticket":8439,"id":"0864cf1301b73fc8"}|||
+{"type":"LINE","ticket":8417,"id":"75de2cf036df008f"}|||
+{"type":"LINE","ticket":8418,"id":"9269f2fc2417fa58"}|||
+{"type":"LINE","ticket":8121,"id":"a14b1b579ed9db7c"}|||
+{"type":"LINE","ticket":8122,"id":"3daf91ce528ce5d6"}|||
+{"type":"LINE","ticket":8123,"id":"a02bc441871920fc"}|||
+{"type":"LINE","ticket":8126,"id":"64c3f18461a013f3"}|||
+{"type":"LINE","ticket":8127,"id":"526c8cda5415c93d"}|||
+{"type":"LINE","ticket":8130,"id":"39b4db0093f50744"}|||
+{"type":"LINE","ticket":8162,"id":"a3f03336c0d782cd"}|||
+{"type":"LINE","ticket":8163,"id":"f3be5f564b7e833d"}|||
+{"type":"LINE","ticket":8144,"id":"52155451f28de70a"}|||
+{"type":"LINE","ticket":8145,"id":"071fcdb31c9caa37"}|||
+{"type":"LINE","ticket":8403,"id":"8959c33cf130c228"}|||
+{"type":"LINE","ticket":8400,"id":"aba81b3d844d4c7b"}|||
+{"type":"LINE","ticket":8146,"id":"66417e30fd6c44ae"}|||
+{"type":"LINE","ticket":8147,"id":"e5713aae5c9dbb81"}|||
+{"type":"LINE","ticket":8149,"id":"3eff8faaf0b6f50a"}|||
+{"type":"LINE","ticket":8150,"id":"19b90153b66da7be"}|||
+{"type":"LINE","ticket":8392,"id":"9cd85ef9cc4f10b2"}|||
+{"type":"LINE","ticket":8397,"id":"ffdfc87ed074a79e"}|||
+{"type":"LINE","ticket":8156,"id":"6dedcbc21601f415"}||{"partitionId":"","groupId":0,"netName":"ENC_SIA","layerId":1,"startX":745,"startY":-710,"endX":745,"endY":-430,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8408,"id":"2405fc73fe765fe2"}|||
+{"type":"LINE","ticket":8413,"id":"d5e4a279e0c74485"}|||
+{"type":"LINE","ticket":8390,"id":"64bc6cc7f590c5a4"}|||
+{"type":"LINE","ticket":8391,"id":"47287a7312e03236"}|||
+{"type":"LINE","ticket":8393,"id":"d826169d96fd18d0"}||{"partitionId":"","groupId":0,"netName":"ENC_SIA","layerId":1,"startX":609.8405,"startY":-1102.3612,"endX":609.8405,"endY":-845.1595,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8394,"id":"b3483b317807dc43"}||{"partitionId":"","groupId":0,"netName":"ENC_SIA","layerId":1,"startX":609.8405,"startY":-845.1595,"endX":745,"endY":-710,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8398,"id":"eb2ec4a4c30c3ea0"}|||
+{"type":"LINE","ticket":8399,"id":"809fc5f231ddd6cb"}|||
+{"type":"LINE","ticket":8401,"id":"2c333f172f38a28d"}||{"partitionId":"","groupId":0,"netName":"ENC_SIB","layerId":1,"startX":800,"startY":-750,"endX":709.8405,"endY":-840.1595,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8402,"id":"123c367aa2888afd"}||{"partitionId":"","groupId":0,"netName":"ENC_SIB","layerId":1,"startX":709.8405,"startY":-840.1595,"endX":709.8405,"endY":-1102.3612,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8406,"id":"b1050976e6da0901"}|||
+{"type":"LINE","ticket":8407,"id":"e5cf13fd6d607e5d"}|||
+{"type":"LINE","ticket":8409,"id":"1999607cafdbf4dc"}||{"partitionId":"","groupId":0,"netName":"ENC_SW","layerId":1,"startX":809.8405,"startY":-1102.3612,"endX":809.8405,"endY":-840.1595,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8410,"id":"1ecb3d8431532c49"}||{"partitionId":"","groupId":0,"netName":"ENC_SW","layerId":1,"startX":809.8405,"startY":-840.1595,"endX":855,"endY":-795,"width":11.811,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8414,"id":"b60e6d61ff3548d0"}|||
+{"type":"LINE","ticket":8415,"id":"19c14538f68f371b"}|||
+{"type":"LINE","ticket":8416,"id":"b7bd0f15a33be4d6"}|||
+{"type":"LINE","ticket":8419,"id":"464ca3ec506528cc"}|||
+{"type":"LINE","ticket":8420,"id":"9a23f50956097dd7"}|||
+{"type":"LINE","ticket":8423,"id":"d8f4b6ca03426bab"}|||
+{"type":"LINE","ticket":8424,"id":"5606bea9a6ed7fc6"}|||
+{"type":"LINE","ticket":8426,"id":"44e5450036e7e181"}|||
+{"type":"LINE","ticket":8429,"id":"12285684e17d4124"}|||
+{"type":"LINE","ticket":8430,"id":"422f9114d4de7915"}|||
+{"type":"LINE","ticket":8434,"id":"ee8c1fcdc66adf54"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":909.8405,"startY":-1102.3612,"endX":909.8405,"endY":-1034.8405,"width":19.685,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8435,"id":"3a0570c31d255c2f"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":909.8405,"startY":-1034.8405,"endX":865,"endY":-990,"width":19.685,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8436,"id":"40accae2179c3289"}||{"partitionId":"","groupId":0,"netName":"GND","layerId":2,"startX":865,"startY":-990,"endX":514.6276,"endY":-990,"width":19.685,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8440,"id":"76d715d58568d28c"}|||
+{"type":"LINE","ticket":8441,"id":"18aa6037702fceb2"}|||
+{"type":"LINE","ticket":8443,"id":"9dd717ad9814e409"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":395,"startY":-1175,"endX":937.2017,"endY":-1175,"width":19.685,"locked":false,"zIndex":-1}|
+{"type":"LINE","ticket":8444,"id":"beedb0a070596272"}||{"partitionId":"","groupId":0,"netName":"3V3","layerId":2,"startX":937.2017,"startY":-1175,"endX":1009.8405,"endY":-1102.3612,"width":19.685,"locked":false,"zIndex":-1}
