@@ -1,3 +1,207 @@
+2026-09-27 当前发布检查：编码器朝后 + 螺母槽薄壁修正 + 保留用户透视视图
+本段是最终文件检查；后文为历史修改记录，旧 STL 哈希、仅重导上盖等表述不代表当前发布文件。
+最小按钮柱原槽角壁厚约 0.135 mm，按工厂反馈修正，不将网格通过误认为壁厚通过。
+八个旧矩形槽压缩，新增六角封闭端槽；M2 对边4.2/高1.8，M3 对边5.8/高2.8 mm。
+右侧按钮柱半径由3.4改为3.8 mm；螺丝孔中心、孔径、槽高度位置不变。
+四件 STL 从原生 SOLIDWORKS 精细导出，mm；上盖刚性转为面板朝下，不缩放。
+接缝坐标量化到0.00001 mm并重算法向；相邻边两面且方向相反；单壳体、闭合、无退化三角面、无自交、正体积、Manifold NoError。
+上盖体积增加约135.428 mm³，来自槽角补实与柱径加粗；其余零件形状不变。
+透视：操作前 True，操作后 True。四件原生零件与装配保存及导出均 errors=0 warnings=0。
+10组件引用全部在cad目录；4打印零件各1实体，特征无错误；装配重建成功，实体干涉0。
+22 mm编码器板边外线束检查盒与其他9组件表面相交数均0；仍假设接头截面16.92×6 mm，实物未试装。
+
+最终 STL：
+Base_Smooth_20deg.STL: triangles=4046, size_mm=100.000000 x 84.000000 x 48.573502, volume_mm3=45919.162680
+SHA256 06c4a44896664eeae07908e0aae9957a1a6005762e719d5f0015d3c0ecec7773
+Lid_Smooth_20deg.STL: triangles=4566, size_mm=100.000000 x 94.203613 x 45.312050, volume_mm3=36319.902949
+SHA256 39ec7c8b0cb2c030379d3b10406f0e74dbd40a4bdc292306f3445ece45dc7a49
+Encoder_Cradle.STL: triangles=1332, size_mm=33.435001 x 35.000000 x 3.000000, volume_mm3=886.810103
+SHA256 f9f5dd05b41945ed712f82b0c68a71906d329fc2f4e561f1facb30266933edac
+Button_Cradle.STL: triangles=1312, size_mm=40.687248 x 36.730000 x 3.000000, volume_mm3=1051.543800
+SHA256 633de2fbe68e6cda8386505e0fee04b4f20fee6e24a6d10581c0d26aa906b643
+
+局部壁厚方法：从槽中间高度的最终导出 STL 截面中，测量六角封闭端两斜边至柱外圆折线的最短段距。
+此项不包括有意敞开的侧装入口，不等同于全模型制造认证；待打印厂重新审核与实物试装。
+M3_front_left: nominal=1.651368 mm, STL_section=1.645084 mm
+M3_front_right: nominal=1.651368 mm, STL_section=1.645084 mm
+M3_rear_left: nominal=1.651368 mm, STL_section=1.645084 mm
+M3_rear_right: nominal=1.651368 mm, STL_section=1.645084 mm
+Encoder_right: nominal=1.575129 mm, STL_section=1.569132 mm
+Encoder_left: nominal=1.575129 mm, STL_section=1.569133 mm
+Button_left: nominal=1.575129 mm, STL_section=1.569136 mm
+Button_right: nominal=1.375129 mm, STL_section=1.369897 mm
+右侧按钮柱到底壳内侧名义净距0.4 mm。
+
+原生检查日志：
+USER_VIEW_PERSPECTIVE True
+ASSEMBLY_REBUILD True
+INTERFERENCE_COUNT 0
+COMPONENTS 10
+REFERENCE REF_Carrier-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Carrier.SLDPRT
+REFERENCE REF_Knob-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Knob.SLDPRT
+REFERENCE Base_Smooth_20deg-1 C:\public\hard\media-controller\hardware\enclosure\cad\Base_Smooth_20deg.SLDPRT
+PART_REBUILD Base_Smooth_20deg-1 True
+SOLIDS Base_Smooth_20deg-1 1
+EXPORT Base_Smooth_20deg True errors=0 warnings=0
+PART_SAVE Base_Smooth_20deg True errors=0 warnings=0
+REFERENCE Lid_Smooth_20deg-1 C:\public\hard\media-controller\hardware\enclosure\cad\Lid_Smooth_20deg.SLDPRT
+PART_REBUILD Lid_Smooth_20deg-1 True
+SOLIDS Lid_Smooth_20deg-1 1
+EXPORT Lid_Smooth_20deg True errors=0 warnings=0
+PART_SAVE Lid_Smooth_20deg True errors=0 warnings=0
+REFERENCE REF_Encoder-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Encoder.SLDPRT
+REFERENCE REF_Button_PCB-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_PCB.SLDPRT
+REFERENCE REF_Button_Cap-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_Cap.SLDPRT
+REFERENCE REF_RP2350_Official-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_RP2350_Official.SLDPRT
+REFERENCE Encoder_Cradle-1 C:\public\hard\media-controller\hardware\enclosure\cad\Encoder_Cradle.SLDPRT
+PART_REBUILD Encoder_Cradle-1 True
+SOLIDS Encoder_Cradle-1 1
+EXPORT Encoder_Cradle True errors=0 warnings=0
+PART_SAVE Encoder_Cradle True errors=0 warnings=0
+REFERENCE Button_Cradle-1 C:\public\hard\media-controller\hardware\enclosure\cad\Button_Cradle.SLDPRT
+PART_REBUILD Button_Cradle-1 True
+SOLIDS Button_Cradle-1 1
+EXPORT Button_Cradle True errors=0 warnings=0
+PART_SAVE Button_Cradle True errors=0 warnings=0
+FINAL_VIEW_PERSPECTIVE True
+ASSEMBLY_SAVE True errors=0 warnings=0
+COMPLETE
+
+----- 以下为历史修改记录 -----
+2026-09-27 编码器排针朝后修订（当前上盖及整机检查）
+本段优先于后面的历史记录。当前文件名不变，无另建版本目录。
+修改：cad/Lid_Smooth_20deg.SLDPRT、cad/Music_Controller.SLDASM、print/Lid_Smooth_20deg.STL。
+Encoder_Cradle 本体未改，仅绕编码器轴心转 90°；REF_Encoder 装配方向同步转动。
+旋钮中心 U=31、V=37 mm；右／左固定柱中心 (44.5,29)、(17.5,53) mm。
+盲螺丝孔及侧装螺母槽随固定柱移位，螺丝规格不变。
+USB-C 底壳几何保持下方圆角内凹修订。
+
+测量：含插头及弯线总长约 48.5 mm，PCB 长 32.30 mm，板边外约 16.2 mm。
+设计：板边外预留 22 mm，总检查长度 54.3 mm，较实测多约 5.8 mm。
+接头截面假设为 PCB 全宽 16.92 mm × 高 6 mm，从 PCB 顶面起算；不是线材规格。
+检查盒（面板 U,V,W）：[22.54,57.025,-12.29]..[39.46,79.025,-6.29] mm。
+与原生 CAD 导出的其余 9 个组件表面逐三角形做分离轴检查，相交三角形数均为 0。
+后壁净距约 3.03736 mm；面板内面净距 3.29 mm；主控最高点上方间隙保守下界 5.63491 mm。
+
+新上盖：精细二进制 STL，mm；刚性旋转到外面板朝下，平移至正坐标，不缩放。
+接缝坐标量化至 0.00001 mm，保留全部三角形，按最终顶点重算法向。
+网格检查数据：
+{
+  "triangles": 4534,
+  "sha256": "4381fe2a8261d03cec309184516e383b2263be7f973bce82e8f2b389ee9dfd22",
+  "bounds_mm": [
+    [
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      100.0,
+      94.20361328125,
+      45.312049865722656
+    ]
+  ],
+  "normalization_max_vertex_delta_mm": 1.1476992733331114e-05,
+  "topology": {
+    "boundary_edges": 0,
+    "connected_components_number": 1,
+    "edges_number": 6801,
+    "faces_number": 4534,
+    "genus": 10,
+    "incident_faces_on_non_two_manifold_edges": 0,
+    "incident_faces_on_non_two_manifold_vertices": 0,
+    "is_mesh_two_manifold": true,
+    "non_two_manifold_edges": 0,
+    "non_two_manifold_vertices": 0,
+    "number_holes": 0,
+    "unreferenced_vertices": 0,
+    "vertices_number": 2249
+  },
+  "self_intersecting_faces": 0,
+  "edge_pairs": true,
+  "edge_winding_consistent": true,
+  "manifold_status": "Error.NoError",
+  "volume_mm3": 36184.4748778236,
+  "panel_origin_world_mm": [
+    0.0,
+    -4.618527782440651e-14,
+    21.192533317427774
+  ],
+  "cable_box_panel_mm": [
+    [
+      22.54,
+      57.025,
+      -12.29
+    ],
+    [
+      39.46,
+      79.025,
+      -6.29
+    ]
+  ],
+  "cable_box_world_bounds_mm": [
+    [
+      22.54,
+      55.73727840183484,
+      29.147409681115217
+    ],
+    [
+      39.46,
+      78.46263691907885,
+      42.31000855899538
+    ]
+  ],
+  "cable_box_surface_collisions": {
+    "Base_Smooth_20deg-1": 0,
+    "Button_Cradle-1": 0,
+    "Encoder_Cradle-1": 0,
+    "Lid_Smooth_20deg-1": 0,
+    "REF_Button_Cap-1": 0,
+    "REF_Button_PCB-1": 0,
+    "REF_Carrier-1": 0,
+    "REF_Knob-1": 0,
+    "REF_RP2350_Official-1": 0
+  },
+  "rear_wall_clearance_mm": 3.0373630809211534,
+  "panel_inner_clearance_mm": 3.29,
+  "mainboard_vertical_gap_lower_bound_mm": 5.634911051277019,
+  "encoder_total_reserved_length_mm": 54.3,
+  "cable_cross_section_assumption_mm": [
+    16.92,
+    6
+  ]
+}
+
+原生保存和重开记录：
+LID_REBUILD True
+LID_PREVIEW True
+LID_SAVE True errors=0 warnings=0
+ASSEMBLY_SAVE True errors=0 warnings=0
+ASSEMBLY_REOPEN errors=0 warnings=32
+ASSEMBLY_REBUILD True
+COMPONENTS 10
+REFERENCE REF_Carrier-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Carrier.SLDPRT
+REFERENCE REF_Knob-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Knob.SLDPRT
+REFERENCE Base_Smooth_20deg-1 C:\public\hard\media-controller\hardware\enclosure\cad\Base_Smooth_20deg.SLDPRT
+REFERENCE Lid_Smooth_20deg-1 C:\public\hard\media-controller\hardware\enclosure\cad\Lid_Smooth_20deg.SLDPRT
+LID_SOLIDS 1
+REFERENCE REF_Encoder-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Encoder.SLDPRT
+REOPEN_AXIS REF_Encoder-1 0,0.939692620785908,0.342020143325669
+REFERENCE REF_Button_PCB-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_PCB.SLDPRT
+REFERENCE REF_Button_Cap-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_Button_Cap.SLDPRT
+REFERENCE REF_RP2350_Official-1 C:\public\hard\media-controller\hardware\enclosure\cad\REF_RP2350_Official.SLDPRT
+REFERENCE Encoder_Cradle-1 C:\public\hard\media-controller\hardware\enclosure\cad\Encoder_Cradle.SLDPRT
+REOPEN_AXIS Encoder_Cradle-1 0,0.939692620785908,0.342020143325669
+REFERENCE Button_Cradle-1 C:\public\hard\media-controller\hardware\enclosure\cad\Button_Cradle.SLDPRT
+INTERFERENCE_COUNT 0
+LAYOUT_PREVIEW True
+FINAL_SAVE True errors=0 warnings=0
+COMPLETE
+
+原生内部布局预览：ENCODER_REAR_LAYOUT.png。参考模块未画实际排针和线束。
+数字检查通过；未经过实物试装或打印厂复审。旧上盖应替换为当前上盖 STL，其他打印件无需因本次转向重传。
+
+===== 以下为 USB-C 修订及更早检查历史；各段“本次”指当时修订 =====
 2026-09-27 USB-C 圆角内凹修订（当前底壳检查）
 当前入口：cad/Music_Controller.SLDASM
 当前打印底壳：print/Base_Smooth_20deg.STL
