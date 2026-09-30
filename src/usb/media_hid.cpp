@@ -101,6 +101,13 @@ enum : uint16_t {
     configuration_length = TUD_CONFIG_DESC_LEN + TUD_HID_DESC_LEN,
 };
 
+// HID 报告描述符：声明 Consumer Control 输入，每份报告携带一个 16 位媒体 usage。
+// usage 范围为 0～0x03FF；非零值表示对应媒体键按下，0 表示松开。
+// report_id_consumer_control 指定的报告编号由 TinyUSB 添加到实际发送的数据前面。
+const uint8_t hid_report_descriptor[] = {
+    TUD_HID_REPORT_DESC_CONSUMER(HID_REPORT_ID(report_id_consumer_control)),
+};
+
 // 唯一一套 USB 配置的描述符数据；两个宏按顺序展开为主机枚举时读取的字节。
 const uint8_t configuration_descriptor[] = {
     // 配置值 1、一个接口、无配置名称；声明支持远程唤醒，最大总线取电为 100 mA。
@@ -111,13 +118,6 @@ const uint8_t configuration_descriptor[] = {
     // 0x81 表示端点 1、设备到主机的 IN 方向；最后的 1 声明全速模式下的轮询间隔为 1 ms。
     TUD_HID_DESCRIPTOR(interface_hid, string_hid_interface, HID_ITF_PROTOCOL_NONE,
                        sizeof(hid_report_descriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
-};
-
-// HID 报告描述符：声明 Consumer Control 输入，每份报告携带一个 16 位媒体 usage。
-// usage 范围为 0～0x03FF；非零值表示对应媒体键按下，0 表示松开。
-// report_id_consumer_control 指定的报告编号由 TinyUSB 添加到实际发送的数据前面。
-const uint8_t hid_report_descriptor[] = {
-    TUD_HID_REPORT_DESC_CONSUMER(HID_REPORT_ID(report_id_consumer_control)),
 };
 
 // 返回待发送队列是否为空；环形队列以读写位置相等表示空。
