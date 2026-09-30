@@ -166,12 +166,22 @@ uint16_t usage_for(MediaAction action) {
 
 }  // 匿名命名空间
 
-// 启动时调用一次：生成本板唯一序列号，初始化 TinyUSB 设备栈，并完成板级 USB 初始化。
+// 启动时调用一次；应用已先调用 board_init()，完成板级基础初始化。
+// 此处准备设备身份并启动 USB，之后由主循环持续调用 media_hid_update() 处理主机请求。
 void media_hid_init() {
+    // 把本板唯一 ID 转成十六进制 ASCII 文本，写入持久保存的序列号缓冲区。
+    // string_descriptors 的序列号项指向这个缓冲区，因此必须在启动 USB 前填好，
+    // 让电脑查询序列号时能取得有效内容。第二个参数包含字符串结束符所需的空间。
     pico_get_unique_board_id_string(hid_state.serial_string,
                                     sizeof(hid_state.serial_string));
 
+    // 初始化 USB 控制器端口 0 的设备协议栈；0 是硬件端口号，接口号和端点号各自独立。
+    // 驱动后端、设备模式和全速模式由 tusb_config.h 选择。
+    // 初始化返回后，电脑仍需读取描述符、选择配置；这些请求由后续 tud_task() 处理。
     tud_init(0);
+
+    // 调用板级支持包的后初始化钩子，供其完成需要在 TinyUSB 初始化后执行的设置。
+    // 按板级 API 的调用顺序，这一步放在 tud_init() 之后。
     board_init_after_tusb();
 }
 
@@ -197,37 +207,62 @@ bool media_hid_wake_host() {
     return tud_remote_wakeup();
 }
 
-// 用本轮毫秒时间戳推进 USB 和发送状态：按下报告、等待截止时间、松开报告。
-// 每次调用至多提交一份报告；按下或松开提交失败时保留当前状态，下轮继续尝试。
+// 主循环每轮调用；now_ms 是本轮的启动后毫秒计数，用来判断何时可以提交松开报告。
+// 一个媒体动作按顺序经历：提交按下 -> 等待至少 8 ms 且端点就绪 -> 提交松开。
+// 每次调用至多提交一份报告；等待期间返回主循环，让应用继续采样旋钮和按键。
+// tud_hid_report() 返回 true 表示已提交 USB 传输，电脑接收和处理发生在之后。
 void media_hid_update(uint32_t now_ms) {
+    // 处理 TinyUSB 收集的 USB 事件，包括枚举控制请求、传输完成和挂起通知。
+    // 即使动作队列为空也要调用：电脑仍可能查询描述符或改变 USB 状态。
+    // 挂起回调也在这里得到处理，使下方判断使用更新后的 suspend_wake_enabled。
     tud_task();
 
     // 主机挂起且未允许远程唤醒时，清空输入动作，避免之后因其他原因恢复时误发旧动作。
+    // 只清除等待发送按下报告的队列；已经提交按下、尚欠松开的状态仍然保留，
+    // 这样总线恢复后可以补交松开报告，结束前一个媒体键的按下状态。
     if (tud_suspended() && !hid_state.suspend_wake_enabled) {
         hid_state.queue_head = hid_state.queue_tail = 0;
     }
 
+    // report_is_pressed 表示前一动作的按下报告已提交，还需要提交对应的松开报告。
+    // 它记录 USB 发送状态；音量旋转动作也会经过此状态，与物理按键是否按下无关。
     if (hid_state.report_is_pressed) {
         // 当前动作尚未松开，先等到最早松开时刻，再等端点能接受下一份报告。
+        // time_reached() 能处理 32 位毫秒计数回绕；这里检查时间，不用 sleep 等待。
         if (time_reached(now_ms, hid_state.release_at_ms) && tud_hid_ready()) {
             const uint16_t released = 0;  // usage 为 0 表示当前没有媒体键按下。
+            // 第一个参数是报告 ID，后两个参数是数据地址和长度：2 字节的 0 usage。
+            // TinyUSB 复制数据并在前面加上 ID 1，形成 01 00 00 这份松开报告。
+            // 只有提交成功才清除标志；失败时保留状态，下轮继续尝试松开。
             if (tud_hid_report(report_id_consumer_control, &released, sizeof(released))) {
                 hid_state.report_is_pressed = false;
             }
         }
+        // 未到时间、端点忙或刚提交松开，都结束本轮；下一动作留到之后的调用。
+        // 松开提交后，端点仍可能忙，下轮也必须通过 tud_hid_ready() 才能提交下一次按下。
         return;
     }
 
+    // 没有动作就不发送；HID 未就绪时保留队列，等下一轮再试。
+    // tud_hid_ready() 检查主机已选择配置、设备未挂起，以及 HID IN 端点存在且空闲。
     if (queue_is_empty() || !tud_hid_ready()) {
         return;
     }
 
+    // 先查看队头，暂不移除；usage_for() 把应用枚举转换为标准的 16 位 Consumer usage。
+    // 例如 VolumeUp 对应 0x00E9，告诉电脑“音量加键按下”。
     const MediaAction action = hid_state.action_queue[hid_state.queue_head];
     const uint16_t usage = usage_for(action);
-    // 按下报告成功提交后才消费队列项；随后必须完成松开，才能开始下一个动作。
+    // sizeof(usage) 为 2，TinyUSB 再添加 1 字节报告 ID；音量加的报告数据为 01 E9 00。
+    // 复制到 TinyUSB 缓冲区后局部变量即可结束生存期，不需要一直保存到电脑收到报告。
+    // 提交失败时不移除动作、不改变发送状态，下轮仍尝试队头动作。
     if (tud_hid_report(report_id_consumer_control, &usage, sizeof(usage))) {
+        // 按下已提交，移除队头；取模使下标在环形队列的 16 个槽位内循环。
         hid_state.queue_head = (hid_state.queue_head + 1) % queue_capacity;
+        // 接下来必须先提交松开，不能直接开始下一个动作。
         hid_state.report_is_pressed = true;
+        // 用本轮时间计算最早松开时刻；等待从提交按下计算，电脑实际收到按下还在之后。
+        // 8 ms 到期后若端点仍忙，会继续等待，因此实际松开可能更晚。
         hid_state.release_at_ms = now_ms + key_release_delay_ms;
     }
 }
