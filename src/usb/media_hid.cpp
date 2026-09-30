@@ -110,14 +110,25 @@ const uint8_t hid_report_descriptor[] = {
 
 // 唯一一套 USB 配置的描述符数据；两个宏按顺序展开为主机枚举时读取的字节。
 const uint8_t configuration_descriptor[] = {
-    // 配置值 1、一个接口、无配置名称；声明支持远程唤醒，最大总线取电为 100 mA。
-    TUD_CONFIG_DESCRIPTOR(1, interface_count, 0, configuration_length,
-                          TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP, 100),
-    // HID 接口使用接口名称字符串和报告描述符；HID_ITF_PROTOCOL_NONE 表示不使用 Boot 协议。
-    // sizeof(...) 是报告描述符的字节数，CFG_TUD_HID_EP_BUFSIZE 是端点最大包长。
-    // 0x81 表示端点 1、设备到主机的 IN 方向；最后的 1 声明全速模式下的轮询间隔为 1 ms。
-    TUD_HID_DESCRIPTOR(interface_hid, string_hid_interface, HID_ITF_PROTOCOL_NONE,
-                       sizeof(hid_report_descriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
+    // 生成 9 字节的配置描述符头；此配置的接口、HID 和端点描述符由下一个宏追加。
+    TUD_CONFIG_DESCRIPTOR(
+        1,                                   // bConfigurationValue：主机用此值选择配置；配置值为 1，查询描述符的配置索引则从 0 开始。
+        interface_count,                     // bNumInterfaces：此配置包含的接口总数；当前只有编号为 0 的一个 HID 接口。
+        0,                                   // iConfiguration：配置名称的字符串索引；0 表示不提供配置名称。
+        configuration_length,                // wTotalLength：配置头及其接口、HID、端点描述符的总字节数；不包含另行读取的报告或字符串描述符。
+        TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP,  // bmAttributes：声明支持远程唤醒，使用时仍须主机授权；未设置自供电标志，表示由 USB 总线供电。
+        100                                  // bMaxPower：声明此配置最大从 USB 取电 100 mA；宏按每单位 2 mA 编码为 50，不会主动限制硬件电流。
+    ),
+    // 依次生成接口描述符（9 字节）、HID 描述符（9 字节）和中断 IN 端点描述符（7 字节）。
+    TUD_HID_DESCRIPTOR(
+        interface_hid,                  // bInterfaceNumber：接口编号，当前为 0；宏同时将接口类别声明为 HID。
+        string_hid_interface,           // iInterface：接口名称的字符串索引，当前为 4，对应 "Consumer Control"。
+        HID_ITF_PROTOCOL_NONE,          // bInterfaceSubClass/bInterfaceProtocol：不声明 Boot 子类或协议，使用报告描述符定义的媒体控制格式。
+        sizeof(hid_report_descriptor),  // wDescriptorLength：HID 报告描述符这份格式说明的字节数；每次媒体输入报告本身只有 3 字节。
+        0x81,                           // bEndpointAddress：最高位 1 表示 IN（设备到主机），低位 1 表示端点编号 1；宏固定使用中断传输。
+        CFG_TUD_HID_EP_BUFSIZE,         // wMaxPacketSize：此端点最大数据包为 64 字节，与 TinyUSB 缓冲区大小一致；报告无需填满 64 字节。
+        1                               // bInterval：全速模式下主机轮询此端点的间隔为 1 ms；不要求每次都发送报告，与 8 ms 松开等待分别设置。
+    ),
 };
 
 // 返回待发送队列是否为空；环形队列以读写位置相等表示空。
