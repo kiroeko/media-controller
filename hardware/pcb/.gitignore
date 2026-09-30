@@ -6,7 +6,7 @@
 **/*_backup/
 
 # Generated or obsolete local copies; keep the editable source project in Git.
-/media-controller-carrier-v1-project.zip
+*-project.zip
 /manufacturing/gerber/
 /manufacturing/board-top.*
 /manufacturing/schematic.*

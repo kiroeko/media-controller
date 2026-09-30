@@ -1,8 +1,52 @@
 # media-controller
 
-外壳的当前模型、打印文件和装配说明统一位于 [hardware/enclosure](hardware/enclosure/README.md)。SOLIDWORKS 整机入口为 `hardware/enclosure/cad/Music_Controller.SLDASM`。
+![整机外观：20° 斜面平整面板，左旋钮右按钮](docs/ref/shell-3d.png)
 
-这是一个用于 **Waveshare RP2350-Zero-M** 的 USB 媒体旋钮固件。它读取 Waveshare Rotation Sensor 和 YFROBOT LED 自锁开关，通过 TinyUSB 向电脑发送标准 HID Consumer Control 媒体按键。电脑不需要安装本项目专用驱动。
+一台 USB 媒体旋钮控制台：Type-C 接电脑，转旋钮调音量或切歌，按旋钮播放/暂停，长按静音，LED 自锁开关切换音量与切歌两种模式。电脑把它识别为标准 HID Consumer Control 设备，不需要安装专用驱动。
+
+仓库包含这台设备完整的三部分设计，不只是固件。电气部分由三个现成模块组成，载板只做互连和 3V3/GND 分配，不重新设计电路；两个控件的固定、露出量和按压支撑全部交给外壳结构，载板上不布置它们的安装孔。
+
+| 部分 | 位置 | 工具与格式 | 当前状态 |
+| --- | --- | --- | --- |
+| 固件 | `src/`、`include/`、`CMakeLists.txt` | C++17，Pico SDK 2.3.1 + TinyUSB | 已在整机上验证交互 |
+| 载板 PCB | [hardware/pcb](hardware/pcb/README.md) | 嘉立创 EDA 专业版 `.eprj3` 工程 | v1.1 已下单并组装完成 |
+| 外壳 | [hardware/enclosure](hardware/enclosure/README.md) | SOLIDWORKS 2026，导出 STL | 样件版次，待打印试装 |
+
+三个模块是 **Waveshare RP2350-Zero** 主控、**Waveshare Rotation Sensor**（EC11 编码器带按键）和 **YFROBOT LED 自锁开关**，均为已购成品，实物资料在 [hardware/pcb/reference](hardware/pcb/reference/)。主控在调试阶段用带排针的 `-M` 版本，最终装配用无预焊排针版本，自行焊排针后插入载板排母。
+
+## 仓库目录
+
+```text
+media-controller/
+├─ README.md                 本文件：项目总览与固件说明
+├─ CMakeLists.txt            板级定义 waveshare_rp2350_zero；产物 build/media-controller.uf2
+├─ pico_sdk_import.cmake     pico-sdk 官方导入脚本
+├─ src/                      固件实现，按分层分子目录
+│  ├─ main.cpp               入口，只创建应用对象并启动
+│  ├─ app/                   板级接线、运行状态与产品行为映射
+│  ├─ device/                两个模块的引脚、电平、上下拉与采样节奏
+│  ├─ input/                 去抖、格雷码与手势解码，不依赖 Pico SDK
+│  └─ usb/                   TinyUSB 描述符、动作队列与报告发送
+├─ include/                  头文件，子目录与 src/ 一一对应
+├─ docs/
+│  └─ ref/                   整机、载板与内部结构的参考渲染图
+└─ hardware/
+   ├─ pcb/                   载板：制板工程与设计记录
+   │  ├─ kiro-media-controller-carrier-v1.1/   原理图、PCB 与拼板源工程
+   │  ├─ reference/          三个已购模块的实物资料：主控尺寸图、按钮与编码器照片
+   │  ├─ README.md           设计范围、连接方式与三个模块的实测尺寸
+   │  ├─ ASSEMBLY.md         连接件规格、焊接步骤与接口方向
+   │  └─ TUTORIAL.md         从新建工程到一键下单的分步教程
+   └─ enclosure/             外壳：结构模型与打印文件
+      ├─ cad/                Music_Controller.SLDASM 整机入口、4 个打印件、6 个 REF_ 参考件
+      ├─ print/              4 个打印件的 STL
+      ├─ docs/               装配与打印说明、STEP 导入、检查记录与三张剖面图
+      └─ README.md           当前版次的结构改动与检查结果
+```
+
+`build/` 和 `.vscode/` 不纳入版本管理。硬件两个目录的说明各有侧重：PCB 侧记录实测尺寸、连接件选型和下单流程，外壳侧记录当前版次改了什么、检查到什么程度。SOLIDWORKS 整机入口是 `hardware/enclosure/cad/Music_Controller.SLDASM`，`cad` 里的 `REF_` 零件是器件参考模型，不打印，搬动装配体时要连整个 `cad` 目录一起带走。
+
+下文说明固件的行为、接线、结构和构建刷写。
 
 ## 使用方式
 
