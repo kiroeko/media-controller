@@ -157,10 +157,41 @@ main.cpp
 
 项目使用 Pico SDK v2.3.1、ARM 工具链和 Ninja。`CMakeLists.txt` 选择 pico-sdk 自带的 `waveshare_rp2350_zero` 板级定义；VS Code 用户可以通过 Raspberry Pi Pico 官方扩展导入本目录。CMake 文件顶部的 VS Code 扩展钩子由扩展管理。
 
+在项目根目录执行以下命令，开发调试时显式选择 Debug：
+
 ```powershell
-cmake -S . -B build -G Ninja
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 ```
+
+需要 Release 时，显式指定 Ninja；如果 `build/` 已经由 Ninja 生成，可以直接在同一个目录切换构建类型，无需删除它：
+
+```powershell
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+`cmake --build build` 使用构建目录中已经保存的配置，不会自动选择 Debug 或 Release。设置构建类型后，后续只修改源码时直接运行这条命令即可。
+
+配置命令中的 `-G Ninja` 指定生成器。Windows 上新建构建目录时若省略它，CMake 可能默认选择 Visual Studio，随后 `cmake --build build` 就会调用 MSBuild；VS Code 中的 `cmake.generator` 设置也不会自动应用到手动执行的命令。
+
+当前 Pico SDK 工具链的主要编译参数如下，两种配置生成的 UF2 都可以刷到板子上运行：
+
+| 配置 | 主要编译参数 | 用途 |
+| --- | --- | --- |
+| Debug | `-Og -g` | 方便调试，适度优化 |
+| Release | `-g -O3 -DNDEBUG` | 更强的优化，保留调试符号，默认禁用标准 `assert` |
+
+普通 Ninja 在配置阶段通过 `CMAKE_BUILD_TYPE` 选择构建类型；`--config Release` 用于 Visual Studio、Ninja Multi-Config 等多配置生成器，不用于切换本项目普通 Ninja 的构建类型。参见 [CMake 官方说明](https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html)。
+
+如果构建日志出现 MSBuild，或者报错找不到 `boot_stage2/Debug/bs2_default.elf`，先检查 `build/CMakeCache.txt` 中的 `CMAKE_GENERATOR`。本项目使用 Ninja 构建；若该目录已经由 Visual Studio 生成，需要重建 CMake 配置缓存后切换生成器：
+
+```powershell
+cmake --fresh -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+`--fresh` 需要 CMake 3.24 或更新版本，会重建构建目录内的 `CMakeCache.txt` 和 `CMakeFiles/`，不修改源码。恢复之后，继续使用普通的配置和构建命令即可。Visual Studio 是多配置生成器，`CMAKE_BUILD_TYPE=Release` 不会为它选中 Release，这也是不能只修改构建类型来解决上述问题的原因。参见 [CMake 的 `--fresh` 说明](https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-fresh)。
 
 编译产物是 `build/media-controller.uf2`。按住开发板 `BOOT` 键，通过数据线连接电脑；出现 `RPI-RP2` 盘后，将 UF2 文件复制进去，开发板会重启并枚举为 USB HID 媒体控制设备。
 
