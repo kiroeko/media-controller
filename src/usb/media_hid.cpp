@@ -86,11 +86,14 @@ const tusb_desc_device_t device_descriptor = {
     0x01,                        // bNumConfigurations：提供一套 USB 配置。
 };
 
-// HID 报告描述符：声明 Consumer Control 输入，每份报告携带一个 16 位媒体 usage。
-// usage 范围为 0～0x03FF；非零值表示对应媒体键按下，0 表示松开。
-// report_id_consumer_control 指定的报告编号由 TinyUSB 添加到实际发送的数据前面。
-const uint8_t hid_report_descriptor[] = {
-    TUD_HID_REPORT_DESC_CONSUMER(HID_REPORT_ID(report_id_consumer_control)),
+// 字符串索引对应的 ASCII 文本；回调负责转换为 USB 字符串描述符。
+// 序列号指向运行状态中的缓冲区，media_hid_init() 会在启动 USB 前填好内容。
+const char* const string_descriptors[] = {
+    "",                       // 索引 0 的占位；语言列表由回调单独生成。
+    "Kiro",                   // 制造商名称。
+    "Kiro Media Controller",  // 产品名称。
+    hid_state.serial_string,  // 本板唯一序列号。
+    "Consumer Control",       // HID 接口名称。
 };
 
 // 配置描述符的总字节数，包括配置头、接口描述符、HID 描述符和中断 IN 端点描述符。
@@ -110,14 +113,11 @@ const uint8_t configuration_descriptor[] = {
                        sizeof(hid_report_descriptor), 0x81, CFG_TUD_HID_EP_BUFSIZE, 1),
 };
 
-// 字符串索引对应的 ASCII 文本；回调负责转换为 USB 字符串描述符。
-// 序列号指向运行状态中的缓冲区，media_hid_init() 会在启动 USB 前填好内容。
-const char* const string_descriptors[] = {
-    "",                       // 索引 0 的占位；语言列表由回调单独生成。
-    "Kiro",                   // 制造商名称。
-    "Kiro Media Controller",  // 产品名称。
-    hid_state.serial_string,  // 本板唯一序列号。
-    "Consumer Control",       // HID 接口名称。
+// HID 报告描述符：声明 Consumer Control 输入，每份报告携带一个 16 位媒体 usage。
+// usage 范围为 0～0x03FF；非零值表示对应媒体键按下，0 表示松开。
+// report_id_consumer_control 指定的报告编号由 TinyUSB 添加到实际发送的数据前面。
+const uint8_t hid_report_descriptor[] = {
+    TUD_HID_REPORT_DESC_CONSUMER(HID_REPORT_ID(report_id_consumer_control)),
 };
 
 // 返回待发送队列是否为空；环形队列以读写位置相等表示空。
