@@ -3,6 +3,7 @@
 // 保存并配置 SIG 引脚，再将去抖时长、时间基准和初始采样交给去抖组件。
 void YfrobotLedLatchingSwitch::init(uint sig_pin, uint32_t now_ms) {
     sig_pin_ = sig_pin;
+
     gpio_init(sig_pin_);
     gpio_set_dir(sig_pin_, GPIO_IN);
     // 使用已验证的接法，不启用 MCU 内部上下拉。
